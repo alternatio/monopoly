@@ -1,8 +1,5 @@
 $default-font: NeueMachina, JetBrains Mono, sans-serif;
-%full-width-height {
-  width: 100%;
-  height: 100%;
-}
+
 %column {
   display: flex;
   flex-direction: column;
@@ -10,7 +7,7 @@ $default-font: NeueMachina, JetBrains Mono, sans-serif;
 }
 
 .wrapper {
-  @extend %full-width-height;
+  width: 100%;
   @extend %column;
 }
 .wrapper * {
@@ -22,5 +19,4 @@ $default-font: NeueMachina, JetBrains Mono, sans-serif;
   width: min(100%, 60rem);
   height: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
 }

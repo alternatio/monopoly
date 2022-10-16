@@ -12,6 +12,14 @@
   color: #000;
 }
 
+::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000;
+}
+
 html {
   font-size: 20px;
 }
