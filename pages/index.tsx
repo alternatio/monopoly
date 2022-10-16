@@ -83,7 +83,7 @@ const Home: NextPage = () => {
 					</div>
 					<div className={style.aboutMe}>
 						web developer:
-						<a className={style.link} target='_blank' href='https://github.com/alternatio'>
+						<a className={style.link} rel='noreferrer' target='_blank' href='https://github.com/alternatio'>
 							alternatio
 						</a>
 					</div>
