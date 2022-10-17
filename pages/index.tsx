@@ -1,12 +1,90 @@
 import type {NextPage} from 'next'
 import style from '/styles/pages/Home.module.scss'
-import React, {useState} from "react"
+import React, {FC, useState} from "react"
+import {motion, AnimatePresence} from "framer-motion";
 
 import Wrapper from "../components/Wrapper"
 
 const Home: NextPage = () => {
+	const [addPopupVisible, handleAddPopupVisible] = useState<boolean>(true)
+	const [joinPopupVisible, handleJoinPopupVisible] = useState<boolean>(false)
+
+	const AddSessionPopup: FC = () => {
+		return (
+			<motion.div
+				initial={{opacity: 0}}
+				animate={{opacity: 1}}
+				exit={{opacity: 0}}
+				className={style.popupWrapper}>
+				<div className={style.popup}>
+					<button
+						onClick={() => handleAddPopupVisible(false)}
+						className={style.cross}>
+						⨉
+					</button>
+					<main className={style.popupMain}>
+						<h3 className={style.popupTitle}>
+							Имя сессии
+						</h3>
+						<label>
+							<input className={style.input} type="text"/>
+						</label>
+						<h3 className={style.popupTitle}>
+							Инфо
+						</h3>
+						<p className={style.popupText}>
+							После создания - вы можете поделиться <span className={style.accent}>ссылкой</span> для подключения других игроков
+						</p>
+					</main>
+					<button className={style.button}>
+						Создать
+					</button>
+				</div>
+			</motion.div>
+		)
+	}
+
+	const JoinSessionPopup: FC = () => {
+		return (
+			<motion.div
+				initial={{opacity: 0}}
+				animate={{opacity: 1}}
+				exit={{opacity: 0}}
+				className={style.popupWrapper}>
+				<div className={style.popup}>
+					<button
+						onClick={() => handleJoinPopupVisible(false)}
+						className={style.cross}>
+						⨉
+					</button>
+					<main className={style.popupMain}>
+						<h3 className={style.popupTitle}>
+							Ссылка сессии
+						</h3>
+						<label>
+							<input className={style.input} type="text"/>
+						</label>
+					</main>
+					<button className={style.button}>
+						Подключиться
+					</button>
+				</div>
+			</motion.div>
+		)
+	}
+
 	return (
 		<Wrapper>
+			<AnimatePresence>
+				{addPopupVisible &&
+          <AddSessionPopup />
+				}
+			</AnimatePresence>
+			<AnimatePresence>
+				{joinPopupVisible &&
+					<JoinSessionPopup />
+				}
+			</AnimatePresence>
 			<header className={style.header}>
 				Monopoly<span className={style.accent}>*</span>
 			</header>
@@ -24,10 +102,14 @@ const Home: NextPage = () => {
 						Сессия
 					</div>
 					<div className={style.sessionButtons}>
-						<button className={style.button}>
+						<button
+							onClick={() => handleAddPopupVisible(true)}
+							className={style.button}>
 							Создать
 						</button>
-						<button className={style.button}>
+						<button
+							onClick={() => handleJoinPopupVisible(true)}
+							className={style.button}>
 							Присоединиться
 						</button>
 					</div>

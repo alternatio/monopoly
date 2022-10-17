@@ -8,6 +8,7 @@ $default-font: NeueMachina, JetBrains Mono, sans-serif;
 
 .wrapper {
   width: 100%;
+  height: 100%;
   @extend %column;
 }
 .wrapper * {
