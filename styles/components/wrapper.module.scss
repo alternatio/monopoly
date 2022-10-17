@@ -16,7 +16,7 @@ $default-font: NeueMachina, JetBrains Mono, sans-serif;
 
 .container {
   @extend %column;
-  width: min(100%, 60rem);
+  width: min(100%, 66rem);
   height: 100%;
   overflow-x: hidden;
 }
