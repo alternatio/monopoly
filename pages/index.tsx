@@ -1,12 +1,37 @@
 import type {NextPage} from 'next'
 import style from '/styles/pages/Home.module.scss'
 import React, {FC, useState} from "react"
-import {motion, AnimatePresence} from "framer-motion";
+import {motion, AnimatePresence} from "framer-motion"
 
+// firebase
+import {collection, deleteDoc, doc, getDocs, setDoc} from "@firebase/firestore"
+import {firebaseData} from "../data/firebase"
+
+// components
 import Wrapper from "../components/Wrapper"
 
+
+const sessionsRef = collection(firebaseData, 'sessions')
+
+setDoc(doc(sessionsRef, 'test2'), {
+	token: {
+		name: '123',
+		figure: 'cube'
+	},
+	test: 'test'
+})
+
+getDocs(sessionsRef)
+	.then((snapshot) => {
+		snapshot.docs.map((value, index) => {
+			console.log(value.data())
+		})
+	})
+
+// deleteDoc(doc(sessionsRef, 'test2'))
+
 const Home: NextPage = () => {
-	const [addPopupVisible, handleAddPopupVisible] = useState<boolean>(true)
+	const [addPopupVisible, handleAddPopupVisible] = useState<boolean>(false)
 	const [joinPopupVisible, handleJoinPopupVisible] = useState<boolean>(false)
 
 	const AddSessionPopup: FC = () => {
@@ -24,7 +49,13 @@ const Home: NextPage = () => {
 					</button>
 					<main className={style.popupMain}>
 						<h3 className={style.popupTitle}>
-							Имя сессии
+							ID сессии
+						</h3>
+						<label>
+							<input className={style.input} type="text"/>
+						</label>
+						<h3 className={style.popupTitle}>
+							Имя игрока
 						</h3>
 						<label>
 							<input className={style.input} type="text"/>
@@ -59,7 +90,13 @@ const Home: NextPage = () => {
 					</button>
 					<main className={style.popupMain}>
 						<h3 className={style.popupTitle}>
-							Ссылка сессии
+							ID сессии
+						</h3>
+						<label>
+							<input className={style.input} type="text"/>
+						</label>
+						<h3 className={style.popupTitle}>
+							Имя игрока
 						</h3>
 						<label>
 							<input className={style.input} type="text"/>
