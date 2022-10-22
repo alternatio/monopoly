@@ -1,0 +1,24 @@
+$orange: #FF9900;
+$black: #000;
+$white: #FFF;
+
+.main {
+  width: 100%;
+  height: 100%;
+  padding: 1rem .75rem;
+}
+
+.accent {
+  font-size: inherit;
+  font-weight: inherit;
+  color: $orange;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}

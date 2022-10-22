@@ -1,0 +1,52 @@
+.buttonRed {
+  background: #000;
+  color: #fff;
+  width: min(100%, 15rem);
+  height: fit-content;
+  padding: 0.75rem;
+  text-align: center;
+  transition: 0.2s ease-out;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 #000;
+}
+.buttonRed:hover {
+  background: #FF9900;
+  color: #000;
+  box-shadow: 0 0.5rem #000;
+}
+.buttonRed:active {
+  transform: translateY(0.5rem);
+  box-shadow: 0 0 #000;
+}
+
+.hamburger {
+  width: min(80%, 20rem);
+  height: min(90%, 40rem);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  padding: 3rem 1rem 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.075);
+  border: #000 solid 0.05rem;
+}
+
+.buttonRed {
+  background: #FF0044;
+  color: #000;
+  display: flex;
+  margin-top: auto;
+  justify-content: center;
+}
+.buttonRed:hover {
+  background: #FF0044;
+}
+
+/*# sourceMappingURL=Hamburger.module.css.map */

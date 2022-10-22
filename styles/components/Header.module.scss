@@ -1,0 +1,34 @@
+$black: #000;
+$white: #fff;
+
+.header {
+  padding: .35rem;
+  width: min(100%, 66rem);
+  z-index: 10;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+}
+
+.hamburgerButton {
+  width: 3rem;
+  aspect-ratio: 1/1;
+  padding: 1rem .75rem;
+  border-radius: .75rem;
+  box-shadow: 0 .5rem .75rem rgba($black, .075);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $white;
+  cursor: pointer;
+  position: relative;
+  pointer-events: all;
+  transition: .2s ease-in-out;
+  div {
+    width: calc(100% - 1.5rem);
+    height: .2rem;
+    background: $black;
+    border-radius: 1rem;
+    position: absolute;
+  }
+}

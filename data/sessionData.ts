@@ -1,13 +1,17 @@
+import {playerDataInterface, initialPlayer} from "./playerData";
+
+/**
+ * SessionDataInterface - interface for create sessions
+ */
 export interface sessionDataInterface {
-	sessionID: number
-	sessionName: string
 	isEnd: boolean
+	players: playerDataInterface[]
 }
 
-export const sessionData: sessionDataInterface[] = [
-	{
-		sessionID: 0,
-		sessionName: 'test',
-		isEnd: false
-	}
-]
+/**
+ * initialSession - object of the initial session
+ */
+export const initialSession: sessionDataInterface = {
+	isEnd: false,
+	players: [initialPlayer]
+}

@@ -1,0 +1,56 @@
+$white: #fff;
+$black: #000;
+$orange: #FF9900;
+$red: #FF0044;
+
+%button {
+  background: $black;
+  color: $white;
+  width: min(100%, 15rem);
+  height: fit-content;
+  padding: .75rem;
+  text-align: center;
+  transition: .2s ease-out;
+  border-radius: .75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 $black;
+  &:hover {
+    background: $orange;
+    color: $black;
+    box-shadow: 0 .5rem $black;
+  }
+  &:active {
+    transform: translateY(.5rem);
+    box-shadow: 0 0 $black;
+  }
+}
+
+.hamburger {
+  width: min(80%, 20rem);
+  height: min(90%, 40rem);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $white;
+  padding: 3rem 1rem 1rem;
+  border-radius: .75rem;
+  box-shadow: 0 .5rem .75rem rgba($black, .075);
+  border: $black solid .05rem;
+}
+
+.buttonRed {
+  @extend %button;
+  background: $red;
+  color: $black;
+  display: flex;
+  margin-top: auto;
+  justify-content: center;
+  &:hover {
+    background: $red;
+  }
+}
