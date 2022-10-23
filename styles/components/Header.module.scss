@@ -24,6 +24,7 @@ $white: #fff;
   position: relative;
   pointer-events: all;
   transition: .2s ease-in-out;
+  z-index: 10;
   div {
     width: calc(100% - 1.5rem);
     height: .2rem;

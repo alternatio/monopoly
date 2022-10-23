@@ -9,9 +9,9 @@ interface HamburgerInterface {
 const Hamburger: FC<HamburgerInterface> = (props) => {
 	return (
 		<motion.div
-			initial={{x: '-120%'}}
-			animate={{x: '0'}}
-			exit={{x: '-120%'}}
+			initial={{y: '-110vh'}}
+			animate={{y: '0'}}
+			exit={{y: '-110vh'}}
 			transition={{duration: .6}}
 			className={style.hamburger}>
 			<button

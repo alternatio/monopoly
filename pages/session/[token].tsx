@@ -10,6 +10,7 @@ import style from '/styles/pages/Session.module.scss'
 import NetworkErrorPopup from "../../components/NetworkErrorPopup";
 import Header from "../../components/Header";
 import Hamburger from "../../components/Hamburger";
+import Field from "../../components/Field";
 
 interface sessionInterface {
 	currentToken: string
@@ -28,7 +29,7 @@ const Session: NextPage<sessionInterface> = () => {
 
 	// refresh data
 	onSnapshot(doc(collection(firebaseData, 'sessions'), getToken()), (sessions) => {
-		// console.log(sessions.data())
+		console.log(sessions.data())
 		if (!sessions.data()) {
 			handleNetworkError(true)
 		} else {
@@ -53,19 +54,17 @@ const Session: NextPage<sessionInterface> = () => {
 						<NetworkErrorPopup />
 					}
 				</AnimatePresence>
-				<AnimatePresence>
-					{hamburgerIsOpen &&
-						<Hamburger endSession={endSession}/>
-					}
-				</AnimatePresence>
 				<Header
+					endSession={endSession}
 					handleHamburgerIsOpen={handleHamburgerIsOpen}
 					hamburgerIsOpen={hamburgerIsOpen}/>
 				<main className={style.main}>
 					<header className={style.header}>
 						Monopoly<span className={style.accent}>*</span>
 					</header>
-
+					<div className={style.content}>
+						<Field />
+					</div>
 				</main>
 			</Wrapper>
 		</>

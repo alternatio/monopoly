@@ -24,7 +24,7 @@
 
 .hamburger {
   width: min(80%, 20rem);
-  height: min(90%, 40rem);
+  height: min(90vh, 40rem);
   position: absolute;
   top: 1rem;
   left: 1rem;

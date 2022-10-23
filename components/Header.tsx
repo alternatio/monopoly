@@ -1,10 +1,12 @@
 import style from "/styles/components/Header.module.scss";
 import React, {FC} from "react";
-import { motion } from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
+import Hamburger from "./Hamburger";
 
 interface HeaderInterface {
 	handleHamburgerIsOpen: Function
 	hamburgerIsOpen: boolean
+	endSession: Function
 }
 
 const Header: FC<HeaderInterface> = (props) => {
@@ -35,6 +37,11 @@ const Header: FC<HeaderInterface> = (props) => {
 					transition={{duration: .4}}
 				/>
 			</motion.button>
+			<AnimatePresence>
+				{props.hamburgerIsOpen &&
+          <Hamburger endSession={props.endSession} />
+				}
+			</AnimatePresence>
 		</header>
 	)
 }

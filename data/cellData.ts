@@ -295,3 +295,7 @@ export const companies: companyInterface[] = [
 		parkingPrice: 100
 	}
 ]
+
+
+
+export const initialCells = []

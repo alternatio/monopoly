@@ -13,5 +13,5 @@ export interface sessionDataInterface {
  */
 export const initialSession: sessionDataInterface = {
 	isEnd: false,
-	players: [initialPlayer]
+	players: [initialPlayer, initialPlayer, initialPlayer, initialPlayer, initialPlayer]
 }

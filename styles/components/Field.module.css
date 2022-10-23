@@ -1,3 +1,62 @@
+.policeCell, .coinCell, .prisonCell, .startCell {
+  width: 100%;
+  height: 100%;
+  background: #F4F4F4;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
 
+.field {
+  width: min(100%, 30rem);
+  aspect-ratio: 1/1;
+  background: #FFF;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.075);
+  display: grid;
+  grid-template-columns: 15% repeat(7, 10%) 15%;
+  grid-template-rows: 15% repeat(7, 10%) 15%;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (orientation: landscape) {
+  .field {
+    width: min-content;
+    height: 85vh;
+  }
+}
+.startCell {
+  grid-column: 1/2;
+  grid-row: 9/10;
+}
+
+.prisonCell {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.coinCell {
+  grid-column: 9/10;
+  grid-row: 1/2;
+}
+
+.policeCell {
+  grid-column: 9/10;
+  grid-row: 9/10;
+}
+
+.player {
+  width: 3%;
+  aspect-ratio: 1/1;
+  background: #FF9900;
+  border-radius: 50%;
+  position: absolute;
+}
 
 /*# sourceMappingURL=Field.module.css.map */
