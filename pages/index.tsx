@@ -16,6 +16,7 @@ const sessionsRef = collection(firebaseData, 'sessions')
 const Home: NextPage = () => {
 	const [addPopupVisible, handleAddPopupVisible] = useState<boolean>(true)
 	const [joinPopupVisible, handleJoinPopupVisible] = useState<boolean>(false)
+	const [isDarkTheme, handleIsDarkTheme] = useState<boolean>(false)
 
 	// router
 	const router = useRouter()
@@ -109,7 +110,7 @@ const Home: NextPage = () => {
 					Home
 				</title>
 			</Head>
-			<Wrapper>
+			<Wrapper isDarkTheme={isDarkTheme}>
 				<AnimatePresence>
 					{addPopupVisible &&
             <AddSessionPopup />
