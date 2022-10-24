@@ -1,28 +1,17 @@
-.main {
-  width: 100%;
-  height: 100%;
-  padding: 0 1rem 0.75rem;
-}
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 1 | @import "/styles/global/variables";
+ *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   Session.module.scss 1:9  root stylesheet */
 
-.accent {
-  font-size: inherit;
-  font-weight: inherit;
-  color: #FF9900;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import \"/styles/global/variables\";\d\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   Session.module.scss 1:9  root stylesheet";
 }
-
-.header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 1rem 0 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/*# sourceMappingURL=Session.module.css.map */

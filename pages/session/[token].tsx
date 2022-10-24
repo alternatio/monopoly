@@ -10,6 +10,7 @@ import style from '/styles/pages/Session.module.scss'
 import NetworkErrorPopup from "../../components/NetworkErrorPopup";
 import Header from "../../components/Header";
 import Field from "../../components/Field";
+import GetNamePopup from "../../components/GetNamePopup";
 
 interface sessionInterface {
 	currentToken: string
@@ -18,6 +19,9 @@ interface sessionInterface {
 const Session: NextPage<sessionInterface> = () => {
 	const [networkError, handleNetworkError] = useState<boolean>(false)
 	const [hamburgerIsOpen, handleHamburgerIsOpen] = useState<boolean>(false)
+	const [isDarkTheme, handleIsDarkTheme] = useState<boolean>(false)
+	// TODO: true to false
+	const [nameIsTaken, handleNameIsTaken] = useState<boolean>(true)
 	const router = useRouter()
 
 	const getToken = (): string => {
@@ -49,13 +53,20 @@ const Session: NextPage<sessionInterface> = () => {
 					Session
 				</title>
 			</Head>
-			<Wrapper>
+			<Wrapper isDarkTheme={isDarkTheme}>
+
 				<AnimatePresence>
 					{networkError &&
-						<NetworkErrorPopup />
-					}
+						<NetworkErrorPopup />}
 				</AnimatePresence>
+				<AnimatePresence>
+					{!nameIsTaken &&
+						<GetNamePopup handleNameIsTaken={handleNameIsTaken}/>}
+				</AnimatePresence>
+
 				<Header
+					isDarkTheme={isDarkTheme}
+					handleIsDarkTheme={handleIsDarkTheme}
 					endSession={endSession}
 					handleHamburgerIsOpen={handleHamburgerIsOpen}
 					hamburgerIsOpen={hamburgerIsOpen}/>

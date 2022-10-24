@@ -10,26 +10,19 @@ const Field: FC = () => {
 	const [positionPlayer3, setPositionPlayer3] = useState<number>(0)
 	const [positionPlayer4, setPositionPlayer4] = useState<number>(0)
 
-	const getPositionPlayer: Function = () => {
-
-	}
-
-	const motionPlayer: Function = (
-		positionsPlayer: number[],
-		positionPlayer: number,
-		setPositionPlayer: Function,
-		currentMotions: number
-	) => {
-		if (positionPlayer1 < 31) {
-			setPositionPlayer(positionPlayer + 1)
-		} else {
-			setPositionPlayer(0)
-		}
-	}
-
 	const transitionMotion = {
 		duration: .3,
 		type: 'tween'
+	}
+
+	const motionPlayer = () => {
+		if (targetPositionPlayer1 !== positionPlayer1) {
+			if (positionPlayer1 < 31) {
+				setPositionPlayer1(positionPlayer1 + 1)
+			} else {
+				setPositionPlayer1(0)
+			}
+		}
 	}
 
 	const cells = [
@@ -83,16 +76,7 @@ const Field: FC = () => {
 
 			<motion.div
 				animate={positionsPlayer[positionPlayer1]}
-				onAnimationComplete={() => {
-					if (targetPositionPlayer1 !== positionPlayer1) {
-						if (positionPlayer1 < 31) {
-							setPositionPlayer1(positionPlayer1 + 1)
-						} else {
-							setPositionPlayer1(0)
-						}
-					}
-					console.log(positionPlayer1, targetPositionPlayer1)
-				}}
+				onAnimationComplete={() => motionPlayer()}
 				transition={transitionMotion}
 				className={style.player}>
 

@@ -1,6 +1,6 @@
-.buttonRed {
+.buttonRed, .themeButton {
   background: #000;
-  color: #fff;
+  color: #FFF;
   width: min(100%, 15rem);
   height: fit-content;
   padding: 0.75rem;
@@ -12,12 +12,12 @@
   cursor: pointer;
   box-shadow: 0 0 #000;
 }
-.buttonRed:hover {
+.buttonRed:hover, .themeButton:hover {
   background: #FF9900;
   color: #000;
   box-shadow: 0 0.5rem #000;
 }
-.buttonRed:active {
+.buttonRed:active, .themeButton:active {
   transform: translateY(0.5rem);
   box-shadow: 0 0 #000;
 }
@@ -31,23 +31,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fff;
+  background: #FFF;
   padding: 3rem 1rem 1rem;
   border-radius: 0.75rem;
-  box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.075);
   border: #000 solid 0.05rem;
   pointer-events: all;
 }
 
 .buttonRed {
-  background: #FF0044;
-  color: #000;
+  background: #EE0044;
   display: flex;
   margin-top: auto;
   justify-content: center;
 }
 .buttonRed:hover {
-  background: #FF0044;
+  background: #EE0044;
+  color: #FFF;
 }
 
 /*# sourceMappingURL=Hamburger.module.css.map */

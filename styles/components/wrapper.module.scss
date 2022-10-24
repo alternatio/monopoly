@@ -1,15 +1,11 @@
-$default-font: NeueMachina, JetBrains Mono, sans-serif;
-
-%column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+@import "/styles/global/variables";
 
 .wrapper {
   width: 100%;
   height: 100%;
   @extend %column;
+  background: #fff;
+  filter: invert(1);
 }
 .wrapper * {
   font-family: $default-font;

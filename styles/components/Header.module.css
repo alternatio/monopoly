@@ -1,34 +1,17 @@
-.header {
-  padding: 0.35rem;
-  width: min(100%, 66rem);
-  z-index: 10;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-}
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 1 | @import "/styles/global/variables";
+ *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   Header.module.scss 1:9  root stylesheet */
 
-.hamburgerButton {
-  width: 3rem;
-  aspect-ratio: 1/1;
-  padding: 1rem 0.75rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.075);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  cursor: pointer;
-  position: relative;
-  pointer-events: all;
-  transition: 0.2s ease-in-out;
-  z-index: 10;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import \"/styles/global/variables\";\d\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   Header.module.scss 1:9  root stylesheet";
 }
-.hamburgerButton div {
-  width: calc(100% - 1.5rem);
-  height: 0.2rem;
-  background: #000;
-  border-radius: 1rem;
-  position: absolute;
-}
-
-/*# sourceMappingURL=Header.module.css.map */

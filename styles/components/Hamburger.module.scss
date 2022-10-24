@@ -1,31 +1,4 @@
-$white: #fff;
-$black: #000;
-$orange: #FF9900;
-$red: #FF0044;
-
-%button {
-  background: $black;
-  color: $white;
-  width: min(100%, 15rem);
-  height: fit-content;
-  padding: .75rem;
-  text-align: center;
-  transition: .2s ease-out;
-  border-radius: .75rem;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 0 $black;
-  &:hover {
-    background: $orange;
-    color: $black;
-    box-shadow: 0 .5rem $black;
-  }
-  &:active {
-    transform: translateY(.5rem);
-    box-shadow: 0 0 $black;
-  }
-}
+@import "/styles/global/variables";
 
 .hamburger {
   width: min(80%, 20rem);
@@ -39,19 +12,22 @@ $red: #FF0044;
   background: $white;
   padding: 3rem 1rem 1rem;
   border-radius: .75rem;
-  box-shadow: 0 .5rem .75rem rgba($black, .075);
   border: $black solid .05rem;
   pointer-events: all;
+}
+
+.themeButton {
+  @extend %button;
 }
 
 .buttonRed {
   @extend %button;
   background: $red;
-  color: $black;
   display: flex;
   margin-top: auto;
   justify-content: center;
   &:hover {
     background: $red;
+    color: $white;
   }
 }
