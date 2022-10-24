@@ -4,12 +4,11 @@ import Head from "next/head";
 import {collection, deleteDoc, doc, onSnapshot} from "@firebase/firestore";
 import {firebaseData} from "../../data/firebase";
 import Wrapper from "../../components/Wrapper";
-import {FC, useState} from "react";
-import {motion, AnimatePresence} from "framer-motion";
+import {useState} from "react";
+import {AnimatePresence} from "framer-motion";
 import style from '/styles/pages/Session.module.scss'
 import NetworkErrorPopup from "../../components/NetworkErrorPopup";
 import Header from "../../components/Header";
-import Hamburger from "../../components/Hamburger";
 import Field from "../../components/Field";
 
 interface sessionInterface {
@@ -35,6 +34,8 @@ const Session: NextPage<sessionInterface> = () => {
 		} else {
 			handleNetworkError(false)
 		}
+	}, () => {
+		handleNetworkError(true)
 	})
 
 	const endSession = () => {

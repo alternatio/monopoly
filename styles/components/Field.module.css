@@ -1,39 +1,40 @@
-.policeCell, .coinCell, .prisonCell, .startCell {
+.cell, .policeCell, .coinCell, .prisonCell, .startCell {
   width: 100%;
   height: 100%;
-  background: #F4F4F4;
+  background: #FFF;
+  border-radius: 0.5rem;
+  border: #eee solid 0.05rem;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.035);
   align-items: center;
-  font-weight: 700;
-  font-size: 0.8rem;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 .field {
   width: min(100%, 30rem);
   aspect-ratio: 1/1;
   background: #FFF;
-  border-radius: 0.75rem;
-  box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.075);
+  border-radius: 0.5rem;
   display: grid;
   grid-template-columns: 15% repeat(7, 10%) 15%;
   grid-template-rows: 15% repeat(7, 10%) 15%;
-  overflow: hidden;
   position: relative;
   justify-content: center;
   align-items: center;
 }
-
 @media (orientation: landscape) {
   .field {
     width: min-content;
     height: 85vh;
   }
 }
+
 .startCell {
   grid-column: 1/2;
   grid-row: 9/10;
+  background: repeating-linear-gradient(-45deg, transparent 0 1rem, black 1rem 2rem);
 }
 
 .prisonCell {
@@ -57,6 +58,45 @@
   background: #FF9900;
   border-radius: 50%;
   position: absolute;
+}
+
+.fieldLine4, .fieldLine3, .fieldLine2, .fieldLine1 {
+  display: grid;
+  gap: 0.25rem;
+  width: 100%;
+  height: 100%;
+}
+
+.fieldLine3, .fieldLine1 {
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(7, 1fr);
+  padding: 0.25rem 0;
+}
+
+.fieldLine4, .fieldLine2 {
+  grid-template-rows: 100%;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0 0.25rem;
+}
+
+.fieldLine1 {
+  grid-column: 1/2;
+  grid-row: 2/9;
+}
+
+.fieldLine2 {
+  grid-row: 1/2;
+  grid-column: 2/9;
+}
+
+.fieldLine3 {
+  grid-column: 9/10;
+  grid-row: 2/9;
+}
+
+.fieldLine4 {
+  grid-row: 9/10;
+  grid-column: 2/9;
 }
 
 /*# sourceMappingURL=Field.module.css.map */

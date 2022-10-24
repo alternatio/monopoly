@@ -36,6 +36,7 @@
   border-radius: 0.75rem;
   box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.075);
   border: #000 solid 0.05rem;
+  pointer-events: all;
 }
 
 .buttonRed {

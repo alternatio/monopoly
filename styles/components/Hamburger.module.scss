@@ -41,6 +41,7 @@ $red: #FF0044;
   border-radius: .75rem;
   box-shadow: 0 .5rem .75rem rgba($black, .075);
   border: $black solid .05rem;
+  pointer-events: all;
 }
 
 .buttonRed {

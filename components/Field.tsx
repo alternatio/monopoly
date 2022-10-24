@@ -32,15 +32,19 @@ const Field: FC = () => {
 		type: 'tween'
 	}
 
+	const cells = [
+		'1', '2', '3', '4', '5', '6', '7'
+	]
+
 	return (
 		<div className={style.field}>
 			<div
 				onClick={() => {
 					setPositionPlayer1((positionPlayer1 + 1) % 32)
-					setTargetPositionPlayer1((positionPlayer1 + 4) % 32)
+					setTargetPositionPlayer1((positionPlayer1 + 2) % 32)
 				}}
 				className={style.startCell}>
-				Старт
+
 			</div>
 			<div className={style.prisonCell}>
 				Тюрьма
@@ -51,6 +55,32 @@ const Field: FC = () => {
 			<div className={style.policeCell}>
 				Коп
 			</div>
+
+
+			<div className={style.fieldLine1}>
+				{cells.map((value, index) => {
+					return	<div className={style.cell}>{index}</div>
+				})}
+			</div>
+
+			<div className={style.fieldLine2}>
+				{cells.map((value, index) => {
+					return	<div className={style.cell}>{index}</div>
+				})}
+			</div>
+
+			<div className={style.fieldLine3}>
+				{cells.map((value, index) => {
+					return	<div className={style.cell}>{index}</div>
+				})}
+			</div>
+
+			<div className={style.fieldLine4}>
+				{cells.map((value, index) => {
+					return	<div className={style.cell}>{index}</div>
+				})}
+			</div>
+
 			<motion.div
 				animate={positionsPlayer[positionPlayer1]}
 				onAnimationComplete={() => {
