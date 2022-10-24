@@ -59,25 +59,25 @@ const Field: FC = () => {
 
 			<div className={style.fieldLine1}>
 				{cells.map((value, index) => {
-					return	<div className={style.cell}>{index}</div>
+					return	<div key={index} className={style.cell}>{index}</div>
 				})}
 			</div>
 
 			<div className={style.fieldLine2}>
 				{cells.map((value, index) => {
-					return	<div className={style.cell}>{index}</div>
+					return	<div key={index} className={style.cell}>{index}</div>
 				})}
 			</div>
 
 			<div className={style.fieldLine3}>
 				{cells.map((value, index) => {
-					return	<div className={style.cell}>{index}</div>
+					return	<div key={index} className={style.cell}>{index}</div>
 				})}
 			</div>
 
 			<div className={style.fieldLine4}>
 				{cells.map((value, index) => {
-					return	<div className={style.cell}>{index}</div>
+					return	<div key={index} className={style.cell}>{index}</div>
 				})}
 			</div>
 
