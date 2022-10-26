@@ -90,7 +90,7 @@ const Session: NextPage<sessionInterface> = () => {
 						Monopoly<span className={style.accent}>*</span>
 					</header>
 					<div className={style.content}>
-						<Field />
+						<Field getToken={getToken}/>
 					</div>
 				</main>
 			</Wrapper>

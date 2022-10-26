@@ -7,6 +7,7 @@ export interface playerDataInterface {
 	money: number
 	position: number
 	targetPosition: number
+	companies: number[]
 }
 
 /**
@@ -15,5 +16,6 @@ export interface playerDataInterface {
 export const initialPlayer: playerDataInterface = {
 	money: 1500,
 	position: 0,
-	targetPosition: 0
+	targetPosition: 0,
+	companies: []
 }

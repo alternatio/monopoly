@@ -1,30 +1,45 @@
 import {motion} from "framer-motion";
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import style from "/styles/components/Field.module.scss";
 import {positionsPlayer} from "../data/positionsPlayerData";
-import {cellLine1, cellLine2, cellLine3, cellLine4, CellLineInterface} from "../data/cellData";
-import Image from "next/image";
+import {cellLine1, cellLine2, cellLine3, cellLine4} from "../data/cellData";
 import Cell from "./Cell";
+import {playerDataInterface} from "../data/playerData";
+import {initialSession} from "../data/sessionData";
+import {collection, doc, setDoc} from "@firebase/firestore";
+import {firebaseData} from "../data/firebase";
 
-const Field: FC = () => {
-	const [positionPlayer1, setPositionPlayer1] = useState<number>(0)
-	const [targetPositionPlayer1, setTargetPositionPlayer1] = useState<number>(0)
-	const [positionPlayer2, setPositionPlayer2] = useState<number>(0)
-	const [positionPlayer3, setPositionPlayer3] = useState<number>(0)
-	const [positionPlayer4, setPositionPlayer4] = useState<number>(0)
+interface FiledInterface {
+	getToken: Function
+}
+
+const Field: FC<FiledInterface> = (props) => {
+	const [players, setPlayers] = useState<playerDataInterface[]>(initialSession.players)
+
+	const sessionsRef = collection(firebaseData, 'sessions')
+	useEffect(() => {
+		setDoc(doc(sessionsRef, props.getToken()), initialSession)
+	}, [players])
 
 	const transitionMotion = {
 		duration: .3,
 		type: 'tween'
 	}
 
-	const motionPlayer = () => {
-		if (targetPositionPlayer1 !== positionPlayer1) {
-			if (positionPlayer1 < 31) {
-				setPositionPlayer1(positionPlayer1 + 1)
+	const motionPlayer = (numberOfPlayer: number) => {
+		if (players[numberOfPlayer].targetPosition !== players[numberOfPlayer].position) {
+			if (players[numberOfPlayer].position < 31) {
+				const playerPosition = players[0].position + 1
+				const playerInArray = [...players]
+				playerInArray[0].position = playerPosition
+				setPlayers(playerInArray)
 			} else {
-				setPositionPlayer1(0)
+				const playerPosition = 0
+				const playerInArray = [...players]
+				playerInArray[0].position = playerPosition
+				setPlayers(playerInArray)
 			}
+			console.log(players[numberOfPlayer].targetPosition, players[numberOfPlayer].position)
 		}
 	}
 
@@ -34,8 +49,11 @@ const Field: FC = () => {
 		<div className={style.field}>
 			<div
 				onClick={() => {
-					setPositionPlayer1((positionPlayer1 + 1) % 32)
-					setTargetPositionPlayer1((positionPlayer1 + 2) % 32)
+					const playerPosition = (players[0].position + 1) % 32
+					const playerInArray = [...players]
+					playerInArray[0].position = playerPosition
+					playerInArray[0].targetPosition = ((playerInArray[0].position + 6) % 32)
+					setPlayers(playerInArray)
 				}}
 				className={style.startCell}>
 
@@ -84,14 +102,8 @@ const Field: FC = () => {
 			</div>
 
 			<motion.div
-				animate={positionsPlayer[positionPlayer1]}
-				onAnimationComplete={() => motionPlayer()}
-				transition={transitionMotion}
-				className={style.player}>
-
-			</motion.div>
-			<motion.div
-				animate={positionsPlayer[positionPlayer2]}
+				animate={positionsPlayer[players[0].position]}
+				onAnimationComplete={() => motionPlayer(0)}
 				transition={transitionMotion}
 				className={style.player}>
 
