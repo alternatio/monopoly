@@ -7,8 +7,7 @@ interface HeaderInterface {
 	handleHamburgerIsOpen: Function
 	hamburgerIsOpen: boolean
 	endSession: Function
-	handleIsDarkTheme: Function
-	isDarkTheme: boolean
+	toggleDarkTheme: Function
 }
 
 const Header: FC<HeaderInterface> = (props) => {
@@ -42,8 +41,7 @@ const Header: FC<HeaderInterface> = (props) => {
 			<AnimatePresence>
 				{props.hamburgerIsOpen &&
           <Hamburger
-            isDarkTheme={props.isDarkTheme}
-            handleIsDarkTheme={props.handleIsDarkTheme}
+            toggleDarkTheme={props.toggleDarkTheme}
 	          endSession={props.endSession} />
 				}
 			</AnimatePresence>

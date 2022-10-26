@@ -19,15 +19,15 @@ export interface cellInterface {
 
 
 export interface companyInterface {
-	companyID: number
-	companyName: string
-	color: number
+	companyID?: number
+	companyName?: string
+	color?: number
 	property?: number
-	purchasedPrice: number
-	initialSalePrice: number
+	purchasedPrice?: number
+	initialSalePrice?: number
 
-	costUpgrade: number
-	parkingPrice: number
+	costUpgrade?: number
+	parkingPrice?: number
 }
 
 
@@ -109,15 +109,6 @@ export const companies: companyInterface[] = [
 		companyID: 5,
 		companyName: 'Delta',
 		color: 2,
-		purchasedPrice: 100,
-		initialSalePrice: 100,
-		costUpgrade: 100,
-		parkingPrice: 100
-	},
-	{
-		companyID: 15,
-		companyName: 'Epic games',
-		color: 3,
 		purchasedPrice: 100,
 		initialSalePrice: 100,
 		costUpgrade: 100,
@@ -233,7 +224,7 @@ export const companies: companyInterface[] = [
 	},
 	{
 		companyID: 12,
-		companyName: 'Shell',
+		companyName: 'Mobil',
 		color: 7,
 		purchasedPrice: 100,
 		initialSalePrice: 100,
@@ -242,7 +233,7 @@ export const companies: companyInterface[] = [
 	},
 	{
 		companyID: 13,
-		companyName: 'Sinopec',
+		companyName: 'TotalEnergies',
 		color: 7,
 		purchasedPrice: 100,
 		initialSalePrice: 100,
@@ -296,6 +287,54 @@ export const companies: companyInterface[] = [
 	}
 ]
 
+export interface CellLineInterface extends companyInterface {
+	extendCellType?: string
+}
+
+export const cellLine1: CellLineInterface[] = []
+export const cellLine2: CellLineInterface[] = []
+export const cellLine3: CellLineInterface[] = []
+export const cellLine4: CellLineInterface[] = []
+
+let currentIDCellOfCompany = 0
+
+for (let i = 0; i < 7; i++) {
+	if (i !== 3) {
+		cellLine1.push(companies[currentIDCellOfCompany])
+		currentIDCellOfCompany += 1
+	}
+	if (i === 3)
+		cellLine1.push({extendCellType: 'question'})
+}
 
 
-export const initialCells = []
+for (let i = 0; i < 7; i++) {
+	if (i !== 4) {
+		cellLine2.push(companies[currentIDCellOfCompany])
+		currentIDCellOfCompany += 1
+	}
+	if (i === 4)
+		cellLine2.push({extendCellType: 'question'})
+}
+
+for (let i = 0; i < 7; i++) {
+	if (i !== 2) {
+		cellLine3.push(companies[currentIDCellOfCompany])
+		currentIDCellOfCompany += 1
+	}
+	if (i === 2)
+		cellLine3.push({extendCellType: 'question'})
+}
+
+for (let i = 0; i < 7; i++) {
+	if (i !== 5) {
+		cellLine4.push(companies[currentIDCellOfCompany])
+		currentIDCellOfCompany += 1
+	}
+	if (i === 5)
+		cellLine4.push({extendCellType: 'question'})
+}
+
+
+console.log(cellLine1)
+console.log(cellLine2)

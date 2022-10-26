@@ -4,7 +4,7 @@ import Head from "next/head";
 import {collection, deleteDoc, doc, onSnapshot} from "@firebase/firestore";
 import {firebaseData} from "../../data/firebase";
 import Wrapper from "../../components/Wrapper";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {AnimatePresence} from "framer-motion";
 import style from '/styles/pages/Session.module.scss'
 import NetworkErrorPopup from "../../components/NetworkErrorPopup";
@@ -30,7 +30,23 @@ const Session: NextPage<sessionInterface> = () => {
 		return 'token error'
 	}
 
-	// refresh data
+	const toggleDarkTheme = () => {
+		localStorage.setItem('isDarkTheme', JSON.stringify(!isDarkTheme))
+		console.log(!isDarkTheme, localStorage.getItem('isDarkTheme'))
+		handleIsDarkTheme(!isDarkTheme)
+	}
+
+	// local storage get
+	useEffect(() => {
+		const keyOfDarkTheme = 'isDarkTheme'
+		console.log(localStorage.getItem(keyOfDarkTheme))
+		if (localStorage.getItem(keyOfDarkTheme)) {
+			// @ts-ignore
+			handleIsDarkTheme(JSON.parse(localStorage.getItem(keyOfDarkTheme)))
+		}
+	}, [])
+
+	// refresh firestore data
 	onSnapshot(doc(collection(firebaseData, 'sessions'), getToken()), (sessions) => {
 		console.log(sessions.data())
 		if (!sessions.data()) {
@@ -65,8 +81,7 @@ const Session: NextPage<sessionInterface> = () => {
 				</AnimatePresence>
 
 				<Header
-					isDarkTheme={isDarkTheme}
-					handleIsDarkTheme={handleIsDarkTheme}
+					toggleDarkTheme={toggleDarkTheme}
 					endSession={endSession}
 					handleHamburgerIsOpen={handleHamburgerIsOpen}
 					hamburgerIsOpen={hamburgerIsOpen}/>

@@ -1,7 +1,10 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import React, {FC, useState} from "react";
 import style from "/styles/components/Field.module.scss";
 import {positionsPlayer} from "../data/positionsPlayerData";
+import {cellLine1, cellLine2, cellLine3, cellLine4, CellLineInterface} from "../data/cellData";
+import Image from "next/image";
+import Cell from "./Cell";
 
 const Field: FC = () => {
 	const [positionPlayer1, setPositionPlayer1] = useState<number>(0)
@@ -25,9 +28,7 @@ const Field: FC = () => {
 		}
 	}
 
-	const cells = [
-		'1', '2', '3', '4', '5', '6', '7'
-	]
+
 
 	return (
 		<div className={style.field}>
@@ -51,26 +52,34 @@ const Field: FC = () => {
 
 
 			<div className={style.fieldLine1}>
-				{cells.map((value, index) => {
-					return	<div key={index} className={style.cell}>{index}</div>
+				{cellLine1.map((object, index) => {
+					return	(
+						<Cell key={index} numberLine={1} index={index} object={object}/>
+					)
 				})}
 			</div>
 
 			<div className={style.fieldLine2}>
-				{cells.map((value, index) => {
-					return	<div key={index} className={style.cell}>{index}</div>
+				{cellLine2.map((object, index) => {
+					return	(
+						<Cell key={index} numberLine={2} index={index} object={object}/>
+					)
 				})}
 			</div>
 
 			<div className={style.fieldLine3}>
-				{cells.map((value, index) => {
-					return	<div key={index} className={style.cell}>{index}</div>
+				{cellLine3.map((object, index) => {
+					return	(
+						<Cell key={index} numberLine={3} index={index} object={object}/>
+					)
 				})}
 			</div>
 
 			<div className={style.fieldLine4}>
-				{cells.map((value, index) => {
-					return	<div key={index} className={style.cell}>{index}</div>
+				{cellLine4.map((object, index) => {
+					return	(
+						<Cell key={index} numberLine={4} index={index} object={object}/>
+					)
 				})}
 			</div>
 

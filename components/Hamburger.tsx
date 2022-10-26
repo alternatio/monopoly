@@ -4,8 +4,7 @@ import style from "/styles/components/Hamburger.module.scss";
 
 interface HamburgerInterface {
 	endSession: Function
-	handleIsDarkTheme: Function
-	isDarkTheme: boolean
+	toggleDarkTheme: Function
 }
 
 const Hamburger: FC<HamburgerInterface> = (props) => {
@@ -16,7 +15,7 @@ const Hamburger: FC<HamburgerInterface> = (props) => {
 			exit={{y: '-110vh'}}
 			transition={{duration: .6}}
 			className={style.hamburger}>
-			<button onClick={() => props.handleIsDarkTheme(!props.isDarkTheme)}
+			<button onClick={() => props.toggleDarkTheme()}
 				className={style.themeButton}>
 				Переключить тему
 			</button>
