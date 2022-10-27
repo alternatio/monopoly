@@ -40,7 +40,7 @@ const Field: FC<FiledInterface> = (props) => {
 		player.position < player.targetPosition &&
 			(player.position += 1)
 
-		setPlayerPosition(positionsPlayer[data.players[0].position])
+		setPlayerPosition(positionsPlayer[copyData.players[0].position])
 
 
 		copyData.players[numberOfPlayer] = player
@@ -55,7 +55,7 @@ const Field: FC<FiledInterface> = (props) => {
 		copyData.players[numberOfPlayer].position += 1
 		copyData.players[numberOfPlayer].targetPosition = targetPosition
 
-		setPlayerPosition(positionsPlayer[data.players[0].position])
+		setPlayerPosition(positionsPlayer[copyData.players[0].position])
 		console.log(positionsPlayer[data.players[0].position])
 
 		console.log(copyData.players[numberOfPlayer])
