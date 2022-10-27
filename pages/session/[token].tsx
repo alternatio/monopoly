@@ -11,6 +11,8 @@ import NetworkErrorPopup from "../../components/NetworkErrorPopup";
 import Header from "../../components/Header";
 import Field from "../../components/Field";
 import GetNamePopup from "../../components/GetNamePopup";
+import firebase from "firebase/compat";
+import DocumentData = firebase.firestore.DocumentData;
 
 interface sessionInterface {
 	currentToken: string
@@ -46,16 +48,11 @@ const Session: NextPage<sessionInterface> = () => {
 		}
 	}, [])
 
-	// refresh firestore data
 	onSnapshot(doc(collection(firebaseData, 'sessions'), getToken()), (sessions) => {
-		console.log(sessions.data())
-		if (!sessions.data()) {
+		if (!sessions.data())
 			handleNetworkError(true)
-		} else {
+		else
 			handleNetworkError(false)
-		}
-	}, () => {
-		handleNetworkError(true)
 	})
 
 	const endSession = () => {
@@ -90,7 +87,8 @@ const Session: NextPage<sessionInterface> = () => {
 						Monopoly<span className={style.accent}>*</span>
 					</header>
 					<div className={style.content}>
-						<Field getToken={getToken}/>
+						<Field
+							getToken={getToken}/>
 					</div>
 				</main>
 			</Wrapper>

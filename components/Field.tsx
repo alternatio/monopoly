@@ -6,8 +6,10 @@ import {cellLine1, cellLine2, cellLine3, cellLine4} from "../data/cellData";
 import Cell from "./Cell";
 import {playerDataInterface} from "../data/playerData";
 import {initialSession} from "../data/sessionData";
-import {collection, doc, setDoc} from "@firebase/firestore";
+import {collection, doc, onSnapshot, setDoc} from "@firebase/firestore";
 import {firebaseData} from "../data/firebase";
+import firebase from "firebase/compat";
+import DocumentData = firebase.firestore.DocumentData;
 
 interface FiledInterface {
 	getToken: Function
@@ -15,11 +17,16 @@ interface FiledInterface {
 
 const Field: FC<FiledInterface> = (props) => {
 	const [players, setPlayers] = useState<playerDataInterface[]>(initialSession.players)
+	const [data, setData] = useState<DocumentData>(initialSession)
 
-	const sessionsRef = collection(firebaseData, 'sessions')
 	useEffect(() => {
-		setDoc(doc(sessionsRef, props.getToken()), initialSession)
-	}, [players])
+		onSnapshot(doc(collection(firebaseData, 'sessions'), props.getToken()), (sessions) => {
+			console.log(sessions.data())
+
+			// @ts-ignore
+			setData(sessions.data())
+		})
+	}, [])
 
 	const transitionMotion = {
 		duration: .3,
@@ -33,12 +40,17 @@ const Field: FC<FiledInterface> = (props) => {
 				const playerInArray = [...players]
 				playerInArray[0].position = playerPosition
 				setPlayers(playerInArray)
+
+				data.players = players
 			} else {
 				const playerPosition = 0
 				const playerInArray = [...players]
 				playerInArray[0].position = playerPosition
 				setPlayers(playerInArray)
+
+				data.players = players
 			}
+			console.log(data.players[0].position)
 			console.log(players[numberOfPlayer].targetPosition, players[numberOfPlayer].position)
 		}
 	}
@@ -104,7 +116,11 @@ const Field: FC<FiledInterface> = (props) => {
 			<motion.div
 				animate={positionsPlayer[players[0].position]}
 				onAnimationComplete={() => motionPlayer(0)}
-				transition={transitionMotion}
+				// animate
+				// onAnimationComplete={() => {
+				//
+				// }}
+				// transition={transitionMotion}
 				className={style.player}>
 
 			</motion.div>
