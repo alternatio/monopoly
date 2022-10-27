@@ -1,5 +1,5 @@
 import {motion} from "framer-motion";
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import style from "/styles/components/Field.module.scss";
 import {positionPlayerInterface, positionsPlayer} from "../data/positionsPlayerData";
 import {cellLine1, cellLine2, cellLine3, cellLine4} from "../data/cellData";
@@ -14,7 +14,8 @@ interface FiledInterface {
 }
 
 const Field: FC<FiledInterface> = (props) => {
-	let currentSession: DocumentData = {}
+	let currentSession: DocumentData = useRef({})
+	const [data, setData] = useState<DocumentData>({})
 	const [playerPosition, setPlayerPosition] = useState<positionPlayerInterface>(positionsPlayer[0])
 
 	const currentSessionRef = doc(collection(firebaseData, 'sessions'), props.getToken())
@@ -23,10 +24,8 @@ const Field: FC<FiledInterface> = (props) => {
 	onSnapshot(currentSessionRef, (session) => {
 		// @ts-ignore
 		currentSession = session.data()
-		console.log(currentSession)
+		// console.log(currentSession)
 	})
-
-
 
 	const transitionMotion = {
 		duration: .3,
