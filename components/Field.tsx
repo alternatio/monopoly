@@ -1,7 +1,7 @@
 import {motion} from "framer-motion";
 import React, {FC, useEffect, useState} from "react";
 import style from "/styles/components/Field.module.scss";
-import {positionsPlayer} from "../data/positionsPlayerData";
+import {positionPlayerInterface, positionsPlayer} from "../data/positionsPlayerData";
 import {cellLine1, cellLine2, cellLine3, cellLine4} from "../data/cellData";
 import Cell from "./Cell";
 import {playerDataInterface} from "../data/playerData";
@@ -17,6 +17,7 @@ interface FiledInterface {
 
 const Field: FC<FiledInterface> = (props) => {
 	const [data, setData] = useState<DocumentData>(initialSession)
+	const [playerPosition, setPlayerPosition] = useState<positionPlayerInterface>(positionsPlayer[data.players[0].position])
 
 	useEffect(() => {
 		onSnapshot(doc(collection(firebaseData, 'sessions'), props.getToken()), (sessions) => {
@@ -39,6 +40,8 @@ const Field: FC<FiledInterface> = (props) => {
 		player.position < player.targetPosition &&
 			(player.position += 1)
 
+		setPlayerPosition(positionsPlayer[data.players[0].position])
+
 
 		copyData.players[numberOfPlayer] = player
 
@@ -52,9 +55,12 @@ const Field: FC<FiledInterface> = (props) => {
 		copyData.players[numberOfPlayer].position += 1
 		copyData.players[numberOfPlayer].targetPosition = targetPosition
 
+		setPlayerPosition(positionsPlayer[data.players[0].position])
+		console.log(positionsPlayer[data.players[0].position])
+
 		console.log(copyData.players[numberOfPlayer])
 		setData(copyData)
-		console.log(data)
+		console.log(data.players[numberOfPlayer])
 	}
 
 
@@ -114,7 +120,7 @@ const Field: FC<FiledInterface> = (props) => {
 			</div>
 
 			<motion.div
-				animate={positionsPlayer[data.players[0].position]}
+				animate={playerPosition}
 				onAnimationComplete={() => {
 					motionPlayer(0)
 				}}
