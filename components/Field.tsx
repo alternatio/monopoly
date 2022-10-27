@@ -4,7 +4,6 @@ import style from "/styles/components/Field.module.scss";
 import {positionPlayerInterface, positionsPlayer} from "../data/positionsPlayerData";
 import {cellLine1, cellLine2, cellLine3, cellLine4} from "../data/cellData";
 import Cell from "./Cell";
-import {initialSession} from "../data/sessionData";
 import {collection, doc, onSnapshot, setDoc} from "@firebase/firestore";
 import {firebaseData} from "../data/firebase";
 import firebase from "firebase/compat";
@@ -15,16 +14,19 @@ interface FiledInterface {
 }
 
 const Field: FC<FiledInterface> = (props) => {
-	const [data, setData] = useState<DocumentData>(initialSession)
-	const [playerPosition, setPlayerPosition] = useState<positionPlayerInterface>(positionsPlayer[data.players[0].position])
+	let currentSession: DocumentData = {}
+	const [playerPosition, setPlayerPosition] = useState<positionPlayerInterface>(positionsPlayer[0])
 
 	const currentSessionRef = doc(collection(firebaseData, 'sessions'), props.getToken())
-	let currentSession
+
 
 	onSnapshot(currentSessionRef, (session) => {
+		// @ts-ignore
 		currentSession = session.data()
 		console.log(currentSession)
 	})
+
+
 
 	const transitionMotion = {
 		duration: .3,
@@ -32,8 +34,9 @@ const Field: FC<FiledInterface> = (props) => {
 	}
 
 	const motionPlayer = (numberOfPlayer: number) => {
-		const copyData: DocumentData = data
-		const player = copyData.players[numberOfPlayer]
+		const copyData: DocumentData = currentSession
+		console.log(currentSession.players[numberOfPlayer])
+		const player = currentSession.players[numberOfPlayer]
 
 		player.position < player.targetPosition &&
 			(player.position += 1)
@@ -42,19 +45,17 @@ const Field: FC<FiledInterface> = (props) => {
 
 		copyData.players[numberOfPlayer] = player
 
-		setData(copyData)
 		setDoc(currentSessionRef, copyData)
 	}
 
 	const setTargetPosition = (numberOfPlayer: number, targetPosition: number) => {
-		const copyData: DocumentData = data
+		const copyData: DocumentData = currentSession
 
-		copyData.players[numberOfPlayer].position += 1
-		copyData.players[numberOfPlayer].targetPosition = targetPosition
+		currentSession.players[numberOfPlayer].position += 1
+		currentSession.players[numberOfPlayer].targetPosition = targetPosition
 
 		setPlayerPosition(positionsPlayer[copyData.players[0].position])
 
-		setData(copyData)
 		setDoc(currentSessionRef, copyData)
 	}
 
@@ -65,7 +66,7 @@ const Field: FC<FiledInterface> = (props) => {
 			<div
 				onClick={() => {
 					const currentPlayer = 0
-					const lastTargetPosition = data.players[currentPlayer].position + 5
+					const lastTargetPosition = currentSession.players[currentPlayer].position + 5
 					setTargetPosition(currentPlayer, lastTargetPosition)
 				}}
 				className={style.startCell}>
