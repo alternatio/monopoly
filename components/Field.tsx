@@ -1,11 +1,10 @@
 import {motion} from "framer-motion";
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useState} from "react";
 import style from "/styles/components/Field.module.scss";
 import {positionPlayerInterface, positionsPlayer} from "../data/positionsPlayerData";
 import {cellLine1, cellLine2, cellLine3, cellLine4} from "../data/cellData";
 import Cell from "./Cell";
-import {playerDataInterface} from "../data/playerData";
-import {initialSession, sessionDataInterface} from "../data/sessionData";
+import {initialSession} from "../data/sessionData";
 import {collection, doc, onSnapshot, setDoc} from "@firebase/firestore";
 import {firebaseData} from "../data/firebase";
 import firebase from "firebase/compat";
@@ -19,13 +18,13 @@ const Field: FC<FiledInterface> = (props) => {
 	const [data, setData] = useState<DocumentData>(initialSession)
 	const [playerPosition, setPlayerPosition] = useState<positionPlayerInterface>(positionsPlayer[data.players[0].position])
 
-	useEffect(() => {
-		onSnapshot(doc(collection(firebaseData, 'sessions'), props.getToken()), (sessions) => {
+	const currentSessionRef = doc(collection(firebaseData, 'sessions'), props.getToken())
+	let currentSession
 
-			// @ts-ignore
-			setData(sessions.data())
-		})
-	}, [])
+	onSnapshot(currentSessionRef, (session) => {
+		currentSession = session.data()
+		console.log(currentSession)
+	})
 
 	const transitionMotion = {
 		duration: .3,
@@ -41,12 +40,10 @@ const Field: FC<FiledInterface> = (props) => {
 
 		setPlayerPosition(positionsPlayer[copyData.players[0].position])
 
-
 		copyData.players[numberOfPlayer] = player
 
-		console.log(copyData.players[numberOfPlayer])
 		setData(copyData)
-		setDoc(doc(collection(firebaseData, 'sessions'), props.getToken()), copyData)
+		setDoc(currentSessionRef, copyData)
 	}
 
 	const setTargetPosition = (numberOfPlayer: number, targetPosition: number) => {
@@ -56,12 +53,9 @@ const Field: FC<FiledInterface> = (props) => {
 		copyData.players[numberOfPlayer].targetPosition = targetPosition
 
 		setPlayerPosition(positionsPlayer[copyData.players[0].position])
-		console.log(positionsPlayer[data.players[0].position])
 
-		console.log(copyData.players[numberOfPlayer])
 		setData(copyData)
-		console.log(data.players[numberOfPlayer])
-		setDoc(doc(collection(firebaseData, 'sessions'), props.getToken()), copyData)
+		setDoc(currentSessionRef, copyData)
 	}
 
 
