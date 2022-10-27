@@ -20,13 +20,14 @@ const Field: FC<FiledInterface> = (props) => {
 	const [playerPosition, setPlayerPosition] = useState<positionPlayerInterface>(positionsPlayer[data.players[0].position])
 
 	useEffect(() => {
-		onSnapshot(doc(collection(firebaseData, 'sessions'), props.getToken()), (sessions) => {
-			console.log(sessions.data())
 
-			// @ts-ignore
-			setData(sessions.data())
-		})
 	}, [])
+
+	onSnapshot(doc(collection(firebaseData, 'sessions'), props.getToken()), (sessions) => {
+
+		// @ts-ignore
+		setData(sessions.data())
+	})
 
 	// onSnapshot(doc(collection(firebaseData, 'sessions'), props.getToken()), (doc) => {
 	// 	console.log(doc.data())
