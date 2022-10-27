@@ -334,7 +334,3 @@ for (let i = 0; i < 7; i++) {
 	if (i === 5)
 		cellLine4.push({extendCellType: 'question'})
 }
-
-
-console.log(cellLine1)
-console.log(cellLine2)

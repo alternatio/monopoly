@@ -28,6 +28,14 @@ const Field: FC<FiledInterface> = (props) => {
 		})
 	}, [])
 
+	// onSnapshot(doc(collection(firebaseData, 'sessions'), props.getToken()), (doc) => {
+	// 	console.log(doc.data())
+	// }, (error) => {
+	// 	console.log(error)
+	// }, () => {
+	// 	console.log('complete')
+	// })
+
 	const transitionMotion = {
 		duration: .3,
 		type: 'tween'
@@ -47,6 +55,7 @@ const Field: FC<FiledInterface> = (props) => {
 
 		console.log(copyData.players[numberOfPlayer])
 		setData(copyData)
+		setDoc(doc(collection(firebaseData, 'sessions'), props.getToken()), copyData)
 	}
 
 	const setTargetPosition = (numberOfPlayer: number, targetPosition: number) => {
@@ -61,6 +70,7 @@ const Field: FC<FiledInterface> = (props) => {
 		console.log(copyData.players[numberOfPlayer])
 		setData(copyData)
 		console.log(data.players[numberOfPlayer])
+		setDoc(doc(collection(firebaseData, 'sessions'), props.getToken()), copyData)
 	}
 
 
