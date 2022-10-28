@@ -4,10 +4,11 @@ import style from "/styles/components/Field.module.scss";
 import {positionPlayerInterface, positionsPlayer} from "../data/positionsPlayerData";
 import {cellLine1, cellLine2, cellLine3, cellLine4} from "../data/cellData";
 import Cell from "./Cell";
-import {collection, doc, onSnapshot, setDoc} from "@firebase/firestore";
+import {collection, doc, getDoc, onSnapshot, setDoc} from "@firebase/firestore";
 import {db} from "../data/firebase";
 import firebase from "firebase/compat";
 import DocumentData = firebase.firestore.DocumentData;
+import {initialSession} from "../data/sessionData";
 
 interface FiledInterface {
 	getToken: Function
@@ -16,19 +17,29 @@ interface FiledInterface {
 const Field: FC<FiledInterface> = (props) => {
 
 	const [playerPosition, setPlayerPosition] = useState<positionPlayerInterface>(positionsPlayer[0])
-	const [data, setData] = useState<DocumentData | undefined>({})
+	const [data, setData] = useState<DocumentData | undefined>(initialSession)
 
 	const currentSessionRef = doc(collection(db, 'sessions'), props.getToken())
 
 	console.log(data)
+	// getDoc(currentSessionRef).then((value) => {
+	// 	setData(value.data())
+	// })
 
 	useEffect(() => {
-		const unsub = onSnapshot(currentSessionRef, (session) => {
+		// const unsub = onSnapshot(currentSessionRef, (session) => {
+		// 	setData(session.data())
+		// })
+
+
+		onSnapshot(currentSessionRef, (session) => {
 			setData(session.data())
 		})
 
-		return () => unsub()
+		// return () => unsub()
 	}, [])
+
+	setDoc(currentSessionRef, data)
 
 	const transitionMotion = {
 		duration: .3,
@@ -45,6 +56,7 @@ const Field: FC<FiledInterface> = (props) => {
 						const copyData = data
 						copyData.players[0].position += 1
 						console.log(copyData)
+						setPlayerPosition(positionsPlayer[copyData.players[0].position])
 						setDoc(currentSessionRef, copyData)
 					}
 				}}
@@ -95,7 +107,7 @@ const Field: FC<FiledInterface> = (props) => {
 			</div>
 
 			<motion.div
-				animate={data && positionsPlayer[data.players[0].position]}
+				animate={playerPosition}
 				onAnimationComplete={() => {
 
 				}}
