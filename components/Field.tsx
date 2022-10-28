@@ -17,7 +17,7 @@ interface FiledInterface {
 const Field: FC<FiledInterface> = (props) => {
 
 	const [playerPosition, setPlayerPosition] = useState<positionPlayerInterface>(positionsPlayer[0])
-	const [data, setData] = useState<DocumentData | undefined>(initialSession)
+	const [data, setData] = useState<DocumentData | undefined>({})
 
 	const currentSessionRef = doc(collection(db, 'sessions'), props.getToken())
 
@@ -27,19 +27,23 @@ const Field: FC<FiledInterface> = (props) => {
 	// })
 
 	useEffect(() => {
-		// const unsub = onSnapshot(currentSessionRef, (session) => {
-		// 	setData(session.data())
-		// })
-
-
-		onSnapshot(currentSessionRef, (session) => {
+		const unsub = onSnapshot(currentSessionRef, (session) => {
 			setData(session.data())
 		})
 
-		// return () => unsub()
+
+		// onSnapshot(currentSessionRef, (session) => {
+		// 	setData(session.data())
+		// 	console.log(session.data())
+		// })
+
+		return () => unsub()
 	}, [])
 
-	setDoc(currentSessionRef, data)
+
+	// onSnapshot(currentSessionRef, (session) => {
+	// 	setData(session.data())
+	// })
 
 	const transitionMotion = {
 		duration: .3,
