@@ -57,11 +57,9 @@ const Field: FC<FiledInterface> = (props) => {
 			<div
 				onClick={() => {
 					if (data) {
-						const copyData = data
-						copyData.players[0].position += 1
-						console.log(copyData)
-						setPlayerPosition(positionsPlayer[copyData.players[0].position])
-						setDoc(currentSessionRef, copyData)
+						data.players[0].position += 1
+						console.log(data)
+						setPlayerPosition(positionsPlayer[data.players[0].position])
 					}
 				}}
 				className={style.startCell}>
