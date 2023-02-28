@@ -1,0 +1,17 @@
+@import 'styles/global/variables';
+
+.button {
+	padding: 0.3rem 0.5rem;
+	background: $black;
+	border-radius: 0.2rem;
+	//border: $charcoal solid 0.1rem;
+	color: $white;
+	font-weight: 500;
+  transition: $commonTransition;
+	&:hover {
+		background: $white;
+		color: $black;
+		//border: $preWhite solid 0.1rem;
+		box-shadow: 0 0.15rem 0.25rem rgba($charcoal, 0.08);
+	}
+}

@@ -2,7 +2,8 @@ import { Transition } from 'framer-motion'
 import { cubicBezier } from '@motionone/easing'
 
 export const getTransition = (
-	duration: number = 0.33,
+	damping: number = 10,
+	stiffness: number = 10,
 	delay: number = 0,
 	repeat: number = 0,
 	repeatType:
@@ -12,12 +13,18 @@ export const getTransition = (
 		| undefined = undefined
 ): Transition => {
 	return {
-		duration,
+		damping,
+		stiffness,
+		restDelta: 0.02,
 		delay,
-		type: cubicBezier(0.35, 0.35, 0.2, 1),
 		repeat,
 		repeatType,
 	}
+}
+
+export const commonTransition: Transition = {
+	duration: 2,
+	// type: cubicBezier(0.35, 0.35, 0.2, 1),
 }
 
 export const commonAnimations = {

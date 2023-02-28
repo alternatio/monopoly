@@ -1,0 +1,18 @@
+@import '/styles/global/variables';
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.logoImage {
+  width: 1.6rem;
+  height: auto;
+  aspect-ratio: 1/1;
+}
+
+.logoText {
+  font-size: 1.2rem;
+  font-weight: 700;
+}

@@ -8,9 +8,9 @@ interface ButtonProps {
 
 const Button: FC<ButtonProps> = props => {
 	return (
-    <div className={`${style.button} ${props.className}`}>
+    <button className={`${style.button} ${props.className}`}>
 			{props.children}
-		</div>
+		</button>
   )
 }
 

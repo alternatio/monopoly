@@ -1,23 +1,33 @@
+@import '/styles/global/variables';
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 
-  font-weight: 400;
-  font-size: 1rem;
-  letter-spacing: -0.06em;
+  font-weight: 500;
+  font-size: .9rem;
+  font-family: $sansFont;
+  letter-spacing: -0.04em;
 }
 
 ::selection {
-  background: #000;
-  color: #fff;
+  background: $black;
+  color: $white;
 }
 
 ::-webkit-scrollbar {
-  width: .4rem;
+  width: .8rem;
+  height: .8rem;
+  background: $white;
 }
 ::-webkit-scrollbar-thumb {
-  background: #FF9900;
+  border-radius: 1rem;
+  border: .25rem solid $white;
+  background: $black;
+  &:hover {
+    background: $preGray;
+  }
 }
 
 html {
@@ -36,15 +46,25 @@ a {
   text-decoration: none;
 }
 
-button, input {
+button, input, textarea {
   background: none;
   outline: none;
   border: none;
 }
 
-//@media (prefers-color-scheme: dark) {
-//  html {
-//    background: #080808;
-//    color: #fff;
-//  }
-//}
+input, textarea {
+  cursor: text;
+}
+
+textarea {
+  resize: none;
+}
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+button {
+  cursor: pointer;
+}
