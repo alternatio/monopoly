@@ -1,0 +1,17 @@
+@import '/styles/global/variables';
+
+.intro {
+	background:
+    //repeating-radial-gradient(
+		//	circle at 50%,
+		//	$black,
+		//	$black 0.5rem,
+		//	$white 0.5rem,
+		//	$white 1rem
+		//),
+		repeating-linear-gradient(45deg, $black, $black .2rem, $yellow .2rem, $yellow 2rem);
+	width: 100%;
+	min-height: 20rem;
+	border-radius: 2rem;
+	border: $black solid .2rem;
+}

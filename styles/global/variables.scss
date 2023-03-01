@@ -5,7 +5,21 @@ $preGray: #555;
 $charcoal: #222;
 $black: #000;
 
-$sansFont: 'Neue Machina', sans-serif;
+
+$yellow: #f8b822;
+$darkYellow: #f82;
+$lightYellow: #ffcf99;
+$red: #f25511;
+$accentBlue: #08f;
+$darkBlue: #138;
+$blue: #55f;
+$green: #4b6;
+//$purple: #93f;
+
+$sansSerifFont: sans-serif;
+$sansFont: 'Cormorant', 'Times New Roman', serif;
 $monoFont: 'JetBrains Mono', monospace;
+$molFont: 'Molot', sans-serif;
+$ussrFont: 'USSR', sans-serif;
 
 $commonTransition: .3s cubic-bezier(0.35, 0.35, 0.2, 1);

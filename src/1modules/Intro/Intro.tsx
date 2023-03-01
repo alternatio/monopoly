@@ -7,7 +7,9 @@ interface IntroProps {
 
 const Intro: FC<IntroProps> = props => {
   return (
-    <div></div>
+    <div className={style.intro}>
+
+    </div>
   )
 }
 

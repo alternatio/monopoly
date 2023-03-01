@@ -1,23 +1,4 @@
 @font-face {
-  font-family: 'NeueMachina';
-  src: url("NeueMachina-Regular.woff2") format('woff2');
-  font-style: normal;
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'NeueMachina';
-  src: url("NeueMachina-Medium.woff2") format('woff2');
-  font-style: normal;
-  font-weight: 500;
-}
-@font-face {
-  font-family: 'NeueMachina';
-  src: url("NeueMachina-Bold.woff2") format('woff2');
-  font-style: normal;
-  font-weight: 700;
-}
-
-@font-face {
   font-family: 'JetBrains Mono';
   src: url("JetBrainsMono-Regular.woff2") format('woff2');
   font-style: normal;
@@ -34,4 +15,40 @@
   src: url("JetBrainsMono-Bold.woff2") format('woff2');
   font-style: normal;
   font-weight: 700;
+}
+@font-face {
+  font-family: 'Cormorant';
+  src: url("CormorantGaramond-MediumItalic.ttf") format('truetype');
+  font-style: italic;
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Cormorant';
+  src: url("CormorantGaramond-Medium.ttf") format('truetype');
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Cormorant';
+  src: url("CormorantGaramond-BoldItalic.ttf") format('truetype');
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Cormorant';
+  src: url("CormorantGaramond-Bold.ttf") format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Molot';
+  src: url("Molot.otf") format('opentype');
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'USSR';
+  src: url("USSR_stencil.otf") format('opentype');
+  font-style: normal;
+  font-weight: 500;
 }

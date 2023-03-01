@@ -4,6 +4,7 @@ import React, { FC, useState } from 'react'
 import Head from 'next/head'
 import Wrapper from '../src/3ui/Wrapper/Wrapper'
 import Header from '../src/1modules/Header/Header'
+import Intro from '../src/1modules/Intro/Intro'
 
 const Home: NextPage = () => {
 	const [createPopupVisible, handleCreatePopupVisible] =
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
 			</Head>
 			<Wrapper maxWidth={maxWidth}>
 				<Header maxWidth={maxWidth}/>
-				<div className={style.big}></div>
+				<Intro />
 			</Wrapper>
 		</>
 	)
