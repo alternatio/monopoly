@@ -1,10 +1,11 @@
 import type { NextPage } from 'next'
 import style from '/styles/pages/Home.module.scss'
-import React, { FC, useState } from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 import Wrapper from '../src/3ui/Wrapper/Wrapper'
 import Header from '../src/1modules/Header/Header'
 import Intro from '../src/1modules/Intro/Intro'
+import MainCenterBlock from '../src/1modules/MainCenterBlock/MainCenterBlock'
 
 const Home: NextPage = () => {
 	const [createPopupVisible, handleCreatePopupVisible] =
@@ -19,9 +20,13 @@ const Home: NextPage = () => {
 			<Head>
 				<title>HOME</title>
 			</Head>
+
 			<Wrapper maxWidth={maxWidth}>
-				<Header maxWidth={maxWidth}/>
-				<Intro />
+				<Header maxWidth={maxWidth} />
+				<div className={style.content}>
+					<Intro />
+					<MainCenterBlock />
+				</div>
 			</Wrapper>
 		</>
 	)

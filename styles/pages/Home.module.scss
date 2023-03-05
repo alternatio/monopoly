@@ -1,5 +1,8 @@
 @import 'styles/global/variables';
 
-.big {
-  height: 100rem;
+.content {
+  padding: 3rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
 }

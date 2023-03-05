@@ -1,17 +1,47 @@
 @import '/styles/global/variables';
 
 .intro {
-	background:
-    //repeating-radial-gradient(
-		//	circle at 50%,
-		//	$black,
-		//	$black 0.5rem,
-		//	$white 0.5rem,
-		//	$white 1rem
-		//),
-		repeating-linear-gradient(45deg, $black, $black .2rem, $yellow .2rem, $yellow 2rem);
-	width: 100%;
-	min-height: 20rem;
-	border-radius: 2rem;
-	border: $black solid .2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.introBottom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.circle {
+  position: absolute;
+  width: 3rem;
+  aspect-ratio: 1/1;
+  background: $white;
+  border-radius: 50%;
+  top: 1.5rem;
+}
+
+.divider {
+  width: 100%;
+  height: .25rem;
+  background: $white;
+}
+
+.chineseText,
+.russianText {
+  font-size: 1.2rem;
+  line-height: 105%;
+  white-space: pre;
+}
+
+.chineseText {
+  font-family: $chineseFont;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.russianText {
+  font-family: $molFont;
+  letter-spacing: 0.1em;
 }

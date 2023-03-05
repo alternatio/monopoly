@@ -1,24 +1,31 @@
-$white: #fff;
-$preWhite: #eee;
-$gray: #777;
-$preGray: #555;
-$charcoal: #222;
-$black: #000;
+// monochrome colors
+$white: #ffffff;
+$preWhite: #eeeeee;
+$gray: #555555;
+$charcoal: #222222;
+$black: #000000;
 
-$yellow: #f8b822;
-$darkYellow: #f82;
-$lightYellow: #ffcf99;
-$red: #f25511;
-//$accentBlue: #08f;
-//$darkBlue: #138;
-$blue: #55f;
-$green: #4b6;
-//$purple: #93f;
+// colors
+$yellow: #ffbb00;
+$brightYellow: #ffe200;
 
-$sansSerifFont: sans-serif;
-$sansFont: 'Cormorant', 'Times New Roman', serif;
+$red: #f80833;
+$magenta: #db00ff;
+
+$blue: #5555ff;
+$cyan: #08f8f8;
+
+$green: #44bb66;
+$brightGreen: #8fff00;
+
+// fonts
+$sansSerifFont: 'Neue Machina', sans-serif;
+$sansFont: 'Cormorant', serif;
 $monoFont: 'JetBrains Mono', monospace;
+$chineseFont: 'Noto Sans SC', sans-serif;
+$chineseFont: sans-serif;
 $molFont: 'Molot', sans-serif;
-$ussrFont: 'USSR', sans-serif;
+$USSRFont: 'USSR', sans-serif;
 
-$commonTransition: .3s cubic-bezier(0.35, 0.35, 0.2, 1);
+// transitions
+$commonTransitionCubic: cubic-bezier(0.35, 0.35, 0.2, 1);

@@ -1,0 +1,73 @@
+@import '/styles/global/variables';
+
+.mainCenterBlock {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  height: 80rem;
+  width: 100%;
+}
+
+.mainText {
+  grid-column: 1/4;
+  grid-row: 1/2;
+  width: 120%;
+  font-size: 1.5rem;
+  line-height: 100%;
+  letter-spacing: -0.06em;
+  font-family: $sansSerifFont;
+  text-indent: 1.5rem;
+  text-align: justify;
+  * {
+    letter-spacing: -0.06em;
+    line-height: 100%;
+    font-size: 1.5rem;
+  }
+}
+
+.accent {
+  color: $yellow;
+}
+
+.paint {
+  grid-column: 5/9;
+  grid-row: 1/6;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  align-items: flex-end;
+}
+
+.text {
+  font-size: 1rem;
+  font-family: $USSRFont;
+}
+
+.leftImage {
+  grid-column: 1/4;
+  grid-row: 2/4;
+}
+
+.rightImage {
+  grid-column: 6/9;
+  grid-row: 6/8;
+}
+
+.circle {
+  background: $yellow;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  max-width: 22rem;
+  min-width: 18rem;
+  grid-column: 4/7;
+  grid-row: 4/6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $black;
+  font-weight: 700;
+  font-size: 4.5rem;
+  text-align: center;
+  z-index: 10;
+  outline: $black solid 5rem;
+}

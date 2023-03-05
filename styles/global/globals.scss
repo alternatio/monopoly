@@ -6,32 +6,34 @@
   box-sizing: border-box;
 
   font-weight: 500;
-  font-size: .9rem;
-  font-family: $monoFont;
-  letter-spacing: -0.04em;
+  font-size: 1rem;
+  font-family: $sansSerifFont;
+  letter-spacing: -0.02em;
+  color: $white;
+  text-rendering: geometricPrecision;
 }
 
 ::selection {
-  background: $black;
-  color: $white;
+  background: $brightYellow;
+  color: $black;
 }
 
 ::-webkit-scrollbar {
   width: .8rem;
   height: .8rem;
-  background: $white;
+  background: $black;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 1rem;
-  border: .25rem solid $white;
-  background: $black;
+  border: .25rem solid $black;
+  background: $white;
   &:hover {
-    background: $preGray;
+    background: $gray;
   }
 }
 
 html {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 html,
@@ -39,6 +41,7 @@ body,
 #__next {
   height: 100%;
   width: 100%;
+  background: $black;
 }
 
 a {

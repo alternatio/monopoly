@@ -1,17 +1,21 @@
 @import 'styles/global/variables';
 
 .button {
-	padding: 0.3rem 0.5rem;
-	background: $black;
+	padding: 0.3rem 0.75rem;
+	background: $white;
 	border-radius: 0.2rem;
-	//border: $charcoal solid 0.1rem;
-	color: $white;
-	font-weight: 500;
-  transition: $commonTransition;
+	font-family: $sansSerifFont;
+	color: $black;
+	font-weight: 700;
+	letter-spacing: -0.06em;
+  transition: $commonTransitionCubic .3s;
+	min-width: 10rem;
 	&:hover {
-		background: $white;
-		color: $black;
-		//border: $preWhite solid 0.1rem;
-		box-shadow: 0 0.15rem 0.25rem rgba($charcoal, 0.08);
+		background: $charcoal;
+		color: $white;
+	}
+	&:active {
+		transition: $commonTransitionCubic .1s;
+		transform: translateY(.2rem);
 	}
 }

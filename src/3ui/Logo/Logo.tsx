@@ -1,7 +1,5 @@
 import { FC, memo } from 'react'
 import style from './styles/Logo.module.scss'
-import Image from 'next/image'
-import { tableIcon } from '../../helpers/importIcons'
 
 interface LogoProps {
 	withoutName?: boolean
@@ -10,9 +8,17 @@ interface LogoProps {
 const Logo: FC<LogoProps> = props => {
 	return (
 		<div className={style.logo}>
-			<Image className={style.logoImage} src={tableIcon} alt={'logo'} />
+			<div className={style.logoImage}>
+				垄断
+			</div>
 			{!props.withoutName && (
-				<span className={style.logoText}>Monopoly</span>
+				<>
+					<div className={style.divider}/>
+					<span className={style.logoText}>
+						<span className={style.textFirst}>Mono</span>
+						<span className={style.textSecond}>poly</span>
+					</span>
+				</>
 			)}
 		</div>
 	)

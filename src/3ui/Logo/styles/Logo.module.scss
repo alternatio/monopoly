@@ -3,19 +3,40 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: .4rem;
-  & * {
-    font-family: $ussrFont;
-  }
+  gap: 1rem;
 }
 
 .logoImage {
-  width: 1.6rem;
-  height: auto;
-  aspect-ratio: 1/1;
+  //font-family: $chineseFont;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 105%;
+  letter-spacing: -0.03em;
+}
+
+.divider {
+  height: 2rem;
+  width: 1px;
+  background: $white;
 }
 
 .logoText {
   font-size: 1.2rem;
   font-weight: 700;
+  & * {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+}
+
+.textFirst {
+  font-size: 1rem;
+  font-family: $sansSerifFont;
+}
+
+.textSecond {
+  font-size: 1.1rem;
+  font-family: $sansFont;
+  font-style: italic;
 }

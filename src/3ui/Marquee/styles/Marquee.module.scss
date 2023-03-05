@@ -1,0 +1,16 @@
+@import '/styles/global/variables';
+
+.marqueeWrapper {
+  width: 100%;
+}
+
+.marquee {
+  white-space: pre;
+  color: $red;
+  text-shadow: .5rem .5rem $gray;
+  font-family: $USSRFont, $chineseFont;
+  font-size: 15rem;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  transition: linear;
+}

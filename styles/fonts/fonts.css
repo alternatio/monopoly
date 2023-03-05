@@ -1,54 +1,66 @@
+/* chinese font */
 @font-face {
-  font-family: 'JetBrains Mono';
-  src: url("JetBrainsMono-Regular.woff2") format('woff2');
-  font-style: normal;
-  font-weight: 400;
+	font-family: 'Noto Sans SC';
+	src: url('NotoSerifSC-Medium.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 500;
 }
 @font-face {
-  font-family: 'JetBrains Mono';
-  src: url("JetBrainsMono-Medium.woff2") format('woff2');
-  font-style: normal;
-  font-weight: 500;
+	font-family: 'Noto Sans SC';
+	src: url('NotoSerifSC-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 700;
+}
+
+/* sans-serif font */
+@font-face {
+	font-family: 'Neue Machina';
+	src: url('NeueMachina-Medium.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 500;
 }
 @font-face {
-  font-family: 'JetBrains Mono';
-  src: url("JetBrainsMono-Bold.woff2") format('woff2');
-  font-style: normal;
-  font-weight: 700;
+	font-family: 'Neue Machina';
+	src: url('NeueMachina-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 700;
+}
+
+/* monospace font */
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('JetBrainsMono-Medium.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 500;
 }
 @font-face {
-  font-family: 'Cormorant';
-  src: url("CormorantGaramond-MediumItalic.ttf") format('truetype');
-  font-style: italic;
-  font-weight: 500;
+	font-family: 'JetBrains Mono';
+	src: url('JetBrainsMono-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 700;
+}
+
+/* serif font */
+@font-face {
+	font-family: 'Cormorant';
+	src: url('CormorantGaramond-BoldItalic.woff2')
+		format('woff2');
+	font-style: italic;
+	font-weight: 700;
 }
 @font-face {
-  font-family: 'Cormorant';
-  src: url("CormorantGaramond-Medium.ttf") format('truetype');
-  font-style: normal;
-  font-weight: 500;
+	font-family: 'Cormorant';
+	src: url('CormorantGaramond-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 700;
+}
+
+/* USSR fonts */
+@font-face {
+	font-family: 'Molot';
+	src: url('Molot.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'Cormorant';
-  src: url("CormorantGaramond-BoldItalic.ttf") format('truetype');
-  font-style: italic;
-  font-weight: 700;
-}
-@font-face {
-  font-family: 'Cormorant';
-  src: url("CormorantGaramond-Bold.ttf") format('truetype');
-  font-style: normal;
-  font-weight: 700;
-}
-@font-face {
-  font-family: 'Molot';
-  src: url("Molot.otf") format('opentype');
-  font-style: normal;
-  font-weight: 500;
-}
-@font-face {
-  font-family: 'USSR';
-  src: url("USSR_stencil.otf") format('opentype');
-  font-style: normal;
-  font-weight: 500;
+	font-family: 'USSR';
+	src: url('USSR-STENCIL.woff2') format('woff2');
 }

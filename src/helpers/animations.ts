@@ -1,9 +1,9 @@
 import { Transition } from 'framer-motion'
 import { cubicBezier } from '@motionone/easing'
 
-export const getTransition = (
-	damping: number = 10,
-	stiffness: number = 10,
+export const getSpringTransition = (
+	damping: number = 7,
+	stiffness: number = 40,
 	delay: number = 0,
 	repeat: number = 0,
 	repeatType:
@@ -16,6 +16,7 @@ export const getTransition = (
 		damping,
 		stiffness,
 		restDelta: 0.02,
+		type: 'spring',
 		delay,
 		repeat,
 		repeatType,
