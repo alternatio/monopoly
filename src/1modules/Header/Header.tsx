@@ -7,20 +7,34 @@ import { getSpringTransition } from '../../helpers/animations'
 
 interface HeaderProps {
 	maxWidth: string
+	scrollPosition?: number
 }
 
 const Header: FC<HeaderProps> = props => {
 	const [isScrollDown, handleIsScrollDown] = useState(false)
+	const [lastPosition, setLastPosition] = useState<number>(0)
 
 	useEffect(() => {
-		document.addEventListener('wheel', (e) => {
-			if (e.deltaY < 0) {
+		if (props.scrollPosition) {
+			if (props.scrollPosition <= lastPosition) {
 				handleIsScrollDown(false)
 			} else {
 				handleIsScrollDown(true)
 			}
-		})
-	}, [])
+			setLastPosition(props.scrollPosition)
+			// console.log(props.scrollPosition, lastPosition, isScrollDown)
+		}
+	}, [props.scrollPosition])
+
+	// useEffect(() => {
+	// 	document.addEventListener('wheel', (e) => {
+	// 		if (e.deltaY < 0) {
+	// 			handleIsScrollDown(false)
+	// 		} else {
+	// 			handleIsScrollDown(true)
+	// 		}
+	// 	})
+	// }, [])
 
 	return (
 		<div className={style.headerWrapper}>

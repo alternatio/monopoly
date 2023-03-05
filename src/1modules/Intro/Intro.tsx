@@ -8,7 +8,7 @@ const Intro: FC<IntroProps> = props => {
 	return (
 		<div className={style.intro}>
 			<Marquee>
-				垄断•могущество•优势•богатство•财富•власть
+				垄断•могущество•优势•богатство•财富•власть•
 			</Marquee>
 			<div className={style.introBottom}>
 				<div className={style.divider} />

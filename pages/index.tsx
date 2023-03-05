@@ -12,6 +12,8 @@ const Home: NextPage = () => {
 		useState<boolean>(false)
 	const [joinPopupVisible, handleJoinPopupVisible] =
 		useState<boolean>(false)
+	const [scrollPosition, setScrollPosition] =
+		useState<number>(0)
 
 	const maxWidth = '70rem'
 
@@ -21,8 +23,13 @@ const Home: NextPage = () => {
 				<title>HOME</title>
 			</Head>
 
-			<Wrapper maxWidth={maxWidth}>
-				<Header maxWidth={maxWidth} />
+			<Wrapper
+				maxWidth={maxWidth}
+				setScrollPosition={setScrollPosition}>
+				<Header
+					maxWidth={maxWidth}
+					scrollPosition={scrollPosition}
+				/>
 				<div className={style.content}>
 					<Intro />
 					<MainCenterBlock />
