@@ -6,6 +6,7 @@
   grid-template-rows: repeat(8, 1fr);
   height: 80rem;
   width: 100%;
+  padding-bottom: 3rem;
 }
 
 .mainText {
@@ -46,11 +47,37 @@
 .leftImage {
   grid-column: 1/4;
   grid-row: 2/4;
+  position: relative;
 }
 
 .rightImage {
   grid-column: 6/9;
-  grid-row: 6/8;
+  grid-row: 6/9;
+  position: relative;
+}
+
+.rightText {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: .5rem;
+}
+
+.rightTextMono {
+  font-family: $monoFont;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: pre;
+  text-align: right;
+}
+
+.cube {
+  width: 3rem;
+  aspect-ratio: 1/1;
+  background: $white;
+
 }
 
 .circle {
@@ -70,4 +97,56 @@
   text-align: center;
   z-index: 10;
   outline: $black solid 5rem;
+}
+
+.bottomText {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  line-height: 1.5rem;
+  grid-column: 1/5;
+  grid-row: 8/9;
+  white-space: pre;
+}
+
+.bottomTextTitle {
+  font-family: $molFont;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 2rem;
+  position: relative;
+  &::first-letter {
+    font-size: 5rem !important;
+    color: $yellow;
+  }
+}
+
+.textCircle {
+  min-width: 2rem;
+  aspect-ratio: 1/1;
+  background: $white;
+  border-radius: 50%;
+}
+
+.bottomTextMain {
+  display: flex;
+  flex-direction: column;
+  * {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+}
+
+.serifItalic {
+  font-size: 1.75rem;
+  font-family: $serifFont;
+  font-style: italic;
+}
+
+.serif {
+  font-size: 1.75rem;
+  font-family: $serifFont;
 }

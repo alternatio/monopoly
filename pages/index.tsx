@@ -6,6 +6,7 @@ import Wrapper from '../src/3ui/Wrapper/Wrapper'
 import Header from '../src/1modules/Header/Header'
 import Intro from '../src/1modules/Intro/Intro'
 import MainCenterBlock from '../src/1modules/MainCenterBlock/MainCenterBlock'
+import Questions from '../src/1modules/Questions/Questions'
 
 const Home: NextPage = () => {
 	const [createPopupVisible, handleCreatePopupVisible] =
@@ -33,6 +34,7 @@ const Home: NextPage = () => {
 				<div className={style.content}>
 					<Intro />
 					<MainCenterBlock />
+					<Questions />
 				</div>
 			</Wrapper>
 		</>

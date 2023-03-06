@@ -1,0 +1,66 @@
+@import '/styles/global/variables';
+
+.infoBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	padding: 3rem 2rem 3.5rem;
+	background: rgba($black, 0.8);
+	backdrop-filter: blur(0.5rem);
+  border-radius: .5rem;
+  border: $charcoal solid 1px;
+  width: fit-content;
+	max-width: 35rem;
+
+	p {
+		text-indent: 2rem;
+		font-size: 1rem;
+		font-weight: 400;
+		letter-spacing: -0.06em;
+		line-height: 100%;
+	}
+
+	a {
+		color: $yellow;
+		width: fit-content;
+		border-bottom: solid $yellow 1px;
+		font-size: 1rem;
+		font-weight: 400;
+		letter-spacing: -0.06em;
+		line-height: 100%;
+		transition: $commonTransitionCubic .2s;
+		&:hover {
+			border-bottom: solid transparent 1px;
+		}
+	}
+}
+
+.head {
+	display: flex;
+	align-items: center;
+	gap: .75rem;
+	* {
+		font-size: 1.25rem;
+		text-transform: uppercase;
+		line-height: 1.5rem;
+		white-space: pre;
+	}
+}
+
+.title {
+	display: flex;
+	align-items: flex-end;
+	gap: .2rem;
+}
+
+.serifTitle {
+	font-family: $serifFont;
+	font-size: 1.4rem;
+	font-style: italic;
+}
+
+.divider {
+	width: 100%;
+	height: 3px;
+	background: $white;
+}

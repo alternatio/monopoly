@@ -21,7 +21,6 @@ const MainCenterBlock: FC<MainCenterBlockProps> = props => {
 	return (
 		<div className={style.mainCenterBlock}>
 			<motion.div
-				{...commonAnimationOnView}
 				className={style.mainText}>
 				Игра происходит в{' '}
 				<span className={style.accent}>
@@ -32,7 +31,6 @@ const MainCenterBlock: FC<MainCenterBlockProps> = props => {
 				китайского монополиста
 			</motion.div>
 			<motion.div
-				{...commonAnimationOnView}
 				className={style.paint}>
 				<div className={style.image}>
 					<Image
@@ -45,7 +43,6 @@ const MainCenterBlock: FC<MainCenterBlockProps> = props => {
 				<span className={style.text}>худ. С. Соколов</span>
 			</motion.div>
 			<motion.div
-				{...commonAnimationOnView}
 				className={style.leftImage}>
 				<Image
 					src={leftImage}
@@ -53,13 +50,10 @@ const MainCenterBlock: FC<MainCenterBlockProps> = props => {
 					width={1024}
 					height={1024}
 				/>
+				<span className={style.text}>2089 год</span>
 			</motion.div>
-			<div
-				className={style.circle}>
-				社会主义
-			</div>
+			<div className={style.circle}>社会主义</div>
 			<motion.div
-				{...commonAnimationOnView}
 				className={style.rightImage}>
 				<Image
 					src={rightImage}
@@ -67,7 +61,33 @@ const MainCenterBlock: FC<MainCenterBlockProps> = props => {
 					width={1024}
 					height={1024}
 				/>
+				<div className={style.rightText}>
+					<span className={style.rightTextMono}>
+						Многие иллюстрации сделаны искусственным интеллектом
+					</span>
+					<div className={style.cube}/>
+				</div>
 			</motion.div>
+			<div className={style.bottomText}>
+				<div className={style.bottomTextTitle}>
+					Почему вы должны поиграть?{' '}
+					<div className={style.textCircle} />
+				</div>
+				<div className={style.bottomTextMain}>
+					<span>
+						Это{' '}
+						<span className={style.serifItalic}>
+							Vogue,
+						</span>{' '}
+						<span className={style.serif}>Style and</span>{' '}
+						<span className={style.serifItalic}>
+							mainstream
+						</span>
+						.
+					</span>
+					<span>Это нужно почувствовать :)</span>
+				</div>
+			</div>
 		</div>
 	)
 }
