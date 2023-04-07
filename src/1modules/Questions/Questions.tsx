@@ -19,6 +19,7 @@ const Questions: FC = () => {
 				{buttons.map((value, index) => {
 					return (
 						<motion.button
+							key={index}
 							variants={buttonVariants}
 							onClick={() => setButtonActive(index)}
 							animate={buttonActive === index ? 'on' : 'off'}
