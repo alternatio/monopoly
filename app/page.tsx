@@ -1,15 +1,13 @@
 import { NextPage } from 'next'
-import Wrapper from '@/ui/Wrapper/Wrapper'
-import Header from '@/ui/Header/Header'
+import Header from './Header'
 
 const Page: NextPage = () => {
-	const maxWidth = '70rem'
-
 	return (
+		<>
+			<Header maxWidth={'60rem'} />
 
-		<Header maxWidth={maxWidth} />
-		// <Wrapper maxWidth={maxWidth}>
-		// </Wrapper>
+
+		</>
 	)
 }
 

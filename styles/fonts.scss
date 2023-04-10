@@ -1,0 +1,58 @@
+/* sans-serif font */
+@font-face {
+	font-family: 'Neue Machina';
+	src: url('./fonts/NeueMachina/NeueMachina-Regular.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 400;
+}
+@font-face {
+	font-family: 'Neue Machina';
+	src: url('./fonts/NeueMachina/NeueMachina-Medium.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 500;
+}
+@font-face {
+	font-family: 'Neue Machina';
+	src: url('./fonts/NeueMachina/NeueMachina-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 700;
+}
+
+/* monospace font */
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('./fonts/JetBrainsMono/JetBrainsMono-Medium.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 500;
+}
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('./fonts/JetBrainsMono/JetBrainsMono-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 700;
+}
+
+/* serif font */
+@font-face {
+	font-family: 'Cormorant';
+	src: url('./fonts/CormorantGaramond/CormorantGaramond-BoldItalic.woff2')
+		format('woff2');
+	font-style: italic;
+	font-weight: 700;
+}
+@font-face {
+	font-family: 'Cormorant';
+	src: url('./fonts/CormorantGaramond/CormorantGaramond-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 700;
+}
+
+/* USSR fonts */
+@font-face {
+	font-family: 'Molot';
+	src: url('./fonts/Molot/Molot.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'USSR';
+	src: url('./fonts/USSR-STENCIL/USSR-STENCIL.woff2') format('woff2');
+}

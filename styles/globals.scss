@@ -1,8 +1,38 @@
-@import "variables";
+@import 'reset';
+@import 'fonts';
+
+::-webkit-scrollbar {
+	width: 0.8rem;
+	height: 0.8rem;
+}
+
+::selection {
+	background: var(--colorYellow);
+	color: var(--colorBlack);
+}
 
 * {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  box-sizing: border-box;
+	color: var(--colorWhite);
+}
+
+html {
+	background: #000;
+}
+
+body {
+	--colorBlack: #000;
+	--colorBlackD: #000d;
+	--colorStroke: #111;
+	--colorGray: #555;
+	--colorWhite: #fff;
+	--colorYellow: #fb0;
+	--colorRed: #f80833;
+
+	--sansSerifFont: Neue Machina, sans-serif;
+	--serifFont: Cormorant Garamond, serif;
+	--monoFont: JetBrains Mono, monospace;
+	--molotFont: Molot, Neue Machina, sans-serif;
+	--ussrFont: USSR, Neue Machina, sans-serif;
+
+	--transition: cubic-bezier(.55,.06,.24,1);
 }

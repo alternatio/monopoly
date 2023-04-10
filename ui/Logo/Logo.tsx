@@ -3,6 +3,8 @@ import style from './Logo.module.scss'
 
 interface LogoProps {
 	withoutName?: boolean
+	fontSize?: number
+
 }
 
 const Logo: FC<LogoProps> = props => {

@@ -1,5 +1,5 @@
 import { FC, memo } from 'react'
-import style from './styles/Header.module.scss'
+import style from './Header.module.scss'
 import Button from '@/ui/Button/Button'
 import Logo from '@/ui/Logo/Logo'
 
@@ -15,10 +15,9 @@ const Header: FC<HeaderProps> = props => {
 				style={{ width: `min(100%, ${props.maxWidth})` }}
 				className={style.header}>
 				<div className={style.part}>
-					<Logo />
-					<div className={style.rightPart}>
-						{/*<Button className={style.button}>Начать играть</Button>*/}
-					</div>
+					<Logo className={style.logo} />
+
+					<Button className={style.button}>Начать играть</Button>
 				</div>
 			</div>
 		</div>

@@ -1,21 +1,19 @@
-@import 'styles/variables';
-
 .button {
 	padding: 0.3rem 0.75rem;
-	background: $white;
+	background: var(--colorWhite);
 	border-radius: 0.2rem;
-	font-family: $sansSerifFont;
-	color: $black;
+	font-family: var(--sansSerifFont);
+	color: var(--colorBlack);
 	font-weight: 700;
 	letter-spacing: -0.06em;
-  transition: $commonTransitionCubic .3s;
+  transition: var(--transition) .3s;
 	min-width: 10rem;
 	&:hover {
-		background: $charcoal;
-		color: $white;
+		background: var(--colorStroke);
+		color: var(--colorWhite);
 	}
 	&:active {
-		transition: $commonTransitionCubic .1s;
+		transition: var(--transition) .1s;
 		transform: translateY(.2rem);
 	}
 }

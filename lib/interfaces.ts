@@ -1,1 +1,3 @@
-export const initial = () => {}
+export interface cellI {
+
+}
