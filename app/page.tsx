@@ -6,9 +6,10 @@ const Page: NextPage = () => {
 	const maxWidth = '70rem'
 
 	return (
-		<Wrapper maxWidth={maxWidth}>
-			<Header maxWidth={maxWidth} />
-		</Wrapper>
+
+		<Header maxWidth={maxWidth} />
+		// <Wrapper maxWidth={maxWidth}>
+		// </Wrapper>
 	)
 }
 

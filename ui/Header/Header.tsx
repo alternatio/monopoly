@@ -17,7 +17,7 @@ const Header: FC<HeaderProps> = props => {
 				<div className={style.part}>
 					<Logo />
 					<div className={style.rightPart}>
-						<Button className={style.button}>Начать играть</Button>
+						{/*<Button className={style.button}>Начать играть</Button>*/}
 					</div>
 				</div>
 			</div>

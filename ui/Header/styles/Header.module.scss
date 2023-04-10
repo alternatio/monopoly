@@ -1,4 +1,4 @@
-@import '/styles/global/variables';
+@import '/styles/variables';
 
 .headerWrapper {
   position: fixed;
@@ -17,9 +17,9 @@
   flex-direction: column;
   padding: 0.75rem 2.75rem;
   border-radius: .5rem;
-  background: rgba($black, 0.9);
+  background: rgba(#000, 0.9);
   backdrop-filter: blur(.2rem);
-  border: solid $charcoal 1px;
+  border: solid #111 1px;
 }
 
 .part {

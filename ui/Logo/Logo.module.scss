@@ -1,4 +1,4 @@
-@import '/styles/global/variables';
+@import '/styles/variables';
 
 .logo {
   display: flex;
@@ -17,7 +17,7 @@
 .divider {
   height: 2rem;
   width: 1px;
-  background: $white;
+  background: #fff;
 }
 
 .logoText {
@@ -32,11 +32,11 @@
 
 .textFirst {
   font-size: 1rem;
-  font-family: $sansSerifFont;
+  font-family: sans-serif;
 }
 
 .textSecond {
   font-size: 1.1rem;
-  font-family: $serifFont;
+  font-family: sans-serif;
   font-style: italic;
 }
