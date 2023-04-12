@@ -5,7 +5,7 @@ import { textureImage } from '@/lib/importImage'
 
 const Texture: FC = () => {
 	return (
-		<Image className={style.texture} src={textureImage} alt={'textureImage'} width={2000} height={2000} />
+		<Image className={style.texture} src={textureImage} alt={'textureImage'} width={1200} height={1200} quality={60} />
 	)
 }
 

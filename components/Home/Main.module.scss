@@ -1,7 +1,7 @@
 .main {
   display: grid;
   grid-template-columns: repeat(11, 1fr);
-  grid-auto-rows: 10rem;
+  grid-auto-rows: 5rem;
   gap: 2rem;
 }
 
@@ -12,16 +12,18 @@
 
 .firstText {
   grid-column: 1/6;
-  grid-row: 1/2;
+  grid-row: 1/3;
   line-height: 110%;
   font-size: 1.1rem;
   text-align: justify;
-  //text-indent: 4rem;
+  text-indent: 4rem;
+  border-bottom: var(--colorWhite) solid 1px;
 }
 
 .paint {
   grid-column: 6/12;
-  grid-row: 1/5;
+  grid-row: 1/7;
+  position: relative;
 }
 
 .paintImage {
@@ -32,5 +34,114 @@
 
 .smallPaint0 {
   grid-column: 1/5;
-  grid-row: 2/4;
+  grid-row: 3/6;
+}
+
+.smallPaint1 {
+  grid-column: 8/12;
+  grid-row: 8/11;
+}
+
+.paintBlockBottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
+  height: fit-content;
+}
+
+.square {
+  width: 3rem;
+  height: 3rem;
+  background: var(--colorWhite);
+}
+
+.paintTextBottom {
+  font-size: .9rem;
+  text-transform: lowercase;
+  font-variant-caps: small-caps;
+  font-family: var(--monoFont);
+  position: absolute;
+  right: 4rem;
+  white-space: pre;
+}
+
+.paintTextFirst,
+.paintText {
+  font-size: .9rem;
+  font-family: var(--ussrFont);
+}
+
+.paintTextFirst {
+  position: absolute;
+  right: 0;
+  bottom: -1.25em;
+}
+
+.circle {
+  grid-column: 3/9;
+  grid-row: 5/8;
+  aspect-ratio: 1/1;
+  user-select: none;
+  position: relative;
+  z-index: 3;
+
+  font-size: 4.75rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--colorBlack);
+  background: var(--colorYellow);
+  border-radius: 50%;
+  border: var(--colorBlack) solid 3.5rem;
+}
+
+.textBlock {
+  grid-column: 1/8;
+  grid-row: 9/11;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 4;
+}
+
+.textBlockFirst,
+.textBlockSecond,
+.textBlockThird {
+  line-height: 110%;
+}
+
+.textBlockFirst {
+  font-size: 1.75rem;
+  font-family: var(--ussrFont);
+  text-transform: uppercase;
+  //color: var(--colorRed);
+  //text-shadow: .1em .1em var(--colorGray);
+  margin-bottom: .5rem;
+  border-top: var(--colorWhite) solid 1px;
+  padding-top: .5rem;
+}
+
+.textBlockSecond, .textBlockSecond * {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.serif, .serif * {
+  font-family: var(--serifFont);
+  font-size: 1.25rem;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.textBlockThird {
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  //font-family: var(--monoFont);
 }

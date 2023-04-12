@@ -29,10 +29,16 @@ const Hero: FC = () => {
 			</div>
 			<div className={style.bottom}>
 				<div className={style.divider}>
-					<div className={style.circle} />
+					<div className={style.circle}>
+						<span className={style.circleText}>
+							socialism - asia - history
+						</span>
+					</div>
 				</div>
-				<span className={style.chineseFont}>中华人民共和国</span>
-				<span className={style.text}>Со своими друзьями!</span>
+				<div className={style.texts}>
+					<span className={style.chineseFont}>中华人民共和国</span>
+					<span className={style.text}>Со своими друзьями!</span>
+				</div>
 			</div>
 		</main>
 	)
