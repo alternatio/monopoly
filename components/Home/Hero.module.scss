@@ -15,6 +15,15 @@
   text-align: justify;
   text-shadow: .25rem .25rem 0 var(--colorGray);
   letter-spacing: -0.04em;
+  & > span {
+    font-size: inherit;
+    line-height: inherit;
+    text-transform: inherit;
+    color: inherit;
+    text-shadow: inherit;
+    letter-spacing: inherit;
+    font-weight: 700;
+  }
 }
 
 .bottom {

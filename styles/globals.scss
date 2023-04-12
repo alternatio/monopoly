@@ -22,13 +22,13 @@
 }
 
 html {
-	background: #000;
+	background: #111;
 }
 
 body {
-	--colorBlack: #000;
-	--colorBlackD: #000d;
-	--colorStroke: #111;
+	--colorBlack: #111;
+	--colorBlackD: #111d;
+	--colorStroke: #222;
 	--colorGray: #333;
 	--colorWhite: #fff;
 	--colorYellow: #fb0;
@@ -41,4 +41,6 @@ body {
 	--ussrFont: USSR, Neue Machina, sans-serif;
 
 	--transition: cubic-bezier(.55,.06,.24,1);
+
+	position: relative;
 }

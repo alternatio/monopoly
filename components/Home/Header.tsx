@@ -26,7 +26,7 @@ const Header: FC<HeaderProps> = props => {
 					<motion.div
 						variants={headerVariants}
 						{...commonAnimations}
-						transition={getSpringTransition(10, 50, .3)}
+						transition={getSpringTransition(10, 50, .1)}
 						style={{ width: `min(100%, ${props.maxWidth})` }}
 						className={style.header}>
 						<div className={style.part}>

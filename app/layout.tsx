@@ -1,10 +1,8 @@
 import '@/styles/globals.scss'
 import { ReactNode } from 'react'
-import Wrapper from '@/ui/Wrapper/Wrapper'
-import localFont from 'next/dist/compiled/@next/font/dist/local'
+import Texture from './Texture'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-	
 
 	return (
 		<html lang='ru'>
@@ -12,7 +10,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<title>Monopoly</title>
 			</head>
 			<body>
-				<Wrapper maxWidth={'80rem'}>{children}</Wrapper>
+				<Texture />
+				{children}
 			</body>
 		</html>
 	)

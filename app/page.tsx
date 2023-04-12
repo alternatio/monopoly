@@ -2,13 +2,15 @@ import { NextPage } from 'next'
 import Header from '@/components/Home/Header'
 import Hero from '@/components/Home/Hero'
 import Wrapper from '@/ui/Wrapper/Wrapper'
+import Main from '@/components/Home/Main'
 
 const Page: NextPage = () => {
 	return (
 		<>
 			<Header maxWidth={'60rem'} />
-			<Wrapper maxWidth={'60rem'} marginTop={'5.5rem'}>
+			<Wrapper maxWidth={'60rem'} marginTop={'5.5rem'} gap={'10rem'}>
 				<Hero />
+				<Main />
 			</Wrapper>
 		</>
 	)
