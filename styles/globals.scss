@@ -2,8 +2,14 @@
 @import 'fonts';
 
 ::-webkit-scrollbar {
-	width: 0.8rem;
-	height: 0.8rem;
+	width: 0.6rem;
+	height: 0.6rem;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--colorWhite);
+	border-radius: 5rem;
+	border: var(--colorBlack) solid .2rem;
 }
 
 ::selection {
@@ -23,7 +29,7 @@ body {
 	--colorBlack: #000;
 	--colorBlackD: #000d;
 	--colorStroke: #111;
-	--colorGray: #555;
+	--colorGray: #333;
 	--colorWhite: #fff;
 	--colorYellow: #fb0;
 	--colorRed: #f80833;
