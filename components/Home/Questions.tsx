@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, memo, useState } from 'react'
+import { Dispatch, FC, memo, SetStateAction, useState } from 'react'
 import style from './Questions.module.scss'
 import { motion } from 'framer-motion'
 import { buttonQuestionsVariants } from '@/components/Home/variants'
@@ -10,16 +10,21 @@ const Questions: FC = () => {
 	const [question, setQuestion] = useState(0)
 
 	const buttons = ['Правила', 'О создателе']
+	const types = ['Rules', 'About Creator']
 
 	return (
 		<div className={style.questions}>
 			<div className={style.top}>
 				<div className={style.buttons}>
 					{buttons.map((value, index) => {
-						return <Button value={value} index={index} />
+						return <Button value={value} index={index} question={question} setQuestion={setQuestion} />
 					})}
 				</div>
+				<span className={style.type}>{types[question]}</span>
 			</div>
+			<main className={style.main}>
+
+			</main>
 		</div>
 	)
 }
@@ -27,25 +32,25 @@ const Questions: FC = () => {
 interface ButtonI {
 	value: string
 	index: number
+	question: number
+	setQuestion: Dispatch<SetStateAction<number>>
 }
 
 const Button: FC<ButtonI> = props => {
-	const [mouseEnter, handleMouseEnter] = useState(false)
-
 	return (
 		<button
-			onMouseEnter={() => handleMouseEnter(true)}
-			onMouseLeave={() => handleMouseEnter(false)}
+			onClick={() => props.setQuestion(props.index)}
 			className={style.button}>
-			<span className={style.buttonText}>
+			<span
+				data-is-active={props.question === props.index}
+				className={style.buttonText}>
 				{props.value}
 			</span>
-			{mouseEnter && (
+			{props.question === props.index && (
 				<motion.div
-					// variants={buttonQuestionsVariants}
-					// initial={'off'}
-					// animate={'on'}
-					// exit={'off'}
+					variants={buttonQuestionsVariants}
+					{...commonAnimations}
+					transition={getSpringTransition(20, 100)}
 					className={style.buttonBackground} layoutId={'button'} />
 			)}
 		</button>

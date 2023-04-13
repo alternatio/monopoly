@@ -51,14 +51,13 @@ const Main: FC = () => {
 					Почему вы должны попробовать?
 				</span>
 				<span className={style.textBlockSecond}>
-					- Это{' '}
 					<span className={style.serif}>
 						<span className={style.italic}>Vogue,</span> Style and{' '}
 						<span className={style.italic}>mainstream.</span>
 					</span>
 				</span>
 				<span className={style.textBlockThird}>
-					- Это <span className={`${style.serif} ${style.italic}`}>нужно почувствовать :)</span>
+					<span className={`${style.serif} ${style.italic}`}>нужно почувствовать :)</span>
 				</span>
 			</div>
 		</main>

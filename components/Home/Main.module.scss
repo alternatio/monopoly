@@ -53,7 +53,8 @@
 .square {
   width: 3rem;
   height: 3rem;
-  background: var(--colorWhite);
+  //background: var(--colorWhite);
+  border: var(--colorYellow) solid .25rem;
 }
 
 .paintTextBottom {
@@ -79,7 +80,7 @@
 }
 
 .circle {
-  grid-column: 3/9;
+  grid-column: 4/9;
   grid-row: 5/8;
   aspect-ratio: 1/1;
   user-select: none;
@@ -96,7 +97,8 @@
   color: var(--colorBlack);
   background: var(--colorYellow);
   border-radius: 50%;
-  border: var(--colorBlack) solid 3.5rem;
+  //border: var(--colorBlack) solid 3.5rem;
+  box-shadow: 0 0 0 4rem var(--colorBlack);
 }
 
 .textBlock {
@@ -113,6 +115,26 @@
 .textBlockSecond,
 .textBlockThird {
   line-height: 110%;
+}
+
+.textBlockSecond,
+.textBlockThird {
+  position: relative;
+  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.textBlockSecond:before,
+.textBlockThird:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: .75rem;
+  height: .75rem;
+  border-radius: 50%;
+  border: var(--colorWhite) solid 1px;
 }
 
 .textBlockFirst {

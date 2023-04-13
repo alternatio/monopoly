@@ -11,9 +11,9 @@ export const headerVariants: Variants = {
 
 export const buttonQuestionsVariants: Variants = {
 	on: {
-		opacity: 1,
+		scaleY: 1,
 	},
 	off: {
-		opacity: 0.2,
+		scaleY: 2.5,
 	},
 }
