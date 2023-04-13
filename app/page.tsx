@@ -3,6 +3,7 @@ import Header from '@/components/Home/Header'
 import Hero from '@/components/Home/Hero'
 import Wrapper from '@/ui/Wrapper/Wrapper'
 import Main from '@/components/Home/Main'
+import Questions from '@/components/Home/Questions'
 
 const Page: NextPage = () => {
 	return (
@@ -11,6 +12,7 @@ const Page: NextPage = () => {
 			<Wrapper maxWidth={'60rem'} marginTop={'5.5rem'} gap={'10rem'}>
 				<Hero />
 				<Main />
+				<Questions />
 			</Wrapper>
 		</>
 	)

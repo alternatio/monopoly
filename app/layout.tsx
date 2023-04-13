@@ -10,7 +10,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<title>Monopoly</title>
 			</head>
 			<body>
-				{/*<Texture />*/}
+				<Texture />
 				{children}
 			</body>
 		</html>

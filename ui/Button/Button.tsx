@@ -1,7 +1,7 @@
 'use client'
 
 import { FC, memo, ReactNode } from 'react'
-import style from './styles/Button.module.scss'
+import style from './Button.module.scss'
 
 interface ButtonProps {
 	children?: ReactNode
