@@ -4,6 +4,7 @@ import { FC, memo, useState } from 'react'
 import style from './Hero.module.scss'
 import { useVariableText } from '@/lib/useVariableTitle'
 import { random } from '@/lib/commonFunctions'
+import TypingText from '@/ui/TypingText/TypingText'
 
 const Hero: FC = () => {
 	const arrayOfVariablesTexts = [

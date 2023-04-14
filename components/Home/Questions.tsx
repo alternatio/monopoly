@@ -2,25 +2,28 @@
 
 import { Dispatch, FC, memo, SetStateAction, useState } from 'react'
 import style from './Questions.module.scss'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { buttonQuestionsVariants } from '@/components/Home/variants'
 import { commonAnimations, getSpringTransition } from '@/lib/animations'
+import TypingText from '@/ui/TypingText/TypingText'
 
 const Questions: FC = () => {
 	const [question, setQuestion] = useState(0)
 
 	const buttons = ['Правила', 'О создателе']
-	const types = ['Rules', 'About Creator']
+	const types = ['Rules, they are needed', 'About our creator']
 
 	return (
 		<div className={style.questions}>
 			<div className={style.top}>
 				<div className={style.buttons}>
 					{buttons.map((value, index) => {
-						return <Button value={value} index={index} question={question} setQuestion={setQuestion} />
+						return <Button key={index} value={value} index={index} question={question} setQuestion={setQuestion} />
 					})}
 				</div>
-				<span className={style.type}>{types[question]}</span>
+				<AnimatePresence>
+					<TypingText className={style.type} charClassName={style.char} text={types[question]} delay={.1} />
+				</AnimatePresence>
 			</div>
 			<main className={style.main}>
 

@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useHeaderVisible } from '@/lib/useHeaderVisible'
 import { commonAnimations, getSpringTransition } from '@/lib/animations'
 import { headerVariants } from './variants'
+import TypingText from '@/ui/TypingText/TypingText'
 
 interface HeaderProps {
 	maxWidth: string

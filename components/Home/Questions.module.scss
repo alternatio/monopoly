@@ -15,7 +15,7 @@
   background: var(--colorBlackD);
   border-radius: .4rem;
   padding: .3rem;
-  border: var(--colorWhite) solid 1px;
+  border: var(--colorYellow) solid 1px;
   width: fit-content;
   position: relative;
 }
@@ -53,9 +53,24 @@
 }
 
 .type {
-  font-family: var(--monoFont);
-  font-size: .8rem;
-  text-transform: uppercase;
   border-right: var(--colorWhite) solid 1px;
   padding-right: .2rem;
+  animation: borderBlink ease-in-out 1s infinite;
+}
+
+.char {
+  font-size: .8rem;
+  text-transform: uppercase;
+}
+
+@keyframes borderBlink {
+  0% {
+    border-right: transparent solid 1px;
+  }
+  50% {
+    border-right: var(--colorYellow) solid 1px;
+  }
+  100% {
+    border-right: transparent solid 1px;
+  }
 }

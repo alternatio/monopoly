@@ -3,7 +3,6 @@ import { ReactNode } from 'react'
 import Texture from './Texture'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-
 	return (
 		<html lang='ru'>
 			<head>
