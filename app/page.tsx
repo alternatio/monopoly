@@ -9,7 +9,7 @@ const Page: NextPage = () => {
 	return (
 		<>
 			<Header maxWidth={'60rem'} />
-			<Wrapper maxWidth={'60rem'} marginTop={'5.5rem'} gap={'10rem'}>
+			<Wrapper maxWidth={'60rem'} marginTop={'5.5rem'} gap={'12.5rem'}>
 				<Hero />
 				<Main />
 				<Questions />

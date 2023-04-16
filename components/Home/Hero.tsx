@@ -11,7 +11,6 @@ const Hero: FC = () => {
 		'用策略统治市场',
 		'与财富为伍，笑傲人生',
 		'华丽经商，享受成功',
-		'一起玩吧！财富就在前方！',
 		'独一无二的富豪体验！',
 		'感受财富的喜悦！',
 	]
@@ -19,7 +18,7 @@ const Hero: FC = () => {
 	const [text1, setText1] = useState<string>(arrayOfVariablesTexts[0])
 	const [text2, setText2] = useState<string>(arrayOfVariablesTexts[1])
 
-	useVariableText(setText1, 2000, arrayOfVariablesTexts)
+	useVariableText(setText1, 2600, arrayOfVariablesTexts)
 	useVariableText(setText2, 4000, arrayOfVariablesTexts)
 
 	return (

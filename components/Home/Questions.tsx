@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { buttonQuestionsVariants } from '@/components/Home/variants'
 import { commonAnimations, getSpringTransition } from '@/lib/animations'
 import TypingText from '@/ui/TypingText/TypingText'
+import Rules from '@/components/Home/Rules'
 
 const Questions: FC = () => {
 	const [question, setQuestion] = useState(0)
@@ -18,15 +19,30 @@ const Questions: FC = () => {
 			<div className={style.top}>
 				<div className={style.buttons}>
 					{buttons.map((value, index) => {
-						return <Button key={index} value={value} index={index} question={question} setQuestion={setQuestion} />
+						return (
+							<Button
+								key={index}
+								value={value}
+								index={index}
+								question={question}
+								setQuestion={setQuestion}
+							/>
+						)
 					})}
 				</div>
 				<AnimatePresence>
-					<TypingText className={style.type} charClassName={style.char} text={types[question]} delay={.1} />
+					<TypingText
+						className={style.type}
+						charClassName={style.char}
+						text={types[question]}
+						delay={0.1}
+					/>
 				</AnimatePresence>
 			</div>
 			<main className={style.main}>
-
+				{question === 0 && (
+					<Rules />
+				)}
 			</main>
 		</div>
 	)
@@ -54,7 +70,9 @@ const Button: FC<ButtonI> = props => {
 					variants={buttonQuestionsVariants}
 					{...commonAnimations}
 					transition={getSpringTransition(20, 100)}
-					className={style.buttonBackground} layoutId={'button'} />
+					className={style.buttonBackground}
+					layoutId={'button'}
+				/>
 			)}
 		</button>
 	)

@@ -11,10 +11,13 @@
   text-transform: uppercase;
   line-height: 100%;
   color: var(--colorRed);
+  //color: var(--colorBlack);
   text-indent: 5rem;
   text-align: justify;
   text-shadow: .25rem .25rem 0 var(--colorGray);
-  letter-spacing: -0.04em;
+  -webkit-text-stroke: 1px var(--colorBlack);
+  //letter-spacing: -0.04em;
+  letter-spacing: 0.02em;
   height: 19rem;
   & span {
     font-size: inherit;
