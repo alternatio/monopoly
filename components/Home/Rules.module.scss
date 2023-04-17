@@ -3,7 +3,11 @@
   flex-direction: column;
   gap: 10rem;
   position: relative;
-  padding: 2rem 0;
+  padding-bottom: 2rem;
+}
+
+.rightBlock {
+  margin-left: auto;
 }
 
 .topPart {
@@ -30,8 +34,11 @@
 }
 
 .rulesPaint {
-  max-height: 30rem;
+  max-height: 40rem;
   width: auto;
+  max-width: 60%;
+  object-fit: cover;
+  filter: saturate(1.2);
 }
 
 .townPaint {
@@ -42,4 +49,5 @@
   width: 20rem;
   height: 20rem;
   box-shadow: 0 0 0 4rem var(--colorBlack);
+  filter: saturate(1.2);
 }

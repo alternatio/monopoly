@@ -4,6 +4,7 @@ import Hero from '@/components/Home/Hero'
 import Wrapper from '@/ui/Wrapper/Wrapper'
 import Main from '@/components/Home/Main'
 import Questions from '@/components/Home/Questions'
+import Footer from '@/components/Home/Footer'
 
 const Page: NextPage = () => {
 	return (
@@ -13,6 +14,7 @@ const Page: NextPage = () => {
 				<Hero />
 				<Main />
 				<Questions />
+				<Footer />
 			</Wrapper>
 		</>
 	)

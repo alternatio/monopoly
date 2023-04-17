@@ -7,6 +7,7 @@ import { buttonQuestionsVariants } from '@/components/Home/variants'
 import { commonAnimations, getSpringTransition } from '@/lib/animations'
 import TypingText from '@/ui/TypingText/TypingText'
 import Rules from '@/components/Home/Rules'
+import Creator from '@/components/Home/Creator'
 
 const Questions: FC = () => {
 	const [question, setQuestion] = useState(0)
@@ -30,18 +31,20 @@ const Questions: FC = () => {
 						)
 					})}
 				</div>
-				<AnimatePresence>
-					<TypingText
-						className={style.type}
-						charClassName={style.char}
-						text={types[question]}
-						delay={0.1}
-					/>
-				</AnimatePresence>
+				<TypingText
+					className={style.type}
+					charClassName={style.char}
+					text={types[question]}
+					delay={0.1}
+					readyDelay={700}
+				/>
 			</div>
 			<main className={style.main}>
 				{question === 0 && (
 					<Rules />
+				)}
+				{question === 1 && (
+					<Creator />
 				)}
 			</main>
 		</div>

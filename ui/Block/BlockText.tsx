@@ -1,16 +1,16 @@
 import { FC, memo, ReactNode } from 'react'
 import style from './Block.module.scss'
 
-interface BlockContentI {
+interface BlockTextI {
 	children: ReactNode
 }
 
-const BlockContent: FC<BlockContentI> = props => {
+const BlockText: FC<BlockTextI> = props => {
 	return (
-		<div className={style.content}>
+		<div className={style.blockText}>
 			{props.children}
 		</div>
 	)
 }
 
-export default memo(BlockContent)
+export default memo(BlockText)

@@ -1,6 +1,12 @@
 /* sans-serif font */
 @font-face {
 	font-family: 'Neue Machina';
+	src: url('./fonts/NeueMachina/NeueMachina-Light.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 300;
+}
+@font-face {
+	font-family: 'Neue Machina';
 	src: url('./fonts/NeueMachina/NeueMachina-Regular.woff2') format('woff2');
 	font-style: normal;
 	font-weight: 400;

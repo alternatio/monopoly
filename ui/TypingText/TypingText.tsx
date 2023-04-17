@@ -7,6 +7,8 @@ import style from './TypingText.module.scss'
 interface TypingTextI extends Partial<HTMLDivElement> {
 	text: string
 	delay: number
+	charWidth?: string
+	readyDelay?: number
 	charClassName?: string
 }
 
@@ -17,7 +19,7 @@ const TypingText: FC<TypingTextI> = props => {
 	useEffect(() => {
 		handleReady(false)
 		setCurrentText(props.text)
-		setTimeout(() => handleReady(true), 100)
+		setTimeout(() => handleReady(true), props.readyDelay ? props.readyDelay : 300)
 	}, [props.text, props.delay])
 
 	const containerV = {
@@ -33,13 +35,17 @@ const TypingText: FC<TypingTextI> = props => {
 		show: {
 			opacity: 1,
 			y: '0rem',
-			width: '.6em',
+			width: props.charWidth ? props.charWidth : '.6em',
 		},
 		hidden: {
 			opacity: 0,
-			y: '-.5rem',
+			y: '-1em',
 			width: 0
 		},
+		close: {
+			opacity: 0,
+			width: 0,
+		}
 	}
 
 	return (
@@ -50,7 +56,7 @@ const TypingText: FC<TypingTextI> = props => {
 					className={`${style.container} ${props.className}`}
 					variants={containerV}
 					initial='hidden'
-					animate='show'>
+					animate='show' exit='close'>
 					{currentText.split('').map((char, index) => (
 						<motion.span className={`${style.char} ${props.charClassName}`} key={index} variants={charV}>
 							{char}

@@ -18,21 +18,50 @@ const Hero: FC = () => {
 	const [text1, setText1] = useState<string>(arrayOfVariablesTexts[0])
 	const [text2, setText2] = useState<string>(arrayOfVariablesTexts[1])
 
-	useVariableText(setText1, 2600, arrayOfVariablesTexts)
-	useVariableText(setText2, 4000, arrayOfVariablesTexts)
+	useVariableText(setText1, 4000, arrayOfVariablesTexts)
+	useVariableText(setText2, 6500, arrayOfVariablesTexts)
 
 	return (
 		<main className={style.main}>
-			<div className={style.title}>
-				Господство могущество <span>{text1}</span> Власть Благо.{' '}
-				<span>{text2}</span> Вы ведь хотите это?
+			{/*<div className={style.title}>*/}
+			{/*	Господство могущество <span>{text1}</span> Власть Благо.{' '}*/}
+			{/*	<span>{text2}</span> Вы ведь хотите это?*/}
+			{/*</div>*/}
+			<div className={style.titles}>
+				<span className={style.titlePart}>
+					<span>Господство</span>
+					<span>могущество</span>
+				</span>
+				<span className={style.titlePart}>
+					<span className={style.chinese}>
+						<TypingText
+							className={style.chinese}
+							text={text1}
+							delay={0.1}
+							charWidth={'1em'}
+							readyDelay={600}
+						/>
+					</span>
+					<span>Власть</span>
+				</span>
+				<span className={style.titlePart}>
+					<span>Благо</span>
+					<span className={style.chinese}>
+						<TypingText
+							className={style.chinese}
+							text={text2}
+							delay={0.1}
+							charWidth={'1em'}
+							readyDelay={500}
+						/>
+					</span>
+				</span>
+				<span className={style.titlePart}>Вы ведь хотите это?</span>
 			</div>
 			<div className={style.bottom}>
 				<div className={style.divider}>
 					<div className={style.circle}>
-						<span className={style.circleText}>
-							socialism - asia - history
-						</span>
+						<span className={style.circleText}>socialism - asia - history</span>
 					</div>
 				</div>
 				<div className={style.texts}>
