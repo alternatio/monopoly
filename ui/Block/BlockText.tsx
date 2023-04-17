@@ -1,13 +1,13 @@
 import { FC, memo, ReactNode } from 'react'
 import style from './Block.module.scss'
 
-interface BlockTextI {
+interface BlockTextI extends Partial<Pick<HTMLDivElement, 'className'>> {
 	children: ReactNode
 }
 
 const BlockText: FC<BlockTextI> = props => {
 	return (
-		<div className={style.blockText}>
+		<div className={`${style.blockText} ${props.className}`}>
 			{props.children}
 		</div>
 	)

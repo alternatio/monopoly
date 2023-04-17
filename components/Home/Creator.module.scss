@@ -1,0 +1,13 @@
+.creator {
+
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  & * {
+    width: fit-content;
+    text-indent: 0;
+  }
+}
