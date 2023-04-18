@@ -1,6 +1,8 @@
 .creator {
   position: relative;
-  min-height: 28rem;
+  min-width: 100%;
+  height: fit-content;
+  min-height: 25rem;
 }
 
 .back {
@@ -24,9 +26,10 @@
 
 .creatorPaint {
   width: min(100%, 35rem);
-  height: 80%;
+  height: 25rem;
   object-fit: cover;
-  margin-top: auto;
+  margin-bottom: auto;
+  margin-top: 5rem;
   margin-left: auto;
   filter: saturate(.7) brightness(.95) contrast(.96);
   border-radius: .5rem;
@@ -40,7 +43,7 @@
   height: 17.5rem;
   border-radius: 50%;
   box-shadow: 0 0 0 1.5rem var(--colorBlack);
-  filter: saturate(.7) brightness(.95) contrast(.96);
+  //filter: saturate(.7) brightness(.95) contrast(.96);
 }
 
 .block {

@@ -40,7 +40,7 @@ const Questions: FC = () => {
 				/>
 			</div>
 			<main className={style.main}>
-				<Rules isVisible={question === 0} />
+				{/*<Rules isVisible={question === 0} />*/}
 				<Creator isVisible={question === 1} />
 			</main>
 		</div>

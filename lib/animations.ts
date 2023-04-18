@@ -7,12 +7,13 @@ export const getSpringTransition = (
 	stiffness: number = 40,
 	delay: number = 0,
 	repeat: number = 0,
-	repeatType: repeatTypeI = undefined
+	repeatType: repeatTypeI = undefined,
+	restDelta: number = 0.02,
 ): Transition => {
 	return {
 		damping,
 		stiffness,
-		restDelta: 0.02,
+		restDelta,
 		type: 'spring',
 		delay,
 		repeat,

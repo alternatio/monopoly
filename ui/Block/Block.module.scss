@@ -1,5 +1,6 @@
 .block {
 	width: fit-content;
+	min-width: 15rem;
 	background: var(--colorBlackB);
 	padding: 3rem 2rem 4rem;
 	border: var(--colorStroke) solid 1px;

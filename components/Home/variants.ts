@@ -17,3 +17,16 @@ export const buttonQuestionsVariants: Variants = {
 		scaleY: 2.5,
 	},
 }
+
+export const questionVariants: Variants = {
+	on: {
+		overflow: 'hidden',
+		minWidth: '100%',
+		opacity: 1,
+	},
+	off: {
+		overflow: 'hidden',
+		minWidth: '100%',
+		opacity: 0,
+	}
+}

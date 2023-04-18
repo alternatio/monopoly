@@ -53,6 +53,12 @@
   z-index: 0;
 }
 
+.main {
+  display: flex;
+  height: fit-content;
+  width: fit-content;
+}
+
 .type {
   border-right: var(--colorWhite) solid 1px;
   padding-right: .2rem;
