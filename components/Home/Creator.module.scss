@@ -1,8 +1,7 @@
 .creator {
   position: relative;
   min-width: 100%;
-  height: fit-content;
-  min-height: 25rem;
+  min-height: 30rem;
 }
 
 .back {
@@ -16,12 +15,6 @@
   justify-content: center;
   gap: 1rem;
   z-index: -1;
-}
-
-.bottom {
-  width: 100%;
-  border-bottom: var(--colorWhite) solid 1px;
-  margin-bottom: 2rem;
 }
 
 .creatorPaint {
@@ -48,6 +41,7 @@
 
 .block {
   margin-top: 4rem;
+  margin-bottom: 10rem;
 }
 
 .blockText {

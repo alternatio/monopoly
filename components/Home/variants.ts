@@ -19,14 +19,12 @@ export const buttonQuestionsVariants: Variants = {
 }
 
 export const questionVariants: Variants = {
-	on: {
-		overflow: 'hidden',
-		minWidth: '100%',
+	on: custom => ({
 		opacity: 1,
-	},
-	off: {
-		overflow: 'hidden',
-		minWidth: '100%',
+		x: `-${custom * 100}%`
+	}),
+	off: custom => ({
 		opacity: 0,
-	}
+		x: 0
+	}),
 }

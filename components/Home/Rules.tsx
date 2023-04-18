@@ -8,20 +8,16 @@ import BlockContent from '@/ui/Block/BlockContent'
 import BlockText from '@/ui/Block/BlockText'
 import BlockAccent from '@/ui/Block/BlockAccent'
 import BlockTitle from '@/ui/Block/BlockTitle'
-import { motion } from 'framer-motion'
-import { getSpringTransition } from '@/lib/animations'
-import { questionVariants } from '@/components/Home/variants'
+import QuestionWrapper from './QuestionWrapper'
 
 interface RulesProps {
 	isVisible: boolean
+	index: number
 }
 
 const Rules: FC<RulesProps> = props => {
 	return (
-		<motion.div
-			variants={questionVariants}
-			animate={props.isVisible ? 'on' : 'off'}
-			transition={getSpringTransition(20, 60)}>
+		<QuestionWrapper isVisible={props.isVisible} index={props.index}>
 			<div className={style.rules}>
 				<div className={style.topPart}>
 					<Block width={'min(100%, 30rem)'}>
@@ -40,9 +36,9 @@ const Rules: FC<RulesProps> = props => {
 								установить пароль на сессию.
 							</BlockText>
 							<BlockText>
-								В ходе разработки игры я хотел создать понятный и приятный на
-								вид интерфейс, думаю вы найдёте куда нажать, чтобы получить то,
-								что вам нужно.
+								В ходе разработки игры я хотел создать понятный и приятный на вид
+								интерфейс, думаю вы найдёте куда нажать, чтобы получить то, что
+								вам нужно.
 							</BlockText>
 						</BlockContent>
 					</Block>
@@ -52,17 +48,17 @@ const Rules: FC<RulesProps> = props => {
 					<BlockHeader leftPart={'Правила'} rightPart={'规则'} />
 					<BlockTitle>Начало</BlockTitle>
 					<BlockText>
-						В начале партии даётся 50 миллионов юаней, этого вам хватит на
-						покупку какого-то количества компаний. За каждый переход через старт
-						даётся 5 миллионов юаней,{' '}
+						В начале партии даётся 50 миллионов юаней, этого вам хватит на покупку
+						какого-то количества компаний. За каждый переход через старт даётся 5
+						миллионов юаней,{' '}
 						<BlockAccent type={'accent'}>
 							но после 30 минут игры этот бонус перестаёт даваться.
 						</BlockAccent>
 					</BlockText>
 					<BlockTitle>Поле игры</BlockTitle>
 					<BlockText>
-						Поле игры состоит из клеток, они делятся на несколько типов:
-						Компания, Шанс, Угловые.{' '}
+						Поле игры состоит из клеток, они делятся на несколько типов: Компания,
+						Шанс, Угловые.{' '}
 						<BlockAccent type={'accent'}>Клетки компаний</BlockAccent> можно
 						купить, а в случае отказа от покупки - такая компания попадает на
 						аукцион, при желании её может купить любой желающий, но продаётся по
@@ -75,9 +71,9 @@ const Rules: FC<RulesProps> = props => {
 						тюрьма, кости, дядя полицейский. В тюрьму попадают после дяди
 						полицейского и находятся{' '}
 						<BlockAccent type={'accent'}>там 2 цикла ходов.</BlockAccent> На
-						клетке <BlockAccent type={'accent'}>кости</BlockAccent> можно
-						сыграть в мини-игру, в которой есть возможность получить
-						дополнительные деньги.
+						клетке <BlockAccent type={'accent'}>кости</BlockAccent> можно сыграть
+						в мини-игру, в которой есть возможность получить дополнительные
+						деньги.
 					</BlockText>
 					<BlockTitle>Компания</BlockTitle>
 					<BlockText>
@@ -103,7 +99,7 @@ const Rules: FC<RulesProps> = props => {
 					/>
 				</div>
 			</div>
-		</motion.div>
+		</QuestionWrapper>
 	)
 }
 

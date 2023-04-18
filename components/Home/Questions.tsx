@@ -39,10 +39,13 @@ const Questions: FC = () => {
 					readyDelay={700}
 				/>
 			</div>
-			<main className={style.main}>
-				{/*<Rules isVisible={question === 0} />*/}
-				<Creator isVisible={question === 1} />
-			</main>
+			<motion.main
+				animate={{ x: `-${question * 100}%`, height: 'auto' }}
+				transition={getSpringTransition(20, 60)}
+				className={style.main}>
+				<Rules isVisible={question === 0} index={0} />
+				<Creator isVisible={question === 1} index={1} />
+			</motion.main>
 		</div>
 	)
 }

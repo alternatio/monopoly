@@ -6,21 +6,17 @@ import BlockText from '@/ui/Block/BlockText'
 import BlockAccent from '@/ui/Block/BlockAccent'
 import Image from 'next/image'
 import { creatorCircleImage, creatorPaintImage } from '@/lib/importImage'
-import { motion } from 'framer-motion'
-import { questionVariants } from '@/components/Home/variants'
-import { getSpringTransition } from '@/lib/animations'
+import QuestionWrapper from '@/components/Home/QuestionWrapper'
 
 interface CreatorI {
 	isVisible: boolean
+	index: number
 }
 
 const Creator: FC<CreatorI> = props => {
 	return (
-		<motion.div
-			variants={questionVariants}
-			animate={props.isVisible ? 'on' : 'off'}
-			transition={getSpringTransition(20, 60)}>
-			<div className={style.creator}>
+		<QuestionWrapper isVisible={props.isVisible} index={props.index}>
+			<div	className={style.creator}>
 				<div className={style.back}>
 					<Image
 						className={style.creatorCircle}
@@ -55,7 +51,7 @@ const Creator: FC<CreatorI> = props => {
 					</BlockText>
 				</Block>
 			</div>
-		</motion.div>
+		</QuestionWrapper>
 	)
 }
 

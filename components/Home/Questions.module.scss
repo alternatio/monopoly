@@ -55,8 +55,21 @@
 
 .main {
   display: flex;
-  height: fit-content;
   width: fit-content;
+  //overflow: hidden;
+  height: auto;
+}
+
+.wrapper {
+  min-width: 100%;
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition: 2s ease-in-out opacity;
+  &[data-is-visible='true'] {
+    height: auto;
+    opacity: 1;
+  }
 }
 
 .type {
