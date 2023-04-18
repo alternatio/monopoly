@@ -40,12 +40,8 @@ const Questions: FC = () => {
 				/>
 			</div>
 			<main className={style.main}>
-				{question === 0 && (
-					<Rules />
-				)}
-				{question === 1 && (
-					<Creator />
-				)}
+				<Rules isVisible={question === 0} />
+				<Creator isVisible={question === 1} />
 			</main>
 		</div>
 	)

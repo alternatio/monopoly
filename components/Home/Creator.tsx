@@ -4,31 +4,47 @@ import Block from '@/ui/Block/Block'
 import BlockHeader from '@/ui/Block/BlockHeader'
 import BlockText from '@/ui/Block/BlockText'
 import BlockAccent from '@/ui/Block/BlockAccent'
+import Image from "next/image";
+import {creatorCircleImage, creatorPaintImage} from "@/lib/importImage";
+import {AnimatePresence, motion} from "framer-motion";
 
-const Creator: FC = () => {
+interface CreatorI {
+	isVisible: boolean
+}
+
+const Creator: FC<CreatorI> = props => {
 	return (
-		<div className={style.creator}>
-			<Block width={'min(100%, 25rem)'}>
-				<BlockHeader leftPart={'О создателе'} rightPart={'关于造物主'} />
-				<BlockText>
-					Это делал один человек, его контакты можете найти
-					чуть ниже.
-				</BlockText>
-				<BlockText className={style.block}>
-					<BlockAccent type={'link'} href={'#'}>
-						Telegram
-					</BlockAccent>
-					<span>|</span>
-					<BlockAccent type={'link'} href={'#'}>
-						Github
-					</BlockAccent>
-					<span>|</span>
-					<BlockAccent type={'link'} href={'#'}>
-						VK
-					</BlockAccent>
-				</BlockText>
-			</Block>
-		</div>
+		<AnimatePresence>
+			{props.isVisible && (
+				<motion.div className={style.creator}>
+					<div className={style.back}>
+						<Image className={style.creatorCircle} src={creatorCircleImage} alt={'creatorCircleImage'} />
+						<Image className={style.creatorPaint} src={creatorPaintImage} alt={'creatorPaintImage'} />
+					</div>
+					<Block width={'min(100%, 28rem)'} className={style.block}>
+						<BlockHeader leftPart={'О создателе'} rightPart={'关于造物主'} />
+						<BlockText>
+							Я пытался сделать вещь, которой приятно пользоваться, получать
+							какие-то эмоции. Вы можете мне написать на сколько хорошо мне это
+							удалось. Контакты находятся чуть ниже.
+						</BlockText>
+						<BlockText className={style.blockText}>
+							<BlockAccent type={'link'} href={'#'}>
+								Telegram
+							</BlockAccent>
+							<span>|</span>
+							<BlockAccent type={'link'} href={'#'}>
+								Github
+							</BlockAccent>
+							<span>|</span>
+							<BlockAccent type={'link'} href={'#'}>
+								VK
+							</BlockAccent>
+						</BlockText>
+					</Block>
+				</motion.div>
+			)}
+		</AnimatePresence>
 	)
 }
 
