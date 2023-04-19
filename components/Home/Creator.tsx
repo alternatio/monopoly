@@ -29,7 +29,7 @@ const Creator: FC<CreatorI> = props => {
 						alt={'creatorPaintImage'}
 					/>
 				</div>
-				<Block width={'min(100%, 28rem)'} className={style.block}>
+				<Block width={'min(95%, 28rem)'} className={style.block}>
 					<BlockHeader leftPart={'О создателе'} rightPart={'关于造物主'} />
 					<BlockText>
 						Я пытался сделать вещь, которой приятно пользоваться, получать

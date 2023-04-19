@@ -20,7 +20,7 @@ const Rules: FC<RulesProps> = props => {
 		<QuestionWrapper isVisible={props.isVisible} index={props.index}>
 			<div className={style.rules}>
 				<div className={style.topPart}>
-					<Block width={'min(100%, 30rem)'}>
+					<Block width={'min(95%, 30rem)'}>
 						<BlockHeader leftPart={'Как начать?'} rightPart={'解释'} />
 						<BlockContent>
 							<BlockText>
@@ -44,7 +44,7 @@ const Rules: FC<RulesProps> = props => {
 					</Block>
 					<span className={style.symbols}>规则</span>
 				</div>
-				<Block className={style.rightBlock} width={'min(100%, 30rem)'}>
+				<Block className={style.rightBlock} width={'min(95%, 30rem)'}>
 					<BlockHeader leftPart={'Правила'} rightPart={'规则'} />
 					<BlockTitle>Начало</BlockTitle>
 					<BlockText>

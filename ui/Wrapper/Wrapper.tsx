@@ -14,8 +14,8 @@ const Wrapper: FC<WrapperProps> = props => {
 			<div
 				style={{
 					width: `min(100%, ${props.maxWidth})`,
-					marginTop: props.marginTop ? props.marginTop : '0',
-					gap: props.gap ? props.gap : '0',
+					marginTop: props.marginTop ? props.marginTop : undefined,
+					gap: props.gap ? props.gap : undefined,
 				}}
 				className={styles.innerWrapper}>
 				{props.children}

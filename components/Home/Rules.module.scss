@@ -13,14 +13,20 @@
 
 .topPart {
   display: flex;
-  gap: 4rem;
+  gap: 1rem;
   align-items: flex-end;
+  flex-wrap: wrap;
 }
 
 .symbols {
   color: var(--colorRed);
   font-weight: 700;
   font-size: 5rem;
+  margin-left: auto;
+
+  @media (max-width: 700px) {
+    font-size: 4rem;
+  }
 }
 
 .back {
@@ -32,12 +38,14 @@
   display: flex;
   align-items: flex-end;
   z-index: -1;
+  @media (max-width: 920px) {
+    align-items: center;
+  }
 }
 
 .rulesPaint {
   max-height: 40rem;
-  width: auto;
-  max-width: 60%;
+  width: min(90%, 30rem);
   object-fit: cover;
   filter: saturate(1.2);
   border-radius: .5rem;

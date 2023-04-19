@@ -31,13 +31,15 @@ const Questions: FC = () => {
 						)
 					})}
 				</div>
-				<TypingText
-					className={style.type}
-					charClassName={style.char}
-					text={types[question]}
-					delay={0.1}
-					readyDelay={700}
-				/>
+				<div className={style.typing}>
+					<TypingText
+						className={style.type}
+						charClassName={style.char}
+						text={types[question]}
+						delay={0.1}
+						readyDelay={700}
+					/>
+				</div>
 			</div>
 			<motion.main
 				animate={{ x: `-${question * 100}%`, height: 'auto' }}

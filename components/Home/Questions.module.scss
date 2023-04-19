@@ -9,6 +9,11 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
 .buttons {
@@ -17,12 +22,12 @@
   border-radius: .4rem;
   padding: .3rem;
   border: var(--colorYellow) solid 1px;
-  width: fit-content;
+  width: min(100%, 20rem);
   position: relative;
 }
 
 .button {
-  width: 10rem;
+  width: 100%;
   position: relative;
   padding: 0.3rem 0.75rem;
   color: var(--colorWhite);
@@ -55,7 +60,7 @@
 
 .main {
   display: flex;
-  width: fit-content;
+  width: 100%;
   //overflow: hidden;
   height: auto;
 }
@@ -72,15 +77,21 @@
   }
 }
 
+.typing {
+  height: 1rem;
+}
+
 .type {
   border-right: var(--colorWhite) solid 1px;
   padding-right: .2rem;
   animation: borderBlink ease-in-out 1s infinite;
+  height: 1rem;
 }
 
 .char {
   font-size: .8rem;
   text-transform: uppercase;
+  height: 1rem;
 }
 
 @keyframes borderBlink {

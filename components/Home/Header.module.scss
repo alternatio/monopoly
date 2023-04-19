@@ -20,6 +20,18 @@
   border: solid var(--colorStroke) 1px;
 }
 
+.logo {
+  @media (max-width: 600px) {
+    transform: scale(.9);
+  }
+}
+
+.button {
+  @media (max-width: 600px) {
+    min-width: fit-content;
+  }
+}
+
 .part {
   display: flex;
   min-height: 1.5rem;
