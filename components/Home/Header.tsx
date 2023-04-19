@@ -30,6 +30,7 @@ const Header: FC<HeaderProps> = props => {
 
 	useEffect(() => {
 		window.addEventListener('resize', onResize)
+		onResize()
 		return () => window.removeEventListener('resize', onResize)
 	}, [])
 
