@@ -1,20 +1,39 @@
 .button {
 	padding: 0.3rem 0.75rem;
-	//background: var(--colorWhite);
-	background: var(--colorBlack8);
-	color: var(--colorWhite);
+	background: var(--colorWhite);
+	//background: var(--colorBlack8);
+	//color: var(--colorWhite);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: .5rem;
+
 	border-radius: 0.2rem;
 	border: var(--colorWhite) solid 1px;
 	font-family: var(--sansSerifFont);
-	//color: var(--colorBlack);
+
+	color: var(--colorBlack);
 	font-weight: 700;
 	letter-spacing: -0.06em;
   transition: var(--transition) .3s;
 	min-width: 10rem;
-	&:hover {
-		background: var(--colorWhite);
+
+	& * {
+		transition: var(--transition) .3s;
 		color: var(--colorBlack);
-		border: var(--colorBlack) solid 1px;
+		letter-spacing: -0.06em;
+		font-weight: 700;
+		font-size: inherit;
+	}
+	&:hover {
+		background: var(--colorBlack8);
+		color: var(--colorWhite);
+		border: var(--colorWhite) solid 1px;
+
+		& * {
+			color: var(--colorWhite);
+		}
 	}
 	&:active {
 		transition: var(--transition) .1s;

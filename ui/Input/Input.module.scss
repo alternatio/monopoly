@@ -1,0 +1,25 @@
+.label {
+  width: 100%;
+  padding: .5rem;
+  height: 2rem;
+  border-radius: .25rem;
+  background: var(--colorStroke);
+  border: var(--colorGray) solid 1px;
+  display: flex;
+  align-items: center;
+  transition: .2s ease-in-out;
+  &[data-disabled='true'] {
+    filter: brightness(.5);
+  }
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  font-size: .85rem;
+  font-weight: 400;
+  font-family: var(--sansSerifFont);
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

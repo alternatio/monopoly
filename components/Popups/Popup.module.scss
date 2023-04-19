@@ -1,0 +1,81 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--colorBlack8);
+  backdrop-filter: blur(.2rem);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapperHandle {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.block {
+  width: min(95%, 25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 3rem;
+  gap: 2.5rem;
+  border-radius: .5rem;
+  border: solid 1px var(--colorStroke);
+  background: var(--colorBlackD);
+}
+
+.blockTitle {
+  width: min(100%, 15rem);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.main {
+  width: min(100%, 15rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.button {
+  height: 2.25rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.checkboxWithInput {
+  display: flex;
+  gap: .5rem;
+}
+
+.monoInput {
+  font-family: var(--monoFont) !important;
+  font-size: .75rem !important;
+}
+
+.buttonWithDescription {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.description {
+  font-size: .7rem;
+  letter-spacing: -0.05em;
+  font-weight: 300;
+  color: var(--colorMedium);
+  text-align: center;
+  line-height: 110%;
+}

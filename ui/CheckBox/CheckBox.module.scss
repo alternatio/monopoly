@@ -1,0 +1,26 @@
+.label {
+  width: 2rem;
+  height: 2rem;
+  aspect-ratio: 1/1;
+  border-radius: .25rem;
+  border: var(--colorGray) solid 1px;
+  background: var(--colorStroke);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.input {
+  appearance: none;
+  width: 64%;
+  height: 64%;
+  border-radius: .15rem;
+  transition: .25s ease-in-out;
+  background: var(--colorWhite);
+  transform: scale(0);
+  cursor: inherit;
+  &:checked {
+    transform: scale(1);
+  }
+}

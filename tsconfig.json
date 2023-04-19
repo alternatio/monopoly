@@ -20,6 +20,7 @@
       "@/lib/*": ["lib/*"],
       "@/styles/*": ["styles/*"],
       "@/components/*": ["components/*"],
+      "@/store/*": ["store/*"],
     },
     "plugins": [
       {

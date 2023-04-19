@@ -1,6 +1,6 @@
 import '@/styles/globals.scss'
 import { ReactNode } from 'react'
-import Texture from './Texture'
+import Providers from "@/store/Providers";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
@@ -9,8 +9,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<title>Monopoly</title>
 			</head>
 			<body>
-				{/*<Texture />*/}
-				{children}
+				<Providers>
+					{children}
+				</Providers>
 			</body>
 		</html>
 	)
