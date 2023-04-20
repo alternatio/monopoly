@@ -9,7 +9,7 @@
 ::-webkit-scrollbar-thumb {
 	background: var(--colorWhite);
 	border-radius: 5rem;
-	border: var(--colorBlack) solid .2rem;
+	border: var(--colorBlack) solid 0.2rem;
 }
 
 ::selection {
@@ -35,8 +35,11 @@ body {
 	--colorMedium: #888;
 	--colorPreWhite: #aaa;
 	--colorWhite: #fff;
-	--colorYellow: #fc2;
+
 	--colorRed: #ee2838;
+	--colorYellow: #fc2;
+	--colorGreen: #4b6;
+	--colorBlue: #55f;
 
 	--sansSerifFont: Neue Machina, sans-serif;
 	--serifFont: Cormorant Garamond, serif;
@@ -44,7 +47,7 @@ body {
 	--molotFont: Molot, Neue Machina, sans-serif;
 	--ussrFont: USSR, Neue Machina, sans-serif;
 
-	--transition: cubic-bezier(.55,.06,.24,1);
+	--transition: cubic-bezier(0.55, 0.06, 0.24, 1);
 
 	position: relative;
 }

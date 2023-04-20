@@ -1,5 +1,6 @@
 .wrapper {
   width: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   top: 0;
@@ -14,6 +15,7 @@
   display: flex;
   flex-direction: column;
   gap: 12.5rem;
+  min-height: 100%;
 
   @media (max-width: 800px) {
     gap: 8rem;
