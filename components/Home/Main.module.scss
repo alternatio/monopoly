@@ -7,6 +7,10 @@
   @media (max-width: 780px) {
     gap: 2rem .8rem;
   }
+  @media (max-width: 480px) {
+    gap: 4rem .6rem;
+    grid-auto-rows: 2rem 3rem 5rem;
+  }
 }
 
 .accent {
@@ -68,7 +72,7 @@
 
   @media (max-width: 780px) {
     grid-column: 1/8;
-    grid-row: 4/8;
+    grid-row: 4/9;
 
     margin-right: 1.5rem;
   }
@@ -94,7 +98,7 @@
 
   @media (max-width: 480px) {
     grid-column: 1/12;
-    grid-row: 8/11;
+    grid-row: 9/12;
     margin-top: 1rem;
     & img {
       filter: blur(.1rem);
@@ -200,7 +204,7 @@
   }
   @media (max-width: 480px) {
     grid-column: 1/12;
-    grid-row: 8/10;
+    grid-row: 9/11;
   }
 }
 
