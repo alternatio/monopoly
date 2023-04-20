@@ -21,10 +21,19 @@ export const buttonQuestionsVariants: Variants = {
 export const questionVariants: Variants = {
 	on: custom => ({
 		opacity: 1,
-		x: `-${custom * 100}%`
+		x: `-${custom * 100}%`,
 	}),
 	off: custom => ({
 		opacity: 0,
-		x: 0
+		x: 0,
 	}),
+}
+
+export const hamburgerMenuV: Variants = {
+	on: {
+		y: 0,
+	},
+	off: {
+		y: '-20rem',
+	},
 }

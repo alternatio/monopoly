@@ -12,7 +12,7 @@ import Creator from '@/components/Home/Creator'
 const Questions: FC = () => {
 	const [question, setQuestion] = useState(0)
 
-	const buttons = ['Правила', 'О создателе']
+	const buttons = ['Правила 📏', 'О создателе 👺']
 	const types = ['Rules, they are needed', 'About our creator']
 
 	return (

@@ -61,7 +61,7 @@ export const signOutWithGooglePopup = async (
 
 	try {
 		await signOut(auth)
-		setUserData({})
+		setUserData(undefined)
 		localStorage.removeItem('userData')
 	} catch (error) {
 		console.log(error)

@@ -24,7 +24,7 @@ const SignUpPopup: FC = () => {
 	return (
 		<AnimatePresence>
 			{currentPopup === 0 && (
-				<PopupBlock title={'Вам необходимо войти в аккаунт'}>
+				<PopupBlock title={'Войти в аккаунт'}>
 					<Button
 						className={style.button}
 						onClick={async () => {
@@ -33,10 +33,10 @@ const SignUpPopup: FC = () => {
 						<Image src={googleIcon} alt={'googleIcon'} />
 						<span>Войти через Google</span>
 					</Button>
-					<Button className={style.button}>
-						<Image src={githubIcon} alt={'githubIcon'} />
-						<span>Войти через Github</span>
-					</Button>
+					{/*<Button className={style.button}>*/}
+					{/*	<Image src={githubIcon} alt={'githubIcon'} />*/}
+					{/*	<span>Войти через Github</span>*/}
+					{/*</Button>*/}
 				</PopupBlock>
 			)}
 		</AnimatePresence>

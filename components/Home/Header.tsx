@@ -9,10 +9,10 @@ import { useHeaderVisible } from '@/lib/useHeaderVisible'
 import { commonAnimations, getSpringTransition } from '@/lib/animations'
 import { headerVariants } from './variants'
 import { useAppDispatch, useAppSelector } from '@/store/index'
-import { signInWithGooglePopup } from '@/store/firestore/controller'
-import {userDataI} from "@/store/interfaces/user";
-import {setUserData} from "@/store/reducers/user";
-import {setCurrentPopup} from "@/store/reducers/popups";
+import { setCurrentPopup } from '@/store/reducers/popups'
+import HamburgerButton from "@/components/Home/HamburgerButton";
+import HamburgerMenu from "@/components/Home/HamburgerMenu";
+import {setHamburgerOpen} from "@/store/reducers/hamburger";
 
 interface HeaderProps {
 	maxWidth: string
@@ -25,6 +25,7 @@ const Header: FC<HeaderProps> = props => {
 
 	const dispatch = useAppDispatch()
 	const userData = useAppSelector(state => state.user.data)
+	const hamburgerIsOpen = useAppSelector(state => state.hamburger.isOpen)
 
 	useHeaderVisible(handleHeaderVisible)
 
@@ -42,6 +43,16 @@ const Header: FC<HeaderProps> = props => {
 		return () => window.removeEventListener('resize', onResize)
 	}, [])
 
+	useEffect(() => {
+		dispatch(setCurrentPopup(-1))
+	}, [userData?.uid])
+
+	useEffect(() => {
+		if (!headerVisible) {
+			dispatch(setHamburgerOpen(headerVisible))
+		}
+	}, [headerVisible])
+
 	return (
 		<div className={style.headerWrapper}>
 			<AnimatePresence>
@@ -54,19 +65,24 @@ const Header: FC<HeaderProps> = props => {
 						className={style.header}>
 						<div className={style.part}>
 							<Logo className={style.logo} withoutName={withoutName} />
-							<Button
-								className={style.button}
-								onClick={() => {
-									if (!userData) {
-										dispatch(setCurrentPopup(0))
-									}
-								}}>
-								Начать играть
-							</Button>
+							{/*<Button*/}
+							{/*	className={style.button}*/}
+							{/*	onClick={() => {*/}
+							{/*		if (!userData?.uid) {*/}
+							{/*			dispatch(setCurrentPopup(0))*/}
+							{/*		} else {*/}
+							{/*			dispatch(setCurrentPopup(1))*/}
+							{/*		}*/}
+							{/*	}}>*/}
+							{/*	Начать играть*/}
+							{/*</Button>*/}
+
+							<HamburgerButton />
 						</div>
 					</motion.div>
 				)}
 			</AnimatePresence>
+			<HamburgerMenu />
 		</div>
 	)
 }

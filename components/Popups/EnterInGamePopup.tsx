@@ -27,7 +27,7 @@ const EnterInGamePopup: FC = () => {
 						}}
 					/>
 					<div className={style.buttonWithDescription}>
-						<Button>Присоединиться</Button>
+						<Button className={style.button}>Присоединиться</Button>
 						<span className={style.description}>
 							Также вы можете перейти по ссылке товарища, а не копировать.
 						</span>

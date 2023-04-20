@@ -1,4 +1,4 @@
-import { Transition } from 'framer-motion'
+import { EasingDefinition, Transition } from 'framer-motion'
 
 type repeatTypeI = 'loop' | 'reverse' | 'mirror' | undefined
 
@@ -8,7 +8,7 @@ export const getSpringTransition = (
 	delay: number = 0,
 	repeat: number = 0,
 	repeatType: repeatTypeI = undefined,
-	restDelta: number = 0.02,
+	restDelta: number = 0.02
 ): Transition => {
 	return {
 		damping,
@@ -18,6 +18,18 @@ export const getSpringTransition = (
 		delay,
 		repeat,
 		repeatType,
+	}
+}
+
+export const getEaseTransition = (
+	duration: number,
+	ease: EasingDefinition,
+	delay: number
+): Transition => {
+	return {
+		duration,
+		delay,
+		ease,
 	}
 }
 

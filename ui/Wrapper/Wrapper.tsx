@@ -1,5 +1,10 @@
-import { FC, memo, ReactNode } from 'react'
+'use client'
+
+import {FC, memo, ReactNode, useEffect} from 'react'
 import styles from './Wrapper.module.scss'
+import {useAppDispatch} from "@/store/index";
+import {setUserData} from "@/store/reducers/user";
+import {userDataI} from "@/store/interfaces/user";
 
 interface WrapperProps {
 	maxWidth: string
@@ -9,6 +14,16 @@ interface WrapperProps {
 }
 
 const Wrapper: FC<WrapperProps> = props => {
+	const dispatch = useAppDispatch()
+
+	useEffect(() => {
+		const userData = localStorage.getItem('userData')
+		if (userData) {
+			const preparedUserData: userDataI = JSON.parse(userData)
+			dispatch(setUserData(preparedUserData))
+		}
+	}, [])
+
 	return (
 		<div className={styles.wrapper}>
 			<div
