@@ -24,6 +24,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  pointer-events: none;
 }
 
 .menuInnerWrapper {
@@ -33,6 +34,7 @@
 }
 
 .menu {
+  pointer-events: auto;
   width: min(100%, 17.5rem);
   display: flex;
   flex-direction: column;
