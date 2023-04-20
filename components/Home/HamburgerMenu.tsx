@@ -33,7 +33,7 @@ const HamburgerMenu: FC = () => {
 							{...commonAnimations}
 							transition={getSpringTransition(20, 60)}
 							className={style.menu}>
-							{!userData.uid && (
+							{!userData?.uid && (
 								<Button
 									className={style.menuButton}
 									onClick={() => dispatch(setCurrentPopup(0))}>
