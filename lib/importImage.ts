@@ -1,8 +1,39 @@
+// home page images
 export const paintImage = require('/public/images/Home/paint.png')
 export const smallPaint0Image = require('/public/images/Home/smallPaint0.png')
 export const smallPaint1Image = require('/public/images/Home/smallPaint1.png')
-
 export const rulesPaintImage = require('/public/images/Home/rulesPaint.png')
 export const rulesTownImage = require('/public/images/Home/rulesTown.png')
 export const creatorPaintImage = require('/public/images/Home/creatorPaint.png')
 export const creatorCircleImage = require('/public/images/Home/creatorCircle.png')
+
+// cells images
+// companies
+export const chinaMobileImage = require('/public/images/cells/chinaMobile.svg')
+export const chinaTelecomImage = require('/public/images/cells/chinaTelekom.svg')
+export const netflixImage = require('/public/images/cells/netflix.svg')
+export const tencentImage = require('/public/images/cells/tencent.svg')
+export const realtekImage = require('/public/images/cells/realtek.svg')
+export const tsmcsImage = require('/public/images/cells/tsmc.svg')
+export const wanhuaImage = require('/public/images/cells/wanhua.svg')
+export const sinopecImage = require('/public/images/cells/sinopec.svg')
+export const petroChinaImage = require('/public/images/cells/petroChina.svg')
+export const adobeImage = require('/public/images/cells/adobe.svg')
+export const lenovoImage = require('/public/images/cells/lenovo.svg')
+export const xiaomiImage = require('/public/images/cells/xiaomi.svg')
+export const huaweiImage = require('/public/images/cells/huawei.svg')
+export const icbcImage = require('/public/images/cells/icbc.svg')
+export const bankOfChinaImage = require('/public/images/cells/bankOfChina.svg')
+export const pinganImage = require('/public/images/cells/pingan.svg')
+export const pepsicoImage = require('/public/images/cells/pepsico.svg')
+export const chinaLifeImage = require('/public/images/cells/chinaLife.svg')
+export const bydImage = require('/public/images/cells/byd.svg')
+export const wuXiAppTecImage = require('/public/images/cells/wiXiAppTec.svg')
+export const whGroupImage = require('/public/images/cells/whGroup.svg')
+export const haitianFlavouringAndFoodImage = require('/public/images/cells/haitianFlavouringAndFood.svg')
+export const wuliangyeYibinImage = require('/public/images/cells/wuliangyeYibin.svg')
+export const cocaColaImage = require('/public/images/cells/cocaCola.svg')
+export const baiduImage = require('/public/images/cells/baidu.svg')
+export const alibabaImage = require('/public/images/cells/alibaba.svg')
+
+// common

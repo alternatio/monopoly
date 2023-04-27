@@ -2,8 +2,7 @@ import { addDoc, collection, doc, getDoc, setDoc } from '@firebase/firestore'
 import { db, googleAuthProvider } from '@/store/firestore/index'
 import { getAuth, signInWithPopup, signOut } from '@firebase/auth'
 import { userDataI } from '@/store/interfaces/user'
-import {useAppDispatch} from "@/store/index";
-import {setUserData} from "@/store/reducers/user";
+import { createUID } from '@/lib/commonFunctions'
 
 // get doc in firestore
 export const getDocInFirestore = async (
@@ -30,10 +29,25 @@ export const setItemInFirestore = async (
 	await setDoc(doc(db, collectionName, docName), data)
 }
 
+export const createSession = async () => {
+	const id = createUID()
+	const response = await getDocInFirestore('sessions', id)
+
+	if (!response) {
+		const sessionData = {
+			id
+		}
+	} else {
+		try {
+			await createSession()
+		} catch (e) {
+			console.log(e)
+		}
+	}
+}
+
 // sign in app with Google
-export const signInWithGooglePopup = async (
-	setUserData: CallableFunction
-) => {
+export const signInWithGooglePopup = async (setUserData: CallableFunction) => {
 	const auth = getAuth()
 
 	try {
@@ -54,9 +68,7 @@ export const signInWithGooglePopup = async (
 }
 
 // sign out in app with Google
-export const signOutWithGooglePopup = async (
-	setUserData: CallableFunction
-) => {
+export const signOutWithGooglePopup = async (setUserData: CallableFunction) => {
 	const auth = getAuth()
 
 	try {

@@ -8,6 +8,7 @@ import Button from '@/ui/Button/Button'
 import Checkbox from '@/ui/CheckBox/Checkbox'
 import { AnimatePresence } from 'framer-motion'
 import { useAppSelector } from '@/store/index'
+import { createSession } from '@/store/firestore/controller'
 
 const CreateGamePopup: FC = () => {
 	const currentPopup = useAppSelector(state => state.popups.currentPopup)
@@ -39,7 +40,7 @@ const CreateGamePopup: FC = () => {
 							}}
 						/>
 					</div>
-					<Button className={style.button}>Создать</Button>
+					<Button className={style.button} onClick={createSession} >Создать</Button>
 				</PopupBlock>
 			)}
 		</AnimatePresence>
