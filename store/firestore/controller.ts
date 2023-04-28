@@ -3,6 +3,7 @@ import { db, googleAuthProvider } from '@/store/firestore/index'
 import { getAuth, signInWithPopup, signOut } from '@firebase/auth'
 import { userDataI } from '@/store/interfaces/user'
 import { createUID } from '@/lib/commonFunctions'
+import { sessionI } from '@/store/interfaces/session'
 
 // get doc in firestore
 export const getDocInFirestore = async (
@@ -29,17 +30,26 @@ export const setItemInFirestore = async (
 	await setDoc(doc(db, collectionName, docName), data)
 }
 
-export const createSession = async () => {
+export const createSession = async (
+	owner: userDataI,
+	maxPlayers: number,
+	password?: string,
+) => {
 	const id = createUID()
 	const response = await getDocInFirestore('sessions', id)
 
 	if (!response) {
-		const sessionData = {
-			id
+		const sessionData: sessionI = {
+			id,
+			password,
+			maxPlayers,
+			players: [owner],
+			owner,
 		}
+
 	} else {
 		try {
-			await createSession()
+			await createSession(owner, maxPlayers, password)
 		} catch (e) {
 			console.log(e)
 		}
