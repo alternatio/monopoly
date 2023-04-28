@@ -1,42 +1,14 @@
 import {
-	cellT,
+	cellI,
 	chanceI,
-	commonCompanyI, companyT,
 	diceI,
 	policemanI,
+	positionT,
 	prisonI,
 	startI,
 	taxI,
-	uncommonCompanyI,
 } from '@/store/interfaces/cell'
-import {
-	adobeImage,
-	alibabaImage,
-	baiduImage,
-	bankOfChinaImage,
-	bydImage,
-	chinaLifeImage,
-	chinaMobileImage,
-	chinaTelecomImage,
-	cocaColaImage,
-	haitianFlavouringAndFoodImage,
-	huaweiImage,
-	icbcImage,
-	lenovoImage,
-	netflixImage,
-	pepsicoImage,
-	petroChinaImage,
-	pinganImage,
-	realtekImage,
-	sinopecImage,
-	tencentImage,
-	tsmcsImage,
-	wanhuaImage,
-	whGroupImage,
-	wuliangyeYibinImage,
-	wuXiAppTecImage,
-	xiaomiImage,
-} from '@/lib/importImage'
+import { companies } from '@/store/data/companies'
 
 // common cells
 const chanceCell: chanceI = {
@@ -60,297 +32,73 @@ const diceCell: diceI = {
 
 const corners = [startCell, prisonCell, diceCell, policemanCell]
 
-const companies: companyT[] = [
-	{
-		name: 'china mobile',
-		image: chinaMobileImage,
-		description: '',
-		type: 'common',
+export const cells: cellI[] = []
 
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'china telekom',
-		image: chinaTelecomImage,
-		description: '',
-		type: 'common',
+export const generateCells = (
+	gridSize: [number, number] = [13, 13],
+	cellWidth: number = 2,
+	taxesPositions: [number[], number[], number[], number[]] = [
+		[3],
+		[1],
+		[7],
+		[7],
+	],
+	chancePositions: [number[], number[], number[], number[]] = [
+		[1, 6],
+		[6],
+		[1],
+		[2, 5],
+	]
+) => {
+	cells.splice(0, cells.length)
+	const companiesArray = [...companies]
 
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'netflix',
-		image: netflixImage,
-		description: '',
-		type: 'uncommon',
-
-		cost: 1000,
-		quantityModifier: 1000,
-	},
-	{
-		name: 'tencent',
-		image: tencentImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'realtek',
-		image: realtekImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'tsmcs',
-		image: tsmcsImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'wanhua',
-		image: wanhuaImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'sinopec',
-		image: sinopecImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'petro china',
-		image: petroChinaImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'adobe',
-		image: adobeImage,
-		description: '',
-		type: 'uncommon',
-
-		cost: 1000,
-		quantityModifier: 1000,
-	},
-	{
-		name: 'lenovo',
-		image: lenovoImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'xiaomi',
-		image: xiaomiImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'huawei',
-		image: huaweiImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'icbc',
-		image: icbcImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'bank of china',
-		image: bankOfChinaImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'pingan',
-		image: pinganImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'pepsico',
-		image: pepsicoImage,
-		description: '',
-		type: 'uncommon',
-
-		cost: 1000,
-		quantityModifier: 1000,
-	},
-	{
-		name: 'china life',
-		image: chinaLifeImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'byd',
-		image: bydImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'wiXi appTec',
-		image: wuXiAppTecImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'whGroup',
-		image: whGroupImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'haitian flavouring and food',
-		image: haitianFlavouringAndFoodImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'wuliangye Yibin',
-		image: wuliangyeYibinImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'coca cola',
-		image: cocaColaImage,
-		description: '',
-		type: 'uncommon',
-
-		cost: 1000,
-		quantityModifier: 1000,
-	},
-	{
-		name: 'baidu',
-		image: baiduImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-	{
-		name: 'alibaba',
-		image: alibabaImage,
-		description: '',
-		type: 'common',
-
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeCost: 1000,
-		percentageOfRentIncrease: 1000,
-	},
-]
-
-export const cells: cellT[] = []
-
-export const generateCells = () => {
-	const companiesLength = companies.length
-	const quarterCompaniesLength = Math.ceil(companiesLength / 4)
+	const xCellsLength = gridSize[0] - cellWidth * 2
+	const yCellsLength = gridSize[1] - cellWidth * 2
 
 	for (let i = 0; i < 4; i++) {
-		cells.push(corners[i])
-		for (let j = 0; j < quarterCompaniesLength; j++) {
-			cells.push(companies[j * (i + 1)])
+		const isTop = i === 1 || i === 2
+		const isLeft = i === 0 || i === 1
+		const isX = i === 0 || i == 2
+
+		const cornerPosition: positionT = [
+			isLeft ? 0 : gridSize[0] - cellWidth,
+			isLeft ? cellWidth : gridSize[0],
+			isTop ? 0 : gridSize[1] - cellWidth,
+			isTop ? cellWidth : gridSize[1],
+		]
+
+		cells.push({
+			data: corners[i],
+			position: cornerPosition,
+		})
+
+		for (let j = 0; j < (isX ? xCellsLength : yCellsLength); j++) {
+			const currentCellPosition: positionT = [
+				isX ? (isLeft ? 0 : gridSize[0] - cellWidth) : j + cellWidth,
+				isX ? (isLeft ? cellWidth : gridSize[0]) : j + cellWidth + 1,
+				isX ? j + cellWidth : isTop ? 0 : gridSize[0] - cellWidth,
+				isX ? j + cellWidth + 1 : isTop ? cellWidth : gridSize[0],
+			]
+			if (taxesPositions[i].includes(j)) {
+				cells.push({
+					data: taxCell,
+					position: currentCellPosition,
+				})
+				continue
+			} else if (chancePositions[i].includes(j)) {
+				cells.push({
+					data: chanceCell,
+					position: currentCellPosition,
+				})
+				continue
+			}
+
+			cells.push({
+				data: companiesArray[0],
+				position: currentCellPosition,
+			})
+			companiesArray.splice(0, 1)
 		}
 	}
 	console.log(cells)

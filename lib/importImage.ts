@@ -9,31 +9,31 @@ export const creatorCircleImage = require('/public/images/Home/creatorCircle.png
 
 // cells images
 // companies
-export const chinaMobileImage = require('/public/images/cells/chinaMobile.svg')
-export const chinaTelecomImage = require('/public/images/cells/chinaTelekom.svg')
-export const netflixImage = require('/public/images/cells/netflix.svg')
-export const tencentImage = require('/public/images/cells/tencent.svg')
-export const realtekImage = require('/public/images/cells/realtek.svg')
-export const tsmcsImage = require('/public/images/cells/tsmc.svg')
-export const wanhuaImage = require('/public/images/cells/wanhua.svg')
-export const sinopecImage = require('/public/images/cells/sinopec.svg')
-export const petroChinaImage = require('/public/images/cells/petroChina.svg')
-export const adobeImage = require('/public/images/cells/adobe.svg')
-export const lenovoImage = require('/public/images/cells/lenovo.svg')
-export const xiaomiImage = require('/public/images/cells/xiaomi.svg')
-export const huaweiImage = require('/public/images/cells/huawei.svg')
-export const icbcImage = require('/public/images/cells/icbc.svg')
-export const bankOfChinaImage = require('/public/images/cells/bankOfChina.svg')
-export const pinganImage = require('/public/images/cells/pingan.svg')
-export const pepsicoImage = require('/public/images/cells/pepsico.svg')
-export const chinaLifeImage = require('/public/images/cells/chinaLife.svg')
-export const bydImage = require('/public/images/cells/byd.svg')
-export const wuXiAppTecImage = require('/public/images/cells/wiXiAppTec.svg')
-export const whGroupImage = require('/public/images/cells/whGroup.svg')
-export const haitianFlavouringAndFoodImage = require('/public/images/cells/haitianFlavouringAndFood.svg')
-export const wuliangyeYibinImage = require('/public/images/cells/wuliangyeYibin.svg')
-export const cocaColaImage = require('/public/images/cells/cocaCola.svg')
-export const baiduImage = require('/public/images/cells/baidu.svg')
-export const alibabaImage = require('/public/images/cells/alibaba.svg')
-
-// common
+export const companiesImages = {
+	chinaMobileImage: require('/public/images/cells/chinaMobile.svg'),
+	chinaTelecomImage: require('/public/images/cells/chinaTelekom.svg'),
+	netflixImage: require('/public/images/cells/netflix.svg'),
+	tencentImage: require('/public/images/cells/tencent.svg'),
+	realtekImage: require('/public/images/cells/realtek.svg'),
+	tsmcsImage: require('/public/images/cells/tsmc.svg'),
+	wanhuaImage: require('/public/images/cells/wanhua.svg'),
+	sinopecImage: require('/public/images/cells/sinopec.svg'),
+	petroChinaImage: require('/public/images/cells/petroChina.svg'),
+	adobeImage: require('/public/images/cells/adobe.svg'),
+	lenovoImage: require('/public/images/cells/lenovo.svg'),
+	xiaomiImage: require('/public/images/cells/xiaomi.svg'),
+	huaweiImage: require('/public/images/cells/huawei.svg'),
+	icbcImage: require('/public/images/cells/icbc.svg'),
+	bankOfChinaImage: require('/public/images/cells/bankOfChina.svg'),
+	pinganImage: require('/public/images/cells/pingan.svg'),
+	pepsicoImage: require('/public/images/cells/pepsico.svg'),
+	chinaLifeImage: require('/public/images/cells/chinaLife.svg'),
+	bydImage: require('/public/images/cells/byd.svg'),
+	wuXiAppTecImage: require('/public/images/cells/wiXiAppTec.svg'),
+	whGroupImage: require('/public/images/cells/whGroup.svg'),
+	haitianFlavouringAndFoodImage: require('/public/images/cells/haitianFlavouringAndFood.svg'),
+	wuliangyeYibinImage: require('/public/images/cells/wuliangyeYibin.svg'),
+	cocaColaImage: require('/public/images/cells/cocaCola.svg'),
+	baiduImage: require('/public/images/cells/baidu.svg'),
+	alibabaImage: require('/public/images/cells/alibaba.svg'),
+}

@@ -22,10 +22,6 @@ const Hero: FC = () => {
 	useVariableText(setText1, 4000, arrayOfVariablesTexts)
 	useVariableText(setText2, 6500, arrayOfVariablesTexts)
 
-	useEffect(() => {
-		generateCells()
-	}, [])
-
 	return (
 		<main className={style.main}>
 			{/*<div className={style.title}>*/}
@@ -71,7 +67,7 @@ const Hero: FC = () => {
 				</div>
 				<div className={style.texts}>
 					<span className={style.chineseFont}>中华人民共和国</span>
-					<span className={style.text}>Со своими друзьями!</span>
+					<span onClick={() => generateCells()} className={style.text}>Со своими друзьями!</span>
 				</div>
 			</div>
 		</main>

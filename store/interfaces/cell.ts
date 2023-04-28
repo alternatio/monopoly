@@ -10,18 +10,18 @@ type cellTypes =
 	| 'policeman'
 	| 'dice'
 
-export interface cellCoordinates {
+export interface cellPositionI {
 	xStart: number
 	xEnd: number
 	yStart: number
 	yEnd: number
 }
 
-export interface cellI {
+export interface baseCellI {
 	type: cellTypes
 }
 
-export interface companyBaseI extends cellI {
+export interface companyBaseI extends baseCellI {
 	name: string
 	image: string
 	description: string
@@ -29,7 +29,7 @@ export interface companyBaseI extends cellI {
 	owner?: userDataI
 }
 
-export interface commonCompanyI extends companyBaseI, cellI {
+export interface commonCompanyI extends companyBaseI, baseCellI {
 	type: 'common'
 	baseRentCost: number
 	upgradeCost: number
@@ -37,35 +37,41 @@ export interface commonCompanyI extends companyBaseI, cellI {
 	numberOfImprovements?: number
 }
 
-export interface uncommonCompanyI extends companyBaseI, cellI {
+export interface uncommonCompanyI extends companyBaseI, baseCellI {
 	type: 'uncommon'
 	quantityModifier: number
 }
 
-export interface chanceI extends cellI {
+export interface chanceI extends baseCellI {
 	type: 'chance'
 }
 
-export interface taxI extends cellI {
+export interface taxI extends baseCellI {
 	type: 'tax'
 }
 
-export interface startI extends cellI {
+export interface startI extends baseCellI {
 	type: 'start'
 }
 
-export interface prisonI extends cellI {
+export interface prisonI extends baseCellI {
 	type: 'prison'
 }
 
-export interface policemanI extends cellI {
+export interface policemanI extends baseCellI {
 	type: 'policeman'
 }
 
-export interface diceI extends cellI {
+export interface diceI extends baseCellI {
 	type: 'dice'
 }
 
 export type companyT = commonCompanyI | uncommonCompanyI
 export type cornersT = startI | prisonI | policemanI | diceI
-export type cellT = companyT | chanceI | taxI | cornersT
+export type innerCellsT = chanceI | taxI
+export type positionT = [number, number, number, number]
+
+export interface cellI  {
+	data: companyT | innerCellsT | cornersT
+	position: positionT
+}
