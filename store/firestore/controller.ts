@@ -38,7 +38,9 @@ export const createSession = async (
 	const id = createUID()
 	const response = await getDocInFirestore('sessions', id)
 
-	if (!response) {
+	console.log(response)
+
+	if (!response.data()) {
 		const sessionData: sessionI = {
 			id,
 			password,
@@ -47,12 +49,9 @@ export const createSession = async (
 			owner,
 		}
 
+		return true
 	} else {
-		try {
-			await createSession(owner, maxPlayers, password)
-		} catch (e) {
-			console.log(e)
-		}
+		return false
 	}
 }
 

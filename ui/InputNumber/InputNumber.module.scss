@@ -2,6 +2,13 @@
 	display: flex;
 	align-items: center;
 	width: fit-content;
+	flex-direction: column;
+	gap: .25rem;
+}
+
+.main {
+	display: flex;
+	align-items: center;
 }
 
 .text {
@@ -21,4 +28,10 @@
 	height: 2rem;
 	font-weight: 700;
 	font-size: 1.2rem;
+}
+
+.propText {
+	text-align: center;
+	font-size: .7rem;
+	color: var(--colorMedium);
 }

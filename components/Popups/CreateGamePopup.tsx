@@ -11,10 +11,12 @@ import { useAppSelector } from '@/store/index'
 import { createSession } from '@/store/firestore/controller'
 import InputNumber from '@/ui/InputNumber/InputNumber'
 import { userAddIcon, userRemoveIcon } from '@/lib/ImportIcons'
+import { useRouter } from 'next/navigation'
 
 const CreateGamePopup: FC = () => {
 	const currentPopup = useAppSelector(state => state.popups.currentPopup)
 	const user = useAppSelector(state => state.user.data)
+	const router = useRouter()
 
 	const [password, setPassword] = useState<string>()
 	const [passwordDisabled, handlePassword] = useState(true)
@@ -50,13 +52,17 @@ const CreateGamePopup: FC = () => {
 						setValue={setMaxUsers}
 						firstImage={userRemoveIcon}
 						secondImage={userAddIcon}
+						text={'количество игроков'}
 						min={2}
 						max={5}
 					/>
 					{user && (
 						<Button
 							className={style.button}
-							onClick={() => createSession(user, 4, password)}>
+							onClick={async () => {
+								const result = await createSession(user, maxUsers, password)
+								result ? router.push('/game/123') : null
+							}}>
 							Создать
 						</Button>
 					)}

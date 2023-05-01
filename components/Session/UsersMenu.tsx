@@ -5,7 +5,8 @@ import style from './Users.module.scss'
 import UserBlock from '@/components/Session/UserBlock'
 import { useAppDispatch, useAppSelector } from '@/store/index'
 import { setUserGameData } from '@/store/reducers/user'
-import { userGameDataI, usersGameColors } from '@/store/interfaces/user'
+import { userGameDataI } from '@/store/interfaces/user'
+import { usersGameColors } from '@/store/data/userColors'
 
 const UsersMenu: FC = () => {
 	const userData = useAppSelector(state => state.user.data)

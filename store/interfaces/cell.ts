@@ -5,20 +5,11 @@ type cellTypes =
 	| 'uncommon'
 	| 'chance'
 	| 'tax'
-	| 'start'
-	| 'prison'
-	| 'policeman'
-	| 'dice'
-
-export interface cellPositionI {
-	xStart: number
-	xEnd: number
-	yStart: number
-	yEnd: number
-}
+	| 'corner'
 
 export interface baseCellI {
 	type: cellTypes
+	direction?: 'left' | 'top' | 'right' | 'bottom'
 }
 
 export interface companyBaseI extends baseCellI {
@@ -50,28 +41,17 @@ export interface taxI extends baseCellI {
 	type: 'tax'
 }
 
-export interface startI extends baseCellI {
-	type: 'start'
-}
-
-export interface prisonI extends baseCellI {
-	type: 'prison'
-}
-
-export interface policemanI extends baseCellI {
-	type: 'policeman'
-}
-
-export interface diceI extends baseCellI {
-	type: 'dice'
+export interface cornerI extends baseCellI {
+	type: 'corner'
+	text: string
+	image: string
 }
 
 export type companyT = commonCompanyI | uncommonCompanyI
-export type cornersT = startI | prisonI | policemanI | diceI
 export type innerCellsT = chanceI | taxI
 export type positionT = [number, number, number, number]
 
 export interface cellI  {
-	data: companyT | innerCellsT | cornersT
+	data: companyT | innerCellsT | cornerI
 	position: positionT
 }

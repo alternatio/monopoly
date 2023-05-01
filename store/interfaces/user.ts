@@ -25,7 +25,7 @@ export interface userGameDataI {
 	hisTurn: boolean
 	playingDice: boolean
 
-	ownership: []
+	ownership?: []
 }
 
 export interface userGameLocalDataI {

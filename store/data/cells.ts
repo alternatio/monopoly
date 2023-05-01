@@ -1,33 +1,39 @@
 import {
+	baseCellI,
 	cellI,
 	chanceI,
-	diceI,
-	policemanI,
+	cornerI,
 	positionT,
-	prisonI,
-	startI,
 	taxI,
 } from '@/store/interfaces/cell'
 import { companies } from '@/store/data/companies'
 
 // common cells
-const chanceCell: chanceI = {
-	type: 'chance',
+const startCell: cornerI = {
+	type: 'corner',
+	text: 'startCell',
+	image: '',
+}
+const prisonCell: cornerI = {
+	type: 'corner',
+	text: 'prisonCell',
+	image: '',
+}
+const diceCell: cornerI = {
+	type: 'corner',
+	text: 'diceCell',
+	image: '',
+}
+const policemanCell: cornerI = {
+	type: 'corner',
+	text: 'policemanCell',
+	image: '',
 }
 const taxCell: taxI = {
 	type: 'tax',
 }
-const startCell: startI = {
-	type: 'start',
-}
-const prisonCell: prisonI = {
-	type: 'prison',
-}
-const policemanCell: policemanI = {
-	type: 'policeman',
-}
-const diceCell: diceI = {
-	type: 'dice',
+const chanceCell: chanceI = {
+	type: 'chance',
 }
 
 const corners = [startCell, prisonCell, diceCell, policemanCell]
@@ -61,11 +67,14 @@ export const generateCells = (
 		const isLeft = i === 0 || i === 1
 		const isX = i === 0 || i == 2
 
+		const directionLeft = i === 0
+		const directionTop = i === 1
+
 		const cornerPosition: positionT = [
-			isLeft ? 0 : gridSize[0] - cellWidth,
-			isLeft ? cellWidth : gridSize[0],
-			isTop ? 0 : gridSize[1] - cellWidth,
-			isTop ? cellWidth : gridSize[1],
+			isLeft ? 1 : gridSize[0] + 1 - cellWidth,
+			isLeft ? cellWidth + 1 : gridSize[0] + 1,
+			isTop ? 1 : gridSize[1] + 1 - cellWidth,
+			isTop ? cellWidth + 1 : gridSize[1] + 1,
 		]
 
 		cells.push({
@@ -75,10 +84,10 @@ export const generateCells = (
 
 		for (let j = 0; j < (isX ? xCellsLength : yCellsLength); j++) {
 			const currentCellPosition: positionT = [
-				isX ? (isLeft ? 0 : gridSize[0] - cellWidth) : j + cellWidth,
-				isX ? (isLeft ? cellWidth : gridSize[0]) : j + cellWidth + 1,
-				isX ? j + cellWidth : isTop ? 0 : gridSize[0] - cellWidth,
-				isX ? j + cellWidth + 1 : isTop ? cellWidth : gridSize[0],
+				isX ? (isLeft ? 1 : gridSize[0] - cellWidth + 1) : j + cellWidth + 1,
+				isX ? (isLeft ? cellWidth + 1 : gridSize[0] + 1) : j + cellWidth + 1,
+				isX ? j + cellWidth + 1 : isTop ? 1 : gridSize[0] - cellWidth + 1,
+				isX ? j + cellWidth + 2 : isTop ? cellWidth + 1 : gridSize[0] + 1,
 			]
 			if (taxesPositions[i].includes(j)) {
 				cells.push({
@@ -94,12 +103,28 @@ export const generateCells = (
 				continue
 			}
 
+			let direction: baseCellI['direction']
+
+			switch (i) {
+				case 0:
+					direction = 'left'
+					break
+				case 1:
+					direction = 'top'
+					break
+				case 2:
+					direction = 'right'
+					break
+				case 3:
+					direction = 'bottom'
+					break
+			}
+
 			cells.push({
-				data: companiesArray[0],
+				data: { ...companiesArray[0], direction },
 				position: currentCellPosition,
 			})
 			companiesArray.splice(0, 1)
 		}
 	}
-	console.log(cells)
 }
