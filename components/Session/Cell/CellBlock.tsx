@@ -1,6 +1,7 @@
 import { CSSProperties, FC, memo, ReactNode } from 'react'
 import style from './Cell.module.scss'
 import { cellI } from '@/store/interfaces/cell'
+import CellPrice from "@/components/Session/Cell/CellPrice";
 
 interface CellBlockI {
 	children?: ReactNode
@@ -21,15 +22,6 @@ const getCommonStylesPosition = (props: cellI): CSSProperties => {
 	return {
 		gridColumn: `${props.position[0]}/${props.position[1]}`,
 		gridRow: `${props.position[2]}/${props.position[3]}`,
-	}
-}
-
-export const getCommonStylesRotation = (props: cellI): CSSProperties => {
-	return {
-		transform:
-			props.data.direction === 'top' || props.data.direction === 'bottom'
-				? 'rotate(90deg)'
-				: undefined,
 	}
 }
 

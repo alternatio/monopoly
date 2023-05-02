@@ -8,6 +8,9 @@ export const creatorPaintImage = require('/public/images/Home/creatorPaint.png')
 export const creatorCircleImage = require('/public/images/Home/creatorCircle.png')
 
 // cells images
+export const chanceImage = require('/public/images/cells/chance.svg')
+export const taxImage = require('/public/images/cells/tax.svg')
+
 // companies
 export const companiesImages = {
 	chinaMobileImage: require('/public/images/cells/chinaMobile.svg'),
@@ -36,4 +39,6 @@ export const companiesImages = {
 	cocaColaImage: require('/public/images/cells/cocaCola.svg'),
 	baiduImage: require('/public/images/cells/baidu.svg'),
 	alibabaImage: require('/public/images/cells/alibaba.svg'),
+	tiensImage: require('/public/images/cells/tiens.svg'),
+	sinopharmImage: require('/public/images/cells/sinopharm.svg'),
 }

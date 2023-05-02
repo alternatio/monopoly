@@ -3,11 +3,13 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import popups from '@/store/reducers/popups'
 import user from '@/store/reducers/user'
 import hamburger from '@/store/reducers/hamburger'
+import session from '@/store/reducers/session'
 
 const rootReducer = combineReducers({
-	popups: popups,
-	user: user,
-	hamburger: hamburger,
+	popups,
+	user,
+	hamburger,
+	session,
 })
 
 // index store

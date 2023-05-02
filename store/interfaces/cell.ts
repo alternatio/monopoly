@@ -12,19 +12,27 @@ export interface baseCellI {
 	direction?: 'left' | 'top' | 'right' | 'bottom'
 }
 
+export interface companyGroupI {
+	id?: number
+	colorHex?: string
+	companyGroupNameEng?: string
+	companyGroupNameRus?: string
+}
+
 export interface companyBaseI extends baseCellI {
 	name: string
 	image: string
 	description: string
 	cost: number
-	owner?: userDataI
+	group?: companyGroupI
+	owner?: Partial<userDataI>
 }
 
 export interface commonCompanyI extends companyBaseI, baseCellI {
 	type: 'common'
 	baseRentCost: number
-	upgradeCost: number
-	percentageOfRentIncrease: number
+	upgradeBaseCost: number
+	multiplierForImprovements: number
 	numberOfImprovements?: number
 }
 
@@ -35,10 +43,12 @@ export interface uncommonCompanyI extends companyBaseI, baseCellI {
 
 export interface chanceI extends baseCellI {
 	type: 'chance'
+	image: string
 }
 
 export interface taxI extends baseCellI {
 	type: 'tax'
+	image: string
 }
 
 export interface cornerI extends baseCellI {

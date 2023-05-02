@@ -7,6 +7,7 @@ import {
 	taxI,
 } from '@/store/interfaces/cell'
 import { companies } from '@/store/data/companies'
+import { chanceImage, taxImage } from '@/lib/importImage'
 
 // common cells
 const startCell: cornerI = {
@@ -31,14 +32,14 @@ const policemanCell: cornerI = {
 }
 const taxCell: taxI = {
 	type: 'tax',
+	image: taxImage,
 }
 const chanceCell: chanceI = {
 	type: 'chance',
+	image: chanceImage,
 }
 
 const corners = [startCell, prisonCell, diceCell, policemanCell]
-
-export const cells: cellI[] = []
 
 export const generateCells = (
 	gridSize: [number, number] = [13, 13],
@@ -56,7 +57,8 @@ export const generateCells = (
 		[2, 5],
 	]
 ) => {
-	cells.splice(0, cells.length)
+	const cells: cellI[] = []
+
 	const companiesArray = [...companies]
 
 	const xCellsLength = gridSize[0] - cellWidth * 2
@@ -67,8 +69,21 @@ export const generateCells = (
 		const isLeft = i === 0 || i === 1
 		const isX = i === 0 || i == 2
 
-		const directionLeft = i === 0
-		const directionTop = i === 1
+		let direction: baseCellI['direction']
+		switch (i) {
+			case 0:
+				direction = 'left'
+				break
+			case 1:
+				direction = 'top'
+				break
+			case 2:
+				direction = 'right'
+				break
+			case 3:
+				direction = 'bottom'
+				break
+		}
 
 		const cornerPosition: positionT = [
 			isLeft ? 1 : gridSize[0] + 1 - cellWidth,
@@ -91,33 +106,16 @@ export const generateCells = (
 			]
 			if (taxesPositions[i].includes(j)) {
 				cells.push({
-					data: taxCell,
+					data: { ...taxCell, direction },
 					position: currentCellPosition,
 				})
 				continue
 			} else if (chancePositions[i].includes(j)) {
 				cells.push({
-					data: chanceCell,
+					data: { ...chanceCell, direction },
 					position: currentCellPosition,
 				})
 				continue
-			}
-
-			let direction: baseCellI['direction']
-
-			switch (i) {
-				case 0:
-					direction = 'left'
-					break
-				case 1:
-					direction = 'top'
-					break
-				case 2:
-					direction = 'right'
-					break
-				case 3:
-					direction = 'bottom'
-					break
 			}
 
 			cells.push({
@@ -127,4 +125,5 @@ export const generateCells = (
 			companiesArray.splice(0, 1)
 		}
 	}
+	return cells
 }

@@ -1,12 +1,21 @@
-import { FC } from 'react'
+'use client'
+
+import { FC, useEffect } from 'react'
 import style from './Field.module.scss'
 import Cell from '@/components/Session/Cell/Cell'
-import { cells, generateCells } from '@/store/data/cells'
+import { generateCells } from '@/store/data/cells'
+import { useAppDispatch, useAppSelector } from '@/store/index'
+import { setCells } from '@/store/reducers/session'
 
 const Field: FC = () => {
-	const gridSize: [number, number] = [13, 13]
+	const gridSize = useAppSelector(state => state.session.gridSize)
+	const cells = useAppSelector(state => state.session.cells)
 
-	generateCells(gridSize)
+	const dispatch = useAppDispatch()
+
+	useEffect(() => {
+		dispatch(setCells(generateCells(gridSize)))
+	}, [])
 
 	return (
 		<div
