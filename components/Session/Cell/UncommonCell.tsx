@@ -1,11 +1,11 @@
 import { FC, memo } from 'react'
-import { cellI } from '@/store/interfaces/cell'
 import CellBlock from '@/components/Session/Cell/CellBlock'
 import Image from 'next/image'
 import style from '@/components/Session/Cell/Cell.module.scss'
 import CellPrice from '@/components/Session/Cell/CellPrice'
+import { cellsWithPossibleMovesI } from '@/components/Session/Cell/Cell'
 
-const UncommonCell: FC<{ cell: cellI }> = props => {
+const UncommonCell: FC<cellsWithPossibleMovesI> = props => {
 	if (props.cell.data?.type === 'uncommon') {
 		return (
 			<CellBlock cell={props.cell}>

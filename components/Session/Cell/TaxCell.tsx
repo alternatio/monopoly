@@ -1,10 +1,10 @@
 import { FC, memo } from 'react'
-import { cellI } from '@/store/interfaces/cell'
 import CellBlock from '@/components/Session/Cell/CellBlock'
 import Image from 'next/image'
 import style from '@/components/Session/Cell/Cell.module.scss'
+import { cellsWithPossibleMovesI } from '@/components/Session/Cell/Cell'
 
-const TaxCell: FC<{ cell: cellI }> = props => {
+const TaxCell: FC<cellsWithPossibleMovesI> = props => {
 	if (props.cell.data?.type === 'tax') {
 		return (
 			<CellBlock cell={props.cell}>

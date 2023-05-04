@@ -1,11 +1,11 @@
 import { FC, memo } from 'react'
 import style from './Cell.module.scss'
-import { cellI } from '@/store/interfaces/cell'
 import CellBlock from '@/components/Session/Cell/CellBlock'
 import Image from 'next/image'
-import CellPrice from "@/components/Session/Cell/CellPrice";
+import CellPrice from '@/components/Session/Cell/CellPrice'
+import { cellsWithPossibleMovesI } from '@/components/Session/Cell/Cell'
 
-const CommonCell: FC<{ cell: cellI }> = props => {
+const CommonCell: FC<cellsWithPossibleMovesI> = props => {
 	if (props.cell.data.type === 'common') {
 		return (
 			<CellBlock cell={props.cell}>

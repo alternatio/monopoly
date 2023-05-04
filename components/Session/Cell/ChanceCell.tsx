@@ -3,8 +3,9 @@ import { cellI } from '@/store/interfaces/cell'
 import CellBlock from '@/components/Session/Cell/CellBlock'
 import Image from "next/image";
 import style from "@/components/Session/Cell/Cell.module.scss";
+import {cellsWithPossibleMovesI} from "@/components/Session/Cell/Cell";
 
-const ChanceCell: FC<{cell: cellI}> = props => {
+const ChanceCell: FC<cellsWithPossibleMovesI> = props => {
 	if (props.cell.data?.type === 'chance') {
 		return (
 			<CellBlock cell={props.cell}>
