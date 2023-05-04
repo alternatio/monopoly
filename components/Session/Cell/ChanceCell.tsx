@@ -4,7 +4,7 @@ import CellBlock from '@/components/Session/Cell/CellBlock'
 import Image from "next/image";
 import style from "@/components/Session/Cell/Cell.module.scss";
 
-const TaxCell: FC<{cell: cellI}> = props => {
+const ChanceCell: FC<{cell: cellI}> = props => {
 	if (props.cell.data?.type === 'chance') {
 		return (
 			<CellBlock cell={props.cell}>
@@ -22,4 +22,4 @@ const TaxCell: FC<{cell: cellI}> = props => {
 	} else return null
 }
 
-export default memo(TaxCell)
+export default memo(ChanceCell)

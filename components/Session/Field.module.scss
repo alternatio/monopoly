@@ -1,7 +1,15 @@
 .field {
   display: grid;
   height: 100%;
+  min-height: 40em;
+  max-height: 60rem;
   aspect-ratio: auto 1/1;
   padding: 1.3rem;
   gap: .1rem;
+  @media (max-width: 1300px) {
+    width: 100%;
+    height: auto;
+    //min-height: 50rem;
+    max-height: fit-content;
+  }
 }

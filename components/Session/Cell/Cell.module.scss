@@ -22,16 +22,21 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: .2rem;
 }
 
 .cellTaxImage,
 .cellImage {
-  //width: 100%;
-  transform: scale(0.85);
-  max-height: 100%;
+  height: 95%;
+  object-fit: contain;
   &[data-rotated='true'] {
-    transform: rotate(90deg) scale(0.85);
+    transform: rotate(90deg);
+  }
+}
+
+.cellTaxImage,
+.cellImage {
+  @media (max-width: 900px) {
+    max-height: 3vw;
   }
 }
 

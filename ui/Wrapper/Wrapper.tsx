@@ -1,10 +1,10 @@
 'use client'
 
-import {FC, memo, ReactNode, useEffect} from 'react'
+import { FC, memo, ReactNode, useEffect } from 'react'
 import styles from './Wrapper.module.scss'
-import {useAppDispatch} from "@/store/index";
-import {setUserData} from "@/store/reducers/user";
-import {userDataI} from "@/store/interfaces/user";
+import { useAppDispatch } from '@/store/index'
+import { setUserData } from '@/store/reducers/user'
+import { userDataI } from '@/store/interfaces/user'
 
 interface WrapperProps {
 	maxWidth: string
@@ -32,7 +32,7 @@ const Wrapper: FC<WrapperProps> = props => {
 					width: `min(100%, ${props.maxWidth})`,
 					marginTop: props.marginTop ? props.marginTop : undefined,
 					gap: props.gap ? props.gap : undefined,
-					padding: props.padding ? props.padding : undefined
+					padding: props.padding ? props.padding : undefined,
 				}}
 				className={styles.innerWrapper}>
 				{props.children}
