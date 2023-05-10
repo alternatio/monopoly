@@ -3,7 +3,7 @@ import { db, googleAuthProvider } from '@/store/firestore/index'
 import { getAuth, signInWithPopup, signOut } from '@firebase/auth'
 import { userDataI } from '@/store/interfaces/user'
 import { createUID } from '@/lib/commonFunctions'
-import { sessionI } from '@/store/interfaces/session'
+import { sessionI, timeI } from '@/store/interfaces/session'
 
 // get doc in firestore
 export const getDocInFirestore = async (
@@ -41,12 +41,20 @@ export const createSession = async (
 	console.log(response)
 
 	if (!response.data()) {
+		const date = new Date()
+		// const time: timeI = {
+		// 	// year: date.getFullYear(),
+		// 	// month: date.getMonth(),
+		// 	// day: date.getDate(),
+		// 	//
+		// }
 		const sessionData: sessionI = {
 			id,
 			password,
 			maxPlayers,
 			players: [owner],
 			owner,
+			// timeStart: date.
 		}
 
 		return true

@@ -2,10 +2,6 @@
   border: var(--colorStroke) solid 1px;
   border-radius: .5rem;
   position: relative;
-  cursor: pointer;
-  //&:hover {
-  //  transform: scale(1.1);
-  //}
   & * {
     font-size: .7rem;
     line-height: 100%;
@@ -26,17 +22,22 @@
 
 .cellTaxImage,
 .cellImage {
-  height: 95%;
+  height: 80%;
+  max-width: 4.4rem;
   object-fit: contain;
+
   &[data-rotated='true'] {
     transform: rotate(90deg);
   }
-}
 
-.cellTaxImage,
-.cellImage {
+  @media (max-width: 1300px) {
+    height: 100%;
+    max-width: 6rem;
+  }
+
   @media (max-width: 900px) {
-    max-height: 3vw;
+    max-height: 4vw;
+    max-width: 4rem;
   }
 }
 
@@ -63,7 +64,7 @@
   justify-content: center;
   text-align: center;
   white-space: pre;
-  font-size: .72rem;
+  font-size: .66rem;
   letter-spacing: -0.1em;
   font-family: var(--monoFont);
   color: var(--colorBlack);

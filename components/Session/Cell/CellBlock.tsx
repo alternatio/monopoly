@@ -6,11 +6,12 @@ import CellPrice from "@/components/Session/Cell/CellPrice";
 interface CellBlockI {
 	children?: ReactNode
 	cell: cellI
+	styles?: CSSProperties
 }
 
-const CellBlock: FC<CellBlockI> = ({ children, cell }) => {
+const CellBlock: FC<CellBlockI> = ({ children, cell, styles }) => {
 	return (
-		<div style={getCommonStylesPosition(cell)} className={style.cell}>
+		<div style={{...getCommonStylesPosition(cell), ...styles}} className={style.cell}>
 			<div className={style.cellData}>
 				{children}
 			</div>

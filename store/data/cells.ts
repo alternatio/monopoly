@@ -124,6 +124,16 @@ export const generateCells = (
 			})
 			companiesArray.splice(0, 1)
 		}
+
+		cells.push({
+			data: {type: 'chat'},
+			position: [
+				cellWidth + 1,
+				gridSize[0] + 1 - cellWidth,
+				cellWidth + 1,
+				gridSize[1] + 1 - cellWidth,
+			],
+		})
 	}
 	return cells
 }

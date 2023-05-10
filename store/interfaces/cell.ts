@@ -1,6 +1,10 @@
 import { userDataI } from '@/store/interfaces/user'
 
-type cellTypes = 'common' | 'uncommon' | 'chance' | 'tax' | 'corner'
+type cellTypes = 'common' | 'uncommon' | 'chance' | 'tax' | 'corner' | 'chat'
+
+export interface cellWithOnlyType {
+	type: cellTypes
+}
 
 export interface baseCellI {
 	type: cellTypes
@@ -49,12 +53,15 @@ export interface cornerI extends baseCellI {
 	text: string
 	image: string
 }
+export interface chatI extends cellWithOnlyType {
+	type: 'chat'
+}
 
 export type companyT = commonCompanyI | uncommonCompanyI
 export type innerCellsT = chanceI | taxI
 export type positionT = [number, number, number, number]
 
 export interface cellI {
-	data: companyT | innerCellsT | cornerI
+	data: companyT | innerCellsT | cornerI | chatI
 	position: positionT
 }
