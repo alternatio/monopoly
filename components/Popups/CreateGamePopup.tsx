@@ -20,7 +20,7 @@ const CreateGamePopup: FC = () => {
 	const dispatch = useAppDispatch()
 	const router = useRouter()
 
-	const [password, setPassword] = useState<string>()
+	const [password, setPassword] = useState<string>('')
 	const [passwordDisabled, handlePassword] = useState(true)
 	const [maxUsers, setMaxUsers] = useState(2)
 

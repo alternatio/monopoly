@@ -14,17 +14,27 @@ const UserBlock: FC<UserBlockI> = props => {
 			<div className={style.avatarWrapper}>
 				{props.userData?.avatar && props.userGameData && (
 					<>
-						<Image className={style.avatar} src={props.userData.avatar} alt={'avatar'} width={50} height={50} />
-						<div className={style.circle} style={{border: `${props.userGameData.color.hex} solid 2px`}} />
+						<Image
+							className={style.avatar}
+							src={props.userData.avatar}
+							alt={'avatar'}
+							width={50}
+							height={50}
+						/>
+						<div
+							className={style.circle}
+							style={{ border: `${props.userGameData.color.hex} solid 2px` }}
+						/>
 					</>
 				)}
 			</div>
 			<div className={style.info}>
 				{props.userData?.name && props.userGameData && (
 					<div className={style.nameWithColor}>
-						<span className={style.name}>{props.userData.name}</span>
-						|
-						<span className={style.color}>{props.userGameData.color.title}</span>
+						<span className={style.name}>{props.userData.name}</span>|
+						<span className={style.color}>
+							{props.userGameData.color.title}
+						</span>
 					</div>
 				)}
 				{props.userGameData && (

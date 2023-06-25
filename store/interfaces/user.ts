@@ -19,15 +19,10 @@ export interface userGameColorsI {
 
 export interface userGameDataI {
 	name: string
-	isHost: boolean
 	color: userGameColorI
 	money: number
-	inPrison: boolean
 	hisTurn: boolean
-	playingDice: boolean
 	position: [number, number]
-
-	ownership?: []
 }
 
 export interface userGameLocalDataI {

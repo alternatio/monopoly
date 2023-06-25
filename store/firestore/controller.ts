@@ -3,7 +3,7 @@ import { db, googleAuthProvider } from '@/store/firestore/index'
 import { getAuth, signInWithPopup, signOut } from '@firebase/auth'
 import { userDataI } from '@/store/interfaces/user'
 import { createUID } from '@/lib/commonFunctions'
-import { sessionI, timeI } from '@/store/interfaces/session'
+import { sessionI } from '@/store/interfaces/session'
 
 // get doc in firestore
 export const getDocInFirestore = async (
@@ -33,7 +33,7 @@ export const setItemInFirestore = async (
 export const createSession = async (
 	owner: userDataI,
 	maxPlayers: number,
-	password?: string,
+	password: string,
 ) => {
 	const id = createUID()
 	const response = await getDocInFirestore('sessions', id)
@@ -42,20 +42,16 @@ export const createSession = async (
 
 	if (!response.data()) {
 		const date = new Date()
-		// const time: timeI = {
-		// 	// year: date.getFullYear(),
-		// 	// month: date.getMonth(),
-		// 	// day: date.getDate(),
-		// 	//
-		// }
 		const sessionData: sessionI = {
 			id,
 			password,
 			maxPlayers,
 			players: [owner],
 			owner,
-			// timeStart: date.
+			timeStart: date.getTime()
 		}
+
+		setItemInFirestore('sessions', id, sessionData)
 
 		return true
 	} else {
@@ -76,7 +72,8 @@ export const signInWithGooglePopup = async (setUserData: CallableFunction) => {
 			email: user.email,
 			avatar: user.photoURL,
 		}
-		await setItemInFirestore('users', user.uid, userObject)
+		if (!user.email) return
+		await setItemInFirestore('users', user.email, userObject)
 		setUserData(userObject)
 		localStorage.setItem('userData', JSON.stringify(userObject))
 	} catch (error) {
