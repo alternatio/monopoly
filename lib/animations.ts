@@ -22,9 +22,9 @@ export const getSpringTransition = (
 }
 
 export const getEaseTransition = (
-	duration: number,
-	ease: EasingDefinition,
-	delay: number
+	duration: number = 0.5,
+	ease: EasingDefinition = "easeInOut",
+	delay: number = 0
 ): Transition => {
 	return {
 		duration,

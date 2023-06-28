@@ -3,7 +3,7 @@ import style from './Chip.module.scss'
 import { userGameDataI } from '@/store/interfaces/user'
 
 interface ChipI {
-	userData: userGameDataI
+	userGameData: userGameDataI
 }
 
 const Chip: FC<ChipI> = props => {

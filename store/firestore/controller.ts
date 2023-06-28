@@ -1,7 +1,7 @@
 import { addDoc, collection, doc, getDoc, setDoc } from '@firebase/firestore'
 import { db, googleAuthProvider } from '@/store/firestore/index'
 import { getAuth, signInWithPopup, signOut } from '@firebase/auth'
-import { userDataI } from '@/store/interfaces/user'
+import {getInitialUserGameData, userDataI} from '@/store/interfaces/user'
 import { createUID } from '@/lib/commonFunctions'
 import { sessionI } from '@/store/interfaces/session'
 
@@ -46,14 +46,19 @@ export const createSession = async (
 			id,
 			password,
 			maxPlayers,
-			players: [owner],
+			players: [{
+				data: owner,
+				gameData: getInitialUserGameData(owner)
+			}],
 			owner,
-			timeStart: date.getTime()
+			timeStart: date.getTime(),
+			timeEnd: false,
+			winner: false,
 		}
 
 		setItemInFirestore('sessions', id, sessionData)
 
-		return true
+		return id
 	} else {
 		return false
 	}

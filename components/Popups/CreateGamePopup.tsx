@@ -67,7 +67,7 @@ const CreateGamePopup: FC = () => {
 							className={style.button}
 							onClick={async () => {
 								const result = await createSession(user, maxUsers, password)
-								result ? router.push('/game/123') : null
+								result ? router.push(`/game/${result}`) : null
 							}}>
 							Создать
 						</Button>

@@ -1,33 +1,32 @@
-'use client'
-
-import { FC, memo, useEffect } from 'react'
+import { FC, memo } from 'react'
 import style from './Users.module.scss'
 import UserBlock from '@/components/Session/Users/UserBlock'
-import { useAppDispatch, useAppSelector } from '@/store/index'
-import { setUserGameData } from '@/store/reducers/user'
-import { userGameDataI } from '@/store/interfaces/user'
-import { usersGameColors } from '@/store/data/userColors'
+import EmptyCellForUser from '@/components/Session/Users/EmptyCellForUser'
+import { sessionI } from '@/store/interfaces/session'
 
-const UsersMenu: FC = () => {
-	const user = useAppSelector(state => state.user)
-	const dispatch = useAppDispatch()
+interface UserMenuProps {
+	sessionData: Partial<sessionI>
+}
 
-	useEffect(() => {
-		if (!user.data?.name) return
-		const initialUserGameData: userGameDataI = {
-			name: user.data.name,
-			color: usersGameColors.red,
-			money: 50000,
-			hisTurn: true,
-			position: [0, 0]
-		}
-
-		dispatch(setUserGameData(initialUserGameData))
-	}, [user.data])
-
+const UsersMenu: FC<UserMenuProps> = props => {
 	return (
 		<div className={style.users}>
-			<UserBlock userData={user.data} userGameData={user.gameData} />
+			{props.sessionData.players
+				? props.sessionData?.players.map((user, index) => {
+						return (
+							<UserBlock
+								key={user.data.uid}
+								userData={user.data}
+								userGameData={user.gameData}
+							/>
+						)
+				  })
+				: null}
+			{props.sessionData.maxPlayers &&
+			props.sessionData.players &&
+			props.sessionData.maxPlayers > props.sessionData.players.length ? (
+				<EmptyCellForUser sessionData={props.sessionData} />
+			) : null}
 		</div>
 	)
 }

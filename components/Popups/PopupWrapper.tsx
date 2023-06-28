@@ -6,7 +6,6 @@ import { motion } from 'framer-motion'
 import {
 	commonAnimations,
 	getEaseTransition,
-	getSpringTransition,
 } from '@/lib/animations'
 import { wrapperV } from '@/components/Popups/variants'
 

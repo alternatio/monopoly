@@ -83,3 +83,25 @@
   text-align: center;
   line-height: 110%;
 }
+
+.miniPopups {
+  position: fixed;
+  top: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  //gap: .25rem;
+  //padding: .5rem;
+}
+
+.miniPopup {
+  border-radius: .5rem;
+  overflow: hidden;
+  transform-origin: center;
+}
+
+.miniPopupText {
+  display: flex;
+  padding: .4rem .6rem;
+  text-align: center;
+}

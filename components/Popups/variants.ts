@@ -10,3 +10,16 @@ export const wrapperV: Variants = {
 		backdropFilter: 'blur(0)',
 	},
 }
+
+export const miniPopupV: Variants = {
+	on: {
+		marginTop: '.5rem',
+		transform: 'translateY(0rem)',
+		height: 'auto',
+	},
+	off: {
+		marginTop: '0rem',
+		transform: 'translateY(-1rem)',
+		height: 0,
+	},
+}
