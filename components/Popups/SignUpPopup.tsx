@@ -17,7 +17,7 @@ const SignUpPopup: FC = () => {
 
 	const dispatch = useAppDispatch()
 
-	const setUser = (state: userDataI) => {
+	const setUser = (state: userDataI | undefined) => {
 		dispatch(setUserData(state))
 	}
 
