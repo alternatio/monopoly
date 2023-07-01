@@ -1,4 +1,4 @@
-import {usersGameColors} from "@/store/data/userColors";
+import { usersGameColors } from '@/store/data/userColors'
 
 export interface userDataI {
 	uid: string | null
@@ -10,13 +10,6 @@ export interface userDataI {
 export interface userGameColorI {
 	title: string
 	hex: string
-}
-
-export interface userGameColorsI {
-	red: Readonly<userGameColorI>
-	yellow: Readonly<userGameColorI>
-	green: Readonly<userGameColorI>
-	blue: Readonly<userGameColorI>
 }
 
 export interface userGameDataI {
@@ -36,12 +29,12 @@ export interface userI {
 	gameData: userGameDataI
 }
 
-export const getInitialUserGameData = (user: userDataI): userGameDataI => {
+export const getInitialUserGameData = (user: userDataI, usersLength: number): userGameDataI => {
 	return {
 		name: user.name,
-		color: usersGameColors.red,
+		color: usersGameColors[usersLength],
 		money: 50000,
 		hisTurn: true,
-		position: [0, 0]
+		position: [0, 0],
 	}
 }

@@ -48,7 +48,7 @@ export const createSession = async (
 			maxPlayers,
 			players: [{
 				data: owner,
-				gameData: getInitialUserGameData(owner)
+				gameData: getInitialUserGameData(owner, 0)
 			}],
 			owner,
 			timeStart: date.getTime(),
@@ -64,8 +64,32 @@ export const createSession = async (
 	}
 }
 
+// add new player
+export const addPlayerInSession = async (sessionId: string, userData: userDataI, password?: string) => {
+	const response = await getDocInFirestore('sessions', sessionId)
+	const preparedResponse = response.data() as sessionI | undefined
+
+	const addPlayer = (preparedResponse: sessionI) => {
+		const tempSessionData: sessionI = {...preparedResponse}
+		tempSessionData.players.push({
+			data: userData,
+			gameData: getInitialUserGameData(userData, preparedResponse.players.length)
+		})
+		setItemInFirestore('sessions', sessionId, tempSessionData)
+		return true
+	}
+
+	if (!preparedResponse) return
+	if (preparedResponse.password) {
+		if (preparedResponse.password !== password) return
+		return addPlayer(preparedResponse)
+	} else {
+		return addPlayer(preparedResponse)
+	}
+}
+
 // sign in app with Google
-export const signInWithGooglePopup = async (setUserData: CallableFunction) => {
+export const signInWithGooglePopup = async (setUserData: (userData: userDataI | undefined) => void) => {
 	const auth = getAuth()
 
 	try {
@@ -87,7 +111,7 @@ export const signInWithGooglePopup = async (setUserData: CallableFunction) => {
 }
 
 // sign out in app with Google
-export const signOutWithGooglePopup = async (setUserData: CallableFunction) => {
+export const signOutWithGooglePopup = async (setUserData: (userData: userDataI | undefined) => void) => {
 	const auth = getAuth()
 
 	try {

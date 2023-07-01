@@ -13,8 +13,9 @@ const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		setUserData(state: userI, action: PayloadAction<userDataI>) {
-			state.data = { ...action.payload }
+		setUserData(state: userI, action: PayloadAction<userDataI | undefined>) {
+			if (!action.payload) state.data = undefined
+			else state.data = { ...action.payload }
 		},
 		setUserGameData(state: userI, action: PayloadAction<userGameDataI>) {
 			state.gameData = {...action.payload}
