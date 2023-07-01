@@ -35,7 +35,7 @@ const EnterInGamePopup: FC = () => {
 					<Input
 						className={style.monoInput}
 						onChange={e => setPassword(e.target.value)}
-						autoFocus={true}
+						autoFocus={false}
 						input={{
 							placeholder: 'Пароль, если он есть',
 							value: password,

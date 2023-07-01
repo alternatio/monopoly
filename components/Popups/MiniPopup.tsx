@@ -11,6 +11,7 @@ import { getEaseTransition } from '@/lib/animations'
 export interface MiniPopupProps {
 	type: 'green' | 'white' | 'black' | 'red'
 	text: MiniPopupTextI
+	time?: number
 }
 
 interface PopupStylesI {
@@ -24,7 +25,7 @@ const MiniPopup: FC<MiniPopupProps> = props => {
 	useEffect(() => {
 		setTimeout(() => {
 			dispatch(filterPopupTexts(props.text.id))
-		}, 3000)
+		}, props.time ? props.time : 3500)
 	})
 
 	const popupStyles: PopupStylesI[] = [
@@ -70,7 +71,7 @@ const MiniPopup: FC<MiniPopupProps> = props => {
 			style={
 				popupStyles.find(popupStyle => popupStyle.type === props.type)?.style
 			}>
-			<span className={style.miniPopupText}>{props.text.body}</span>
+			<span className={style.miniPopupText} style={{color: popupStyles.find(popupStyle => popupStyle.type === props.type)?.style.color}}>{props.text.body}</span>
 		</motion.div>
 	)
 }
