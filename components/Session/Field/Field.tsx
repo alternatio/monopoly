@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import style from './Field.module.scss'
 import Cell from '@/components/Session/Cell/Cell'
 import { generateCells } from '@/store/data/cells'
@@ -15,7 +15,7 @@ const Field: FC = () => {
 
 	useEffect(() => {
 		dispatch(setCells(generateCells(gridSize)))
-	}, [])
+	}, [gridSize])
 
 	return (
 		<div
@@ -24,11 +24,17 @@ const Field: FC = () => {
 				gridTemplateRows: `repeat(${gridSize[1]}, 1fr)`,
 			}}
 			className={style.field}>
-			{cells.map((cellData, index) => {
-				return (
-					<Cell key={index} data={cellData.data} position={cellData.position} />
-				)
-			})}
+			{cells.length
+				? cells.map((cellData, index) => {
+						return (
+							<Cell
+								key={index}
+								data={cellData.data}
+								position={cellData.position}
+							/>
+						)
+				  })
+				: null}
 		</div>
 	)
 }

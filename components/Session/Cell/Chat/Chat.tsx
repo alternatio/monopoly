@@ -15,10 +15,10 @@ const Chat: FC<ChatI> = props => {
 		return (
 			<CellBlock
 				cell={props.cell}
-				styles={{
-					background: 'var(--colorStroke)',
-					border: 'var(--colorGray) solid 1px',
-				}}
+				// styles={{
+				// 	background: 'var(--colorStroke)',
+				// 	border: 'var(--colorGray) solid 1px',
+				// }}
 			>
 				<div className={style.chat}>
 					<ChatInput />

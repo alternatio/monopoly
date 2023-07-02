@@ -1,23 +1,30 @@
 'use client'
 
-import { FC, memo, useState } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 import style from './Popup.module.scss'
 import PopupBlock from '@/components/Popups/PopupBlock'
 import Input from '@/ui/Input/Input'
 import Button from '@/ui/Button/Button'
 import { AnimatePresence } from 'framer-motion'
-import { useAppSelector } from '@/store/index'
-import {addPlayerInSession} from "@/store/firestore/controller";
-import {useRouter} from "next/navigation";
+import { useAppDispatch, useAppSelector } from '@/store/index'
+import { addPlayerInSession } from '@/store/firestore/controller'
+import { useRouter } from 'next/navigation'
+import { pushMiniPopupTexts } from '@/store/reducers/popups'
 
 const EnterInGamePopup: FC = () => {
 	const currentPopup = useAppSelector(state => state.popups.currentPopup)
 	const userData = useAppSelector(state => state.user.data)
+	const dispatch = useAppDispatch()
 
 	const [id, setId] = useState('')
 	const [password, setPassword] = useState('')
+	const [isLoading, handleLoading] = useState<boolean>(false)
 
 	const router = useRouter()
+
+	useEffect(() => {
+		handleLoading(false)
+	}, [currentPopup])
 
 	return (
 		<AnimatePresence>
@@ -42,16 +49,43 @@ const EnterInGamePopup: FC = () => {
 						}}
 					/>
 					<div className={style.buttonWithDescription}>
-						<Button className={style.button} onClick={async () => {
-							if (!userData) return
-							const response = await addPlayerInSession(id, userData, password)
-							if (response) {
+						<Button
+							isLoading={isLoading}
+							className={style.button}
+							onClick={async () => {
+								handleLoading(true)
+								if (!userData) {
+									dispatch(
+										pushMiniPopupTexts({
+											body: 'Ошибка! Вы не авторизированны',
+											type: 'red',
+										})
+									)
+									handleLoading(false)
+									return
+								}
+								const response = await addPlayerInSession(
+									id,
+									userData,
+									password
+								)
+								if (!response) {
+									dispatch(
+										pushMiniPopupTexts({
+											body: 'Ошибка! Такой сессии не существует или она заполнена',
+											type: 'red',
+										})
+									)
+									handleLoading(false)
+									return
+								}
 								router.push(`/game/${id}`)
-							} else return
-						}}>Присоединиться</Button>
-						<span className={style.description}>
-							Также вы можете перейти по ссылке товарища, а не копировать.
-						</span>
+							}}>
+							Присоединиться
+						</Button>
+						{/*<span className={style.description}>*/}
+						{/*	Также вы можете перейти по ссылке товарища, а не копировать.*/}
+						{/*</span>*/}
 					</div>
 				</PopupBlock>
 			)}

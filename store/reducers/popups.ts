@@ -14,7 +14,10 @@ export interface MiniPopupTextI {
 	time?: number
 }
 
-export type PayloadMiniPopupTextI = Pick<MiniPopupTextI, 'body' | 'type' | 'time'>
+export type PayloadMiniPopupTextI = Pick<
+	MiniPopupTextI,
+	'body' | 'type' | 'time'
+>
 
 const initialState: popupsI = {
 	currentPopup: -1,
@@ -33,7 +36,7 @@ const popupsSlice = createSlice({
 				id: createUID(),
 				body: action.payload.body,
 				type: action.payload.type,
-				time: action.payload.time
+				time: action.payload.time,
 			})
 		},
 		filterPopupTexts(state, action: PayloadAction<string>) {

@@ -1,5 +1,3 @@
-'use client'
-
 import { FC, memo, ReactNode } from 'react'
 import style from './Button.module.scss'
 
@@ -7,6 +5,7 @@ interface ButtonProps {
 	children?: ReactNode
 	className?: string
 	onClick?: CallableFunction
+	isLoading?: boolean
 }
 
 const Button: FC<ButtonProps> = props => {
@@ -15,7 +14,7 @@ const Button: FC<ButtonProps> = props => {
 			type={'button'}
 			onClick={() => props.onClick && props.onClick()}
 			className={`${style.button} ${props.className}`}>
-			{props.children}
+			{props.isLoading ? 'Загрузка' : props.children}
 		</button>
 	)
 }

@@ -1,10 +1,10 @@
 import { addDoc, collection, doc, getDoc, setDoc } from '@firebase/firestore'
 import { db, googleAuthProvider } from '@/store/firestore/index'
 import { getAuth, signInWithPopup, signOut } from '@firebase/auth'
-import {getInitialUserGameData, userDataI} from '@/store/interfaces/user'
+import { getInitialUserGameData, userDataI } from '@/store/interfaces/user'
 import { createUID } from '@/lib/commonFunctions'
 import { sessionI } from '@/store/interfaces/session'
-import {messageI} from "@/store/interfaces/message";
+import { messageI } from '@/store/interfaces/message'
 
 // get doc in firestore
 export const getDocInFirestore = async (
@@ -34,7 +34,7 @@ export const setItemInFirestore = async (
 export const createSession = async (
 	owner: userDataI,
 	maxPlayers: number,
-	password: string,
+	password: string
 ) => {
 	const id = createUID()
 	const response = await getDocInFirestore('sessions', id)
@@ -47,15 +47,17 @@ export const createSession = async (
 			id,
 			password,
 			maxPlayers,
-			players: [{
-				data: owner,
-				gameData: getInitialUserGameData(owner, 0)
-			}],
+			players: [
+				{
+					data: owner,
+					gameData: getInitialUserGameData(owner, 0),
+				},
+			],
 			owner,
 			timeStart: date.getTime(),
 			timeEnd: false,
 			winner: false,
-			messages: []
+			messages: [],
 		}
 
 		setItemInFirestore('sessions', id, sessionData)
@@ -67,21 +69,29 @@ export const createSession = async (
 }
 
 // add new player
-export const addPlayerInSession = async (sessionId: string, userData: userDataI, password?: string) => {
+export const addPlayerInSession = async (
+	sessionId: string,
+	userData: userDataI,
+	password?: string
+) => {
 	const response = await getDocInFirestore('sessions', sessionId)
 	const preparedResponse = response.data() as sessionI | undefined
 
 	const addPlayer = (preparedResponse: sessionI) => {
-		const tempSessionData: sessionI = {...preparedResponse}
+		const tempSessionData: sessionI = { ...preparedResponse }
 		tempSessionData.players.push({
 			data: userData,
-			gameData: getInitialUserGameData(userData, preparedResponse.players.length)
+			gameData: getInitialUserGameData(
+				userData,
+				preparedResponse.players.length
+			),
 		})
 		setItemInFirestore('sessions', sessionId, tempSessionData)
 		return true
 	}
 
 	if (!preparedResponse) return
+	if (preparedResponse.players.find(player => player.data.uid !== userData.uid)) return
 	if (preparedResponse.password) {
 		if (preparedResponse.password !== password) return
 		return addPlayer(preparedResponse)
@@ -105,7 +115,9 @@ export const pushMessage = async (sessionId: string, message: messageI) => {
 }
 
 // sign in app with Google
-export const signInWithGooglePopup = async (setUserData: (userData: userDataI | undefined) => void) => {
+export const signInWithGooglePopup = async (
+	setUserData: (userData: userDataI | undefined) => void
+) => {
 	const auth = getAuth()
 
 	try {
@@ -127,7 +139,9 @@ export const signInWithGooglePopup = async (setUserData: (userData: userDataI | 
 }
 
 // sign out in app with Google
-export const signOutWithGooglePopup = async (setUserData: (userData: userDataI | undefined) => void) => {
+export const signOutWithGooglePopup = async (
+	setUserData: (userData: userDataI | undefined) => void
+) => {
 	const auth = getAuth()
 
 	try {

@@ -12,7 +12,7 @@ import { createSession } from '@/store/firestore/controller'
 import InputNumber from '@/ui/InputNumber/InputNumber'
 import { userAddIcon, userRemoveIcon } from '@/lib/ImportIcons'
 import { useRouter } from 'next/navigation'
-import {setMaxPlayers} from "@/store/reducers/session";
+import {pushMiniPopupTexts} from "@/store/reducers/popups";
 
 const CreateGamePopup: FC = () => {
 	const currentPopup = useAppSelector(state => state.popups.currentPopup)
@@ -23,10 +23,11 @@ const CreateGamePopup: FC = () => {
 	const [password, setPassword] = useState<string>('')
 	const [passwordDisabled, handlePassword] = useState(true)
 	const [maxUsers, setMaxUsers] = useState(2)
+	const [isLoading, handleLoading] = useState<boolean>(false)
 
 	useEffect(() => {
-		dispatch(setMaxPlayers(maxUsers))
-	}, [maxUsers])
+		handleLoading(false)
+	}, [currentPopup])
 
 	return (
 		<AnimatePresence>
@@ -64,10 +65,21 @@ const CreateGamePopup: FC = () => {
 					/>
 					{user && (
 						<Button
+							isLoading={isLoading}
 							className={style.button}
 							onClick={async () => {
 								const result = await createSession(user, maxUsers, password)
-								result ? router.push(`/game/${result}`) : null
+								if (!result) {
+									dispatch(
+										pushMiniPopupTexts({
+											body: 'Ошибка! Попробуйте ещё раз',
+											type: 'red',
+										})
+									)
+									return
+								}
+								handleLoading(true)
+								router.push(`/game/${result}`)
 							}}>
 							Создать
 						</Button>

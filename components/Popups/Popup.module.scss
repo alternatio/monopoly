@@ -87,17 +87,21 @@
 .miniPopups {
   position: fixed;
   top: 0;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
+  align-items: center;
   flex-direction: column;
+  z-index: 99000;
   //gap: .25rem;
   //padding: .5rem;
+  pointer-events: none;
 }
 
 .miniPopup {
   border-radius: .5rem;
   overflow: hidden;
   transform-origin: center;
+  width: fit-content;
 }
 
 .miniPopupText {

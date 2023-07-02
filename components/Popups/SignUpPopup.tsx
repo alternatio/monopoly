@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, memo } from 'react'
+import {FC, memo, useEffect, useState} from 'react'
 import style from './Popup.module.scss'
 import Button from '@/ui/Button/Button'
 import Image from 'next/image'
@@ -14,6 +14,7 @@ import { setUserData } from '@/store/reducers/user'
 
 const SignUpPopup: FC = () => {
 	const currentPopup = useAppSelector(state => state.popups.currentPopup)
+	const [isLoading, handleLoading] = useState<boolean>(false)
 
 	const dispatch = useAppDispatch()
 
@@ -21,13 +22,19 @@ const SignUpPopup: FC = () => {
 		dispatch(setUserData(state))
 	}
 
+	useEffect(() => {
+		handleLoading(false)
+	}, [currentPopup])
+
 	return (
 		<AnimatePresence>
 			{currentPopup === 0 && (
 				<PopupBlock title={'Войти в аккаунт'}>
 					<Button
+						isLoading={isLoading}
 						className={style.button}
 						onClick={async () => {
+							handleLoading(true)
 							await signInWithGooglePopup(setUser)
 						}}>
 						<Image src={googleIcon} alt={'googleIcon'} />

@@ -57,7 +57,6 @@ const SessionPage: FC = () => {
 								key={text.id}
 								type={text.type}
 								text={text}
-								time={text.time}
 							/>
 						)
 					})}
