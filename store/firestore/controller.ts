@@ -4,6 +4,7 @@ import { getAuth, signInWithPopup, signOut } from '@firebase/auth'
 import {getInitialUserGameData, userDataI} from '@/store/interfaces/user'
 import { createUID } from '@/lib/commonFunctions'
 import { sessionI } from '@/store/interfaces/session'
+import {messageI} from "@/store/interfaces/message";
 
 // get doc in firestore
 export const getDocInFirestore = async (
@@ -54,6 +55,7 @@ export const createSession = async (
 			timeStart: date.getTime(),
 			timeEnd: false,
 			winner: false,
+			messages: []
 		}
 
 		setItemInFirestore('sessions', id, sessionData)
@@ -86,6 +88,20 @@ export const addPlayerInSession = async (sessionId: string, userData: userDataI,
 	} else {
 		return addPlayer(preparedResponse)
 	}
+}
+
+// push message
+export const pushMessage = async (sessionId: string, message: messageI) => {
+	const response = await getDocInFirestore('sessions', sessionId)
+	const preparedResponse = response.data() as sessionI | undefined
+
+	if (!preparedResponse) return
+	if (preparedResponse?.messages) {
+		preparedResponse.messages.push(message)
+	} else {
+		preparedResponse.messages = [message]
+	}
+	setItemInFirestore('sessions', sessionId, preparedResponse)
 }
 
 // sign in app with Google

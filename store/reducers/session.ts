@@ -1,19 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { cellI } from '@/store/interfaces/cell'
-import { userGameDataI } from '@/store/interfaces/user'
+import { sessionI } from '@/store/interfaces/session'
+import {messageI} from "@/store/interfaces/message";
 
 export interface sessionReducerI {
 	gridSize: [number, number]
 	cells: cellI[]
-	users: userGameDataI[]
 	maxPlayers: number
+	sessionDataStore?: Partial<sessionI>
 }
 
 const initialState: sessionReducerI = {
 	gridSize: [13, 13],
 	cells: [],
-	users: [],
 	maxPlayers: 3,
+	sessionDataStore: undefined,
 }
 
 const sessionSlice = createSlice({
@@ -32,21 +33,21 @@ const sessionSlice = createSlice({
 		) {
 			state.cells = action.payload
 		},
-		setGameUsers(
-			state: sessionReducerI,
-			action: PayloadAction<sessionReducerI['users']>
-		) {
-			state.users = action.payload
-		},
 		setMaxPlayers(
 			state: sessionReducerI,
 			action: PayloadAction<sessionReducerI['maxPlayers']>
 		) {
 			state.maxPlayers = action.payload
 		},
+		setSessionDataStore(
+			state: sessionReducerI,
+			action: PayloadAction<sessionReducerI['sessionDataStore']>
+		) {
+			state.sessionDataStore = action.payload
+		}
 	},
 })
 
-export const { setGridSize, setCells, setGameUsers, setMaxPlayers } =
+export const { setGridSize, setCells, setMaxPlayers, setSessionDataStore } =
 	sessionSlice.actions
 export default sessionSlice.reducer

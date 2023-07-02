@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, memo, useEffect, useState } from 'react'
+import { FC, memo, useEffect } from 'react'
 import SessionWrapper from '@/components/Session/SessionWrapper/SessionWrapper'
 import UsersMenu from '@/components/Session/Users/UsersMenu'
 import Field from '@/components/Session/Field/Field'
@@ -13,10 +13,11 @@ import MiniPopup from '@/components/Popups/MiniPopup'
 import MiniPopups from '@/components/Popups/MiniPopups'
 import { AnimatePresence } from 'framer-motion'
 import { pushMiniPopupTexts } from '@/store/reducers/popups'
+import { setSessionDataStore } from '@/store/reducers/session'
 
 const SessionPage: FC = () => {
 	const miniPopupTexts = useAppSelector(state => state.popups.miniPopupTexts)
-	const [sessionData, setSessionData] = useState<Partial<sessionI>>()
+	const sessionData = useAppSelector(state => state.session.sessionDataStore)
 	const pathName = usePathname()
 	const dispatch = useAppDispatch()
 
@@ -24,7 +25,7 @@ const SessionPage: FC = () => {
 		onSnapshot(doc(db, 'sessions', sessionId), doc => {
 			const data = doc.data() as Partial<sessionI> | undefined
 			if (data) {
-				setSessionData(data)
+				dispatch(setSessionDataStore(data))
 			} else {
 				dispatch(
 					pushMiniPopupTexts({
@@ -51,7 +52,14 @@ const SessionPage: FC = () => {
 			<MiniPopups>
 				<AnimatePresence>
 					{miniPopupTexts.map(text => {
-						return <MiniPopup key={text.id} type={text.type} text={text} time={text.time} />
+						return (
+							<MiniPopup
+								key={text.id}
+								type={text.type}
+								text={text}
+								time={text.time}
+							/>
+						)
 					})}
 				</AnimatePresence>
 			</MiniPopups>

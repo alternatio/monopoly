@@ -5,7 +5,6 @@
   flex-direction: column-reverse;
   align-items: flex-start;
   position: relative;
-  padding: 1.5rem;
 }
 
 .chatInput {
@@ -16,8 +15,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
+  width: calc(100% - 3rem);
+  bottom: 1.5rem;
+  left: 1.5rem;
   overflow: hidden;
+  position: absolute;
+  z-index: 1;
 }
 
 .label {
@@ -37,4 +40,60 @@
   font-weight: 700;
   font-size: .75rem;
   letter-spacing: -0.08em;
+}
+
+.chatTape {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  height: 100%;
+  width: calc(100% - 3rem);
+  margin: 0 1.5rem 0;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  //background: var(--colorMedium);
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2.5rem;
+    background: linear-gradient(var(--colorStroke), var(--colorStroke8), #0000, #0000);
+    z-index: 1;
+  }
+}
+
+.chatInfo {
+  margin-left: auto;
+  padding: .5rem;
+  display: flex;
+  gap: .25rem;
+  align-items: center;
+  & * {
+    color: var(--colorMedium);
+    font-weight: 400;
+    font-size: .7rem;
+  }
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+}
+
+.messageAuthor {
+  font-weight: 700;
+}
+
+.messageBody {
+  text-align: justify;
 }

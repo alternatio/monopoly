@@ -1,4 +1,5 @@
-import {userDataI, userI} from '@/store/interfaces/user'
+import { userDataI, userI } from '@/store/interfaces/user'
+import { messageI } from '@/store/interfaces/message'
 
 export interface sessionI {
 	id: string
@@ -9,4 +10,5 @@ export interface sessionI {
 	timeStart: number
 	timeEnd: false | number
 	winner: false | userI
+	messages: messageI[]
 }
