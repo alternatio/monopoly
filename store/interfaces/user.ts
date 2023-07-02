@@ -21,7 +21,7 @@ export interface userGameDataI {
 }
 
 export interface userGameLocalDataI {
-	time: number
+	// time: number
 }
 
 export interface userI {
