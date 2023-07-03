@@ -10,6 +10,9 @@
 	background: var(--colorWhite);
 	border-radius: 5rem;
 	border: var(--colorBlack) solid 0.2rem;
+	&:hover {
+		background: var(--colorMedium);
+	}
 }
 
 ::selection {

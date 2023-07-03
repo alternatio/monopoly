@@ -2,9 +2,9 @@
 
 import { FC, useState } from 'react'
 import style from './Chat.module.scss'
-import {useAppDispatch, useAppSelector} from '@/store/index'
-import {pushMessage} from "@/store/firestore/controller";
-import {pushMiniPopupTexts} from "@/store/reducers/popups";
+import { useAppDispatch, useAppSelector } from '@/store/index'
+import { pushMessage } from '@/store/firestore/controller'
+import { pushMiniPopupTexts } from '@/store/reducers/popups'
 
 const ChatInput: FC = () => {
 	const sessionData = useAppSelector(state => state.session.sessionDataStore)
@@ -14,30 +14,36 @@ const ChatInput: FC = () => {
 
 	const sendMessage = () => {
 		if (!sessionData?.id) {
-			dispatch(pushMiniPopupTexts({
-				type: 'red',
-				body: 'Ошибка, такой сессии не существует'
-			}))
+			dispatch(
+				pushMiniPopupTexts({
+					type: 'red',
+					body: 'Ошибка, такой сессии не существует',
+				})
+			)
 			return
 		}
 		if (!userData.gameData?.name) {
-			dispatch(pushMiniPopupTexts({
-				type: 'red',
-				body: 'Ошибка, попробуйте ещё раз'
-			}))
+			dispatch(
+				pushMiniPopupTexts({
+					type: 'red',
+					body: 'Ошибка, попробуйте ещё раз',
+				})
+			)
 			return
 		}
 		if (!textMessage) {
-			dispatch(pushMiniPopupTexts({
-				type: 'red',
-				body: 'Ошибка, сообщение не должно быть пустым'
-			}))
+			dispatch(
+				pushMiniPopupTexts({
+					type: 'red',
+					body: 'Ошибка, сообщение не должно быть пустым',
+				})
+			)
 			return
 		}
 		pushMessage(sessionData.id, {
 			author: userData.gameData.name,
 			color: userData.gameData.color.hex,
-			body: textMessage
+			body: textMessage,
 		})
 		setTextMessage('')
 	}
@@ -46,7 +52,7 @@ const ChatInput: FC = () => {
 		<div className={style.chatInput}>
 			<label className={style.label}>
 				<input
-					onKeyDown={(e) => {
+					onKeyDown={e => {
 						if (e.key === 'Enter') sendMessage()
 					}}
 					className={style.input}

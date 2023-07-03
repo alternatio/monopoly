@@ -72,7 +72,17 @@ const EnterInGamePopup: FC = () => {
 								if (!response) {
 									dispatch(
 										pushMiniPopupTexts({
-											body: 'Ошибка! Такой сессии не существует или она заполнена',
+											body: 'Ошибка! Такой сессии не существует',
+											type: 'red',
+										})
+									)
+									handleLoading(false)
+									return
+								}
+								if (!response) {
+									dispatch(
+										pushMiniPopupTexts({
+											body: 'Ошибка! Такой сессии не существует',
 											type: 'red',
 										})
 									)
