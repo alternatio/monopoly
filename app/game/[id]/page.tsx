@@ -14,10 +14,12 @@ import MiniPopups from '@/components/Popups/MiniPopups'
 import { AnimatePresence } from 'framer-motion'
 import { pushMiniPopupTexts } from '@/store/reducers/popups'
 import { setSessionDataStore } from '@/store/reducers/session'
+import {setUserGameData} from "@/store/reducers/user";
 
 const SessionPage: FC = () => {
 	const miniPopupTexts = useAppSelector(state => state.popups.miniPopupTexts)
 	const sessionData = useAppSelector(state => state.session.sessionDataStore)
+	const userData = useAppSelector(state => state.user.data)
 	const pathName = usePathname()
 	const dispatch = useAppDispatch()
 
@@ -26,6 +28,10 @@ const SessionPage: FC = () => {
 			const data = doc.data() as Partial<sessionI> | undefined
 			if (data) {
 				dispatch(setSessionDataStore(data))
+				const player = data.players?.find(player => player.data.email === userData?.email)
+				if (player) {
+					dispatch(setUserGameData(player.gameData))
+				}
 			} else {
 				dispatch(
 					pushMiniPopupTexts({

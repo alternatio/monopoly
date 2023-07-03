@@ -27,9 +27,9 @@ const SessionInfo: FC = () => {
       }
       const date = new Date()
       const difference = date.getTime() - sessionData.timeStart
-      const seconds = Math.ceil(difference / 1000) % 60
-      const minutes = Math.ceil(difference / 60000) % 60
-      const hours = Math.ceil(difference / 3600000)
+      const seconds = Math.floor(difference / 1000) % 60
+      const minutes = Math.floor(difference / 60000) % 60
+      const hours = Math.floor(difference / 3600000)
 
       setCurrentTime({
         seconds,

@@ -1,5 +1,4 @@
 import { FC, memo } from 'react'
-import { cellI } from '@/store/interfaces/cell'
 import CellBlock from '@/components/Session/Cell/CellBlock'
 import { cellsWithPossibleMovesI } from '@/components/Session/Cell/Cell'
 
