@@ -20,11 +20,17 @@ const ChatInput: FC = () => {
 			}))
 			return
 		}
-		// console.log()
 		if (!userData.gameData?.name) {
 			dispatch(pushMiniPopupTexts({
 				type: 'red',
 				body: 'Ошибка, попробуйте ещё раз'
+			}))
+			return
+		}
+		if (!textMessage) {
+			dispatch(pushMiniPopupTexts({
+				type: 'red',
+				body: 'Ошибка, сообщение не должно быть пустым'
 			}))
 			return
 		}

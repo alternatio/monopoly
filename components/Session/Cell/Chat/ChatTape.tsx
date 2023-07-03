@@ -22,16 +22,7 @@ const ChatTape: FC = () => {
 	return (
 		<div
 			className={style.chatTape}
-			ref={ref}
-			onClick={() => {
-				if (!sessionData?.id) return
-				const message: messageI = {
-					color: '#3df',
-					author: 'tester',
-					body: '1',
-				}
-				pushMessage(sessionData.id, message)
-			}}>
+			ref={ref}>
 			{sessionData?.messages
 				? sessionData.messages.map(message => {
 						return <Message message={message} />
