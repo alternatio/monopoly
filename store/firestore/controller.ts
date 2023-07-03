@@ -91,7 +91,7 @@ export const addPlayerInSession = async (
 	}
 
 	if (!preparedResponse) return
-	if (preparedResponse.players.find(player => player.data.uid !== userData.uid)) return
+	if (preparedResponse.players.find(player => player.data.uid === userData.uid)) return
 	if (preparedResponse.password) {
 		if (preparedResponse.password !== password) return
 		return addPlayer(preparedResponse)
