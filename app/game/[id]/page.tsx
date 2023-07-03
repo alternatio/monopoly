@@ -29,7 +29,8 @@ const SessionPage: FC = () => {
 			if (data) {
 				dispatch(setSessionDataStore(data))
 				const player = data.players?.find(player => player.data.email === userData?.email)
-				if (player) {
+				console.log(player, userData)
+				if (player?.gameData) {
 					dispatch(setUserGameData(player.gameData))
 				}
 			} else {
@@ -49,7 +50,7 @@ const SessionPage: FC = () => {
 		const sessionId = paths[paths.length - 1]
 		if (!(typeof sessionId === 'string')) return
 		checker(sessionId)
-	}, [pathName])
+	}, [pathName, userData])
 
 	return (
 		<SessionWrapper>
