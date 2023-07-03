@@ -37,15 +37,15 @@ const Creator: FC<CreatorI> = props => {
 						удалось. Контакты находятся чуть ниже 🤙.
 					</BlockText>
 					<BlockText className={style.blockText}>
-						<BlockAccent type={'link'} href={'#'}>
+						<BlockAccent type={'link'} href={'https://t.me/Alternati0'}>
 							Telegram
 						</BlockAccent>
 						<span>|</span>
-						<BlockAccent type={'link'} href={'#'}>
+						<BlockAccent type={'link'} href={'https://github.com/alternatio/'}>
 							Github
 						</BlockAccent>
 						<span>|</span>
-						<BlockAccent type={'link'} href={'#'}>
+						<BlockAccent type={'link'} href={'https://vk.com/modiris'}>
 							VK
 						</BlockAccent>
 					</BlockText>
