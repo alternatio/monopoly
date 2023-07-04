@@ -14,7 +14,6 @@ interface EmptyCellForUserProps {
 
 const EmptyCellForUser: FC<EmptyCellForUserProps> = props => {
 	const dispatch = useAppDispatch()
-
 	return (
 		<div
 			className={`${style.user} ${style.emptyUser}`}
