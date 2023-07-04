@@ -4,26 +4,25 @@ import { FC, memo } from 'react'
 import { useAppSelector } from '@/store/index'
 import style from './Chip.module.scss'
 import Chip from '@/components/Session/Chip/Chip'
-import {makeMove} from "@/store/firestore/controller";
+import { makeMove } from '@/store/firestore/controller'
 
 interface FieldOfChipsProps {
 	index: number
 }
 
 const FieldOfChips: FC<FieldOfChipsProps> = ({ index }) => {
-	const players = useAppSelector(
-		state => state.session.sessionDataStore?.players
-	)
-	const session = useAppSelector(state => state.session.sessionDataStore)
+	const session = useAppSelector(state => state.session)
 
 	return (
-		<div className={style.fieldOfChips} onClick={() => {
-			if (!session?.id) return
-			if (!players) return
-			makeMove(session.id, players[0], 3)
-		}}>
-			{players?.map(player => {
-				if (player.gameData.position === index) {
+		<div
+			className={style.fieldOfChips}
+			onClick={() => {
+				if (!session.sessionDataStore?.id) return
+				if (!session.sessionDataStore.players) return
+				makeMove(session.sessionDataStore.id, session.sessionDataStore.players[0], 1)
+			}}>
+			{session.sessionDataStore?.players?.map(player => {
+				if (player.gameData.position % session.maxMoves === index) {
 					return <Chip user={player} />
 				} else return null
 			})}

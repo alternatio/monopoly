@@ -5,7 +5,7 @@ import style from './Field.module.scss'
 import Cell from '@/components/Session/Cell/Cell'
 import { generateCells } from '@/store/data/cells'
 import { useAppDispatch, useAppSelector } from '@/store/index'
-import { setCells } from '@/store/reducers/session'
+import { setCells, setMaxMoves } from '@/store/reducers/session'
 
 const Field: FC = () => {
 	const gridSize = useAppSelector(state => state.session.gridSize)
@@ -13,8 +13,12 @@ const Field: FC = () => {
 
 	const dispatch = useAppDispatch()
 
+	const setMaxMovesLocal = (maxMoves: number) => {
+		dispatch(setMaxMoves(maxMoves))
+	}
+
 	useEffect(() => {
-		dispatch(setCells(generateCells(gridSize)))
+		dispatch(setCells(generateCells(gridSize, setMaxMovesLocal)))
 	}, [gridSize])
 
 	return (

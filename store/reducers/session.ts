@@ -6,12 +6,14 @@ import { messageI } from '@/store/interfaces/message'
 export interface sessionReducerI {
 	gridSize: [number, number]
 	cells: cellI[]
+	maxMoves: number
 	sessionDataStore?: Partial<sessionI>
 }
 
 const initialState: sessionReducerI = {
 	gridSize: [13, 13],
 	cells: [],
+	maxMoves: 0,
 	sessionDataStore: undefined,
 }
 
@@ -37,9 +39,15 @@ const sessionSlice = createSlice({
 		) {
 			state.sessionDataStore = action.payload
 		},
+		setMaxMoves(
+			state: sessionReducerI,
+			action: PayloadAction<sessionReducerI['maxMoves']>
+		) {
+			state.maxMoves = action.payload
+		},
 	},
 })
 
-export const { setGridSize, setCells, setSessionDataStore } =
+export const { setGridSize, setCells, setSessionDataStore, setMaxMoves } =
 	sessionSlice.actions
 export default sessionSlice.reducer

@@ -43,6 +43,7 @@ const corners = [startCell, prisonCell, diceCell, policemanCell]
 
 export const generateCells = (
 	gridSize: [number, number] = [13, 13],
+	setMaxMoves?: (maxMoves: number) => void,
 	cellWidth: number = 2,
 	taxesPositions: [number[], number[], number[], number[]] = [
 		[3],
@@ -99,7 +100,7 @@ export const generateCells = (
 		})
 		counter += 1
 
-		for (let j = 0; j < (isX ? xCellsLength : yCellsLength); j++) {
+		const createCellInCycle = (j: number) => {
 			const currentCellPosition: positionT = [
 				isX ? (isLeft ? 1 : gridSize[0] - cellWidth + 1) : j + cellWidth + 1,
 				isX ? (isLeft ? cellWidth + 1 : gridSize[0] + 1) : j + cellWidth + 1,
@@ -113,7 +114,7 @@ export const generateCells = (
 					index: counter,
 				})
 				counter += 1
-				continue
+				return
 			} else if (chancePositions[i].includes(j)) {
 				cells.push({
 					data: { ...chanceCell, direction },
@@ -121,7 +122,7 @@ export const generateCells = (
 					index: counter,
 				})
 				counter += 1
-				continue
+				return
 			}
 
 			cells.push({
@@ -131,6 +132,18 @@ export const generateCells = (
 			})
 			counter += 1
 			companiesArray.splice(0, 1)
+		}
+
+		const reverseOrder = i === 0 || i === 3; // Проверяем, является ли текущая итерация нулевой или третьей
+
+		if (reverseOrder) {
+			for (let j = (isX ? xCellsLength : yCellsLength) - 1; j >= 0; j--) {
+				createCellInCycle(j)
+			}
+		} else {
+			for (let j = 0; j < (isX ? xCellsLength : yCellsLength); j++) {
+				createCellInCycle(j)
+			}
 		}
 	}
 
@@ -143,6 +156,10 @@ export const generateCells = (
 			gridSize[1] + 1 - cellWidth,
 		],
 	})
+
+	if (setMaxMoves) {
+		setMaxMoves(counter)
+	}
 
 	return cells
 }
