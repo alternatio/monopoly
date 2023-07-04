@@ -29,6 +29,7 @@ const Field: FC = () => {
 						return (
 							<Cell
 								key={index}
+								// index={index}
 								data={cellData.data}
 								position={cellData.position}
 							/>

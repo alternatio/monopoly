@@ -1,5 +1,6 @@
 import { FC, memo, ReactNode } from 'react'
 import style from './Button.module.scss'
+import Loader from "@/ui/Loader/Loader";
 
 interface ButtonProps {
 	children?: ReactNode
@@ -14,7 +15,7 @@ const Button: FC<ButtonProps> = props => {
 			type={'button'}
 			onClick={() => props.onClick && props.onClick()}
 			className={`${style.button} ${props.className}`}>
-			{props.isLoading ? 'Загрузка' : props.children}
+			{props.isLoading ? <Loader /> : props.children}
 		</button>
 	)
 }

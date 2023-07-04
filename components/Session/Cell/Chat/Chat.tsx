@@ -6,15 +6,11 @@ import ChatInput from '@/components/Session/Cell/Chat/ChatInput'
 import ChatTape from "@/components/Session/Cell/Chat/ChatTape";
 import SessionInfo from "@/components/Session/Cell/Chat/SessionInfo";
 
-interface ChatI {
-	cell: cellI
-}
-
-const Chat: FC<ChatI> = props => {
-	if (props.cell.data.type === 'chat') {
+const Chat: FC<cellI> = props => {
+	if (props.data.type === 'chat') {
 		return (
 			<CellBlock
-				cell={props.cell}
+				cell={props}
 				// styles={{
 				// 	background: 'var(--colorStroke)',
 				// 	border: 'var(--colorGray) solid 1px',

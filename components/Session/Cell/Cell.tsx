@@ -8,20 +8,15 @@ import ChanceCell from '@/components/Session/Cell/ChanceCell'
 import { userGameDataI } from '@/store/interfaces/user'
 import Chat from '@/components/Session/Cell/Chat/Chat'
 
-export interface cellsWithPossibleMovesI {
-	cell: cellI
-	playerGameData?: userGameDataI
-}
-
 const Cell: FC<cellI> = props => {
 	return (
 		<>
-			<CommonCell cell={props} />
-			<UncommonCell cell={props} />
-			<CornerCell cell={props} />
-			<ChanceCell cell={props} />
-			<TaxCell cell={props} />
-			<Chat cell={props} />
+			<CommonCell data={props.data} position={props.position} />
+			<UncommonCell data={props.data} position={props.position} />
+			<CornerCell data={props.data} position={props.position} />
+			<ChanceCell data={props.data} position={props.position} />
+			<TaxCell data={props.data} position={props.position} />
+			<Chat data={props.data} position={props.position} />
 		</>
 	)
 }

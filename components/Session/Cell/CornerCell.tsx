@@ -1,10 +1,10 @@
 import { FC, memo } from 'react'
 import CellBlock from '@/components/Session/Cell/CellBlock'
-import { cellsWithPossibleMovesI } from '@/components/Session/Cell/Cell'
+import {cellI} from "@/store/interfaces/cell";
 
-const CornerCell: FC<cellsWithPossibleMovesI> = props => {
-	if (props.cell.data?.type === 'corner') {
-		return <CellBlock cell={props.cell}>{props.cell.data.text}</CellBlock>
+const CornerCell: FC<cellI> = props => {
+	if (props.data?.type === 'corner') {
+		return <CellBlock cell={props}>{props.data.text}</CellBlock>
 	} else return null
 }
 

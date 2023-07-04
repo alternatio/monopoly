@@ -3,20 +3,20 @@ import style from './Cell.module.scss'
 import CellBlock from '@/components/Session/Cell/CellBlock'
 import Image from 'next/image'
 import CellPrice from '@/components/Session/Cell/CellPrice'
-import { cellsWithPossibleMovesI } from '@/components/Session/Cell/Cell'
+import {cellI} from "@/store/interfaces/cell";
 
-const CommonCell: FC<cellsWithPossibleMovesI> = props => {
-	if (props.cell.data.type === 'common') {
+const CommonCell: FC<cellI> = props => {
+	if (props.data.type === 'common') {
 		return (
-			<CellBlock cell={props.cell}>
-				<CellPrice data={props.cell.data} />
+			<CellBlock cell={props}>
+				<CellPrice data={props.data} />
 				<Image
 					className={style.cellImage}
 					data-rotated={
-						props.cell.data.direction === 'top' ||
-						props.cell.data.direction === 'bottom'
+						props.data.direction === 'top' ||
+						props.data.direction === 'bottom'
 					}
-					src={props.cell.data.image}
+					src={props.data.image}
 					alt={'company'}
 				/>
 			</CellBlock>

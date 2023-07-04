@@ -2,19 +2,19 @@ import { FC, memo } from 'react'
 import CellBlock from '@/components/Session/Cell/CellBlock'
 import Image from 'next/image'
 import style from '@/components/Session/Cell/Cell.module.scss'
-import { cellsWithPossibleMovesI } from '@/components/Session/Cell/Cell'
+import {cellI} from "@/store/interfaces/cell";
 
-const TaxCell: FC<cellsWithPossibleMovesI> = props => {
-	if (props.cell.data?.type === 'tax') {
+const TaxCell: FC<cellI> = props => {
+	if (props.data?.type === 'tax') {
 		return (
-			<CellBlock cell={props.cell}>
+			<CellBlock cell={props}>
 				<Image
 					className={style.cellImage}
 					data-rotated={
-						props.cell.data.direction === 'top' ||
-						props.cell.data.direction === 'bottom'
+						props.data.direction === 'top' ||
+						props.data.direction === 'bottom'
 					}
-					src={props.cell.data.image}
+					src={props.data.image}
 					alt={'company'}
 				/>
 			</CellBlock>
