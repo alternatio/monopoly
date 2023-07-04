@@ -1,13 +1,20 @@
 import { FC, memo } from 'react'
 import style from './Chip.module.scss'
-import { userGameDataI } from '@/store/interfaces/user'
+import { userI } from '@/store/interfaces/user'
+import { motion } from 'framer-motion'
 
 interface ChipI {
-	userGameData: userGameDataI
+	user: userI
 }
 
-const Chip: FC<ChipI> = props => {
-	return <div className={style.chip}></div>
+const Chip: FC<ChipI> = ({ user }) => {
+	return (
+		<motion.div
+			layoutId={user?.data.email ? user.data.email : 'null'}
+			className={style.chip}
+			style={{ border: `${user.gameData.color.hex} solid .26rem` }}
+		/>
+	)
 }
 
 export default memo(Chip)

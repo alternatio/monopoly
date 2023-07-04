@@ -59,6 +59,7 @@ export const generateCells = (
 ) => {
 	const cells: cellI[] = []
 	const companiesArray = [...companies]
+	let counter = 0
 
 	const xCellsLength = gridSize[0] - cellWidth * 2
 	const yCellsLength = gridSize[1] - cellWidth * 2
@@ -94,7 +95,9 @@ export const generateCells = (
 		cells.push({
 			data: corners[i],
 			position: cornerPosition,
+			index: counter,
 		})
+		counter += 1
 
 		for (let j = 0; j < (isX ? xCellsLength : yCellsLength); j++) {
 			const currentCellPosition: positionT = [
@@ -105,28 +108,34 @@ export const generateCells = (
 			]
 			if (taxesPositions[i].includes(j)) {
 				cells.push({
-					data: {...taxCell, direction},
+					data: { ...taxCell, direction },
 					position: currentCellPosition,
+					index: counter,
 				})
+				counter += 1
 				continue
 			} else if (chancePositions[i].includes(j)) {
 				cells.push({
-					data: {...chanceCell, direction},
+					data: { ...chanceCell, direction },
 					position: currentCellPosition,
+					index: counter,
 				})
+				counter += 1
 				continue
 			}
 
 			cells.push({
-				data: {...companiesArray[0], direction},
+				data: { ...companiesArray[0], direction },
 				position: currentCellPosition,
+				index: counter,
 			})
+			counter += 1
 			companiesArray.splice(0, 1)
 		}
 	}
 
 	cells.push({
-		data: {type: 'chat'},
+		data: { type: 'chat' },
 		position: [
 			cellWidth + 1,
 			gridSize[0] + 1 - cellWidth,

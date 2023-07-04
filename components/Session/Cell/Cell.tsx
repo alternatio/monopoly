@@ -11,11 +11,11 @@ import Chat from '@/components/Session/Cell/Chat/Chat'
 const Cell: FC<cellI> = props => {
 	return (
 		<>
-			<CommonCell data={props.data} position={props.position} />
-			<UncommonCell data={props.data} position={props.position} />
-			<CornerCell data={props.data} position={props.position} />
-			<ChanceCell data={props.data} position={props.position} />
-			<TaxCell data={props.data} position={props.position} />
+			<CommonCell data={props.data} position={props.position} index={props.index} />
+			<UncommonCell data={props.data} position={props.position} index={props.index} />
+			<CornerCell data={props.data} position={props.position} index={props.index} />
+			<ChanceCell data={props.data} position={props.position} index={props.index} />
+			<TaxCell data={props.data} position={props.position} index={props.index} />
 			<Chat data={props.data} position={props.position} />
 		</>
 	)

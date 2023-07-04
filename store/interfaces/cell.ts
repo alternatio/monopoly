@@ -64,5 +64,6 @@ export type positionT = [number, number, number, number]
 export interface cellI {
 	data: companyT | innerCellsT | cornerI | chatI
 	position: positionT
-	// index: number
+	// with possible moves
+	index?: number
 }

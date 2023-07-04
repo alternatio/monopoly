@@ -1,7 +1,7 @@
 import { addDoc, collection, doc, getDoc, setDoc } from '@firebase/firestore'
 import { db, googleAuthProvider } from '@/store/firestore/index'
 import { getAuth, signInWithPopup, signOut } from '@firebase/auth'
-import { getInitialUserGameData, userDataI } from '@/store/interfaces/user'
+import {getInitialUserGameData, userDataI, userI} from '@/store/interfaces/user'
 import { createUID } from '@/lib/commonFunctions'
 import { sessionI } from '@/store/interfaces/session'
 import { messageI } from '@/store/interfaces/message'
@@ -50,7 +50,7 @@ export const createSession = async (
 			players: [
 				{
 					data: owner,
-					gameData: getInitialUserGameData(owner, 0),
+					gameData: getInitialUserGameData(owner, 0, true),
 				},
 			],
 			owner,
@@ -112,6 +112,23 @@ export const pushMessage = async (sessionId: string, message: messageI) => {
 		preparedResponse.messages = [message]
 	}
 	setItemInFirestore('sessions', sessionId, preparedResponse)
+}
+
+// make a move
+export const makeMove = async (
+	sessionId: string,
+	player: userI,
+	length: number,
+) => {
+	const response = await getDocInFirestore('sessions', sessionId)
+	const preparedResponse = response.data() as sessionI | undefined
+
+	if (preparedResponse) {
+		const foundPlayerIndex = preparedResponse.players.findIndex(playerInSession => playerInSession.data.email === player.data.email)
+		if (foundPlayerIndex < 0) return
+		preparedResponse.players[foundPlayerIndex].gameData.position += length
+		setItemInFirestore('sessions', sessionId, preparedResponse)
+	}
 }
 
 // sign in app with Google
