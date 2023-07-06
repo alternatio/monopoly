@@ -58,6 +58,7 @@ export const createSession = async (
 			timeEnd: false,
 			winner: false,
 			messages: [],
+			playerTurn: 0,
 		}
 
 		setItemInFirestore('sessions', id, sessionData)
