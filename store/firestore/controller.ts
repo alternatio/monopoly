@@ -139,7 +139,14 @@ export const changeTurnPlayer = async (
 	const response = await getDocInFirestore('sessions', sessionId)
 	const preparedResponse = response.data() as sessionI | undefined
 
-
+	if (preparedResponse) {
+		if (preparedResponse.playerTurn < preparedResponse.players.length - 1) {
+			preparedResponse.playerTurn += 1
+		} else {
+			preparedResponse.playerTurn = 0
+		}
+		setItemInFirestore('sessions', sessionId, preparedResponse)
+	}
 }
 
 // sign in app with Google

@@ -1,25 +1,27 @@
 export const random = (min: number, max: number) => {
-	return Math.ceil(Math.random() * (max - min) + min)
+	return Math.round(Math.random() * (max - min) + min)
 }
 
 export const rollDice = () => {
 	let double = false
-	const diceOne = random(1,6)
-	const diceTwo = random(1,6)
+	const diceOne = random(1, 6)
+	const diceTwo = random(1, 6)
 
-	if(diceOne == diceTwo) {
+	if (diceOne == diceTwo) {
 		double = true
 	}
 
 	const totalMove = diceOne + diceTwo
 
-	return {double, totalMove}
+	return { double, totalMove, diceOne, diceTwo }
 }
 
-export const createUID = (
-	length: number = 16
-) => {
-	const arrayOfASCII = [[49, 57], [65, 90], [97, 122]]
+export const createUID = (length: number = 16) => {
+	const arrayOfASCII = [
+		[49, 57],
+		[65, 90],
+		[97, 122],
+	]
 	let UID: string = ''
 
 	for (let i = 0; i < length; i++) {

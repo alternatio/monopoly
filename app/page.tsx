@@ -9,10 +9,6 @@ import GamePopup from '@/components/Popups/GamePopup'
 import SighUpPopup from '@/components/Popups/SignUpPopup'
 import CreateGamePopup from '@/components/Popups/CreateGamePopup'
 import EnterInGamePopup from '@/components/Popups/EnterInGamePopup'
-import HamburgerMenu from "@/components/Home/HamburgerMenu";
-import MiniPopups from "@/components/Popups/MiniPopups";
-import {AnimatePresence} from "framer-motion";
-import MiniPopup from "@/components/Popups/MiniPopup";
 
 const Page: NextPage = () => {
 	return (
