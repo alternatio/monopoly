@@ -19,7 +19,7 @@ const FieldOfChips: FC<FieldOfChipsProps> = ({ index }) => {
 			onClick={() => {
 				if (!session.sessionDataStore?.id) return
 				if (!session.sessionDataStore.players) return
-				makeMove(session.sessionDataStore.id, session.sessionDataStore.players[0], 1)
+				makeMove(session.sessionDataStore.id, session.sessionDataStore.players[0], 5)
 			}}>
 			{session.sessionDataStore?.players?.map(player => {
 				if (player.gameData.position % session.maxMoves === index) {

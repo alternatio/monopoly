@@ -131,6 +131,16 @@ export const makeMove = async (
 	}
 }
 
+// change turn player
+export const changeTurnPlayer = async (
+	sessionId: string,
+) => {
+	const response = await getDocInFirestore('sessions', sessionId)
+	const preparedResponse = response.data() as sessionI | undefined
+
+
+}
+
 // sign in app with Google
 export const signInWithGooglePopup = async (
 	setUserData: (userData: userDataI | undefined) => void
