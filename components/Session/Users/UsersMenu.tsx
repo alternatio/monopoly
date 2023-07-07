@@ -18,6 +18,7 @@ const UsersMenu: FC<UserMenuProps> = props => {
 								key={user.data.uid}
 								userData={user.data}
 								userGameData={user.gameData}
+								sessionData={props.sessionData}
 							/>
 						)
 				  })

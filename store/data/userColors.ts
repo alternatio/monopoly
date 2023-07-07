@@ -7,15 +7,15 @@ export const usersGameColors: Readonly<userGameColorI[]> = [
 	},
 	{
 		title: 'yellow',
-		hex: '#fc2',
+		hex: '#ffcc22',
 	},
 	{
 		title: 'green',
-		hex: '#4b6',
+		hex: '#44bb66',
 	},
 	{
 		title: 'blue',
-		hex: '#55f',
+		hex: '#5555ff',
 	},
 	{
 		title: 'purple',

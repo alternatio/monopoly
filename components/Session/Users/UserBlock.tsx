@@ -1,16 +1,41 @@
-import { FC, memo } from 'react'
+'use client'
+
+import { FC, memo, useEffect, useState } from 'react'
 import style from './Users.module.scss'
 import { userDataI, userGameDataI } from '@/store/interfaces/user'
 import Image from 'next/image'
+import { sessionI } from '@/store/interfaces/session'
 
 interface UserBlockI {
 	userData?: userDataI
 	userGameData?: userGameDataI
+	sessionData?: Partial<sessionI>
 }
 
 const UserBlock: FC<UserBlockI> = props => {
+	const [hisTurn, handleHisTurn] = useState<boolean>(false)
+
+	useEffect(() => {
+		const playerIndex = props.sessionData?.players?.findIndex(
+			player => player.data.email === props.userData?.email
+		)
+		if (
+			playerIndex !== undefined &&
+			props.sessionData?.playerTurn !== undefined &&
+			props.sessionData.players?.length !== undefined
+		) {
+			playerIndex === props.sessionData.playerTurn
+				? handleHisTurn(true)
+				: handleHisTurn(false)
+		}
+	}, [props])
+
 	return (
-		<div className={style.user}>
+		<div
+			className={style.user}
+			style={{
+				background: hisTurn ? `${props.userGameData?.color.hex}22` : '',
+			}}>
 			<div className={style.avatarWrapper}>
 				{props.userData?.avatar && props.userGameData && (
 					<>

@@ -46,16 +46,16 @@ export const generateCells = (
 	setMaxMoves?: (maxMoves: number) => void,
 	cellWidth: number = 2,
 	taxesPositions: [number[], number[], number[], number[]] = [
-		[3],
+		[5],
 		[1],
 		[7],
-		[7],
+		[1],
 	],
 	chancePositions: [number[], number[], number[], number[]] = [
-		[1, 6],
+		[2, 7],
 		[6],
 		[1],
-		[2, 5],
+		[3, 6],
 	]
 ) => {
 	const cells: cellI[] = []

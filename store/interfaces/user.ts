@@ -16,7 +16,6 @@ export interface userGameDataI {
 	name: string | null
 	color: userGameColorI
 	money: number
-	hisTurn: boolean
 	position: number
 }
 
@@ -29,12 +28,11 @@ export interface userI {
 	gameData: userGameDataI
 }
 
-export const getInitialUserGameData = (user: userDataI, usersLength: number, hisTurn: boolean = false): userGameDataI => {
+export const getInitialUserGameData = (user: userDataI, usersLength: number): userGameDataI => {
 	return {
 		name: user.name,
 		color: usersGameColors[usersLength],
 		money: 50000,
-		hisTurn,
 		position: 0,
 	}
 }

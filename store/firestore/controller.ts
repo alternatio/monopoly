@@ -1,7 +1,11 @@
 import { addDoc, collection, doc, getDoc, setDoc } from '@firebase/firestore'
 import { db, googleAuthProvider } from '@/store/firestore/index'
 import { getAuth, signInWithPopup, signOut } from '@firebase/auth'
-import {getInitialUserGameData, userDataI, userI} from '@/store/interfaces/user'
+import {
+	getInitialUserGameData,
+	userDataI,
+	userI,
+} from '@/store/interfaces/user'
 import { createUID } from '@/lib/commonFunctions'
 import { sessionI } from '@/store/interfaces/session'
 import { messageI } from '@/store/interfaces/message'
@@ -50,7 +54,7 @@ export const createSession = async (
 			players: [
 				{
 					data: owner,
-					gameData: getInitialUserGameData(owner, 0, true),
+					gameData: getInitialUserGameData(owner, 0),
 				},
 			],
 			owner,
@@ -92,7 +96,9 @@ export const addPlayerInSession = async (
 	}
 
 	if (!preparedResponse) return
-	if (preparedResponse.players.find(player => player.data.uid === userData.uid)) return
+	if (preparedResponse.players.find(player => player.data.uid === userData.uid))
+		return
+	if (preparedResponse.players.length >= preparedResponse.maxPlayers) return
 	if (preparedResponse.password) {
 		if (preparedResponse.password !== password) return
 		return addPlayer(preparedResponse)
@@ -119,13 +125,15 @@ export const pushMessage = async (sessionId: string, message: messageI) => {
 export const makeMove = async (
 	sessionId: string,
 	player: userI,
-	length: number,
+	length: number
 ) => {
 	const response = await getDocInFirestore('sessions', sessionId)
 	const preparedResponse = response.data() as sessionI | undefined
 
 	if (preparedResponse) {
-		const foundPlayerIndex = preparedResponse.players.findIndex(playerInSession => playerInSession.data.email === player.data.email)
+		const foundPlayerIndex = preparedResponse.players.findIndex(
+			playerInSession => playerInSession.data.email === player.data.email
+		)
 		if (foundPlayerIndex < 0) return
 		preparedResponse.players[foundPlayerIndex].gameData.position += length
 		setItemInFirestore('sessions', sessionId, preparedResponse)
@@ -133,9 +141,7 @@ export const makeMove = async (
 }
 
 // change turn player
-export const changeTurnPlayer = async (
-	sessionId: string,
-) => {
+export const changeTurnPlayer = async (sessionId: string) => {
 	const response = await getDocInFirestore('sessions', sessionId)
 	const preparedResponse = response.data() as sessionI | undefined
 
