@@ -32,7 +32,7 @@ export const getInitialUserGameData = (user: userDataI, usersLength: number): us
 	return {
 		name: user.name,
 		color: usersGameColors[usersLength],
-		money: 50000,
+		money: 17500,
 		position: 0,
 	}
 }

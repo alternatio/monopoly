@@ -29,14 +29,13 @@ export interface companyBaseI extends baseCellI {
 }
 export interface commonCompanyI extends companyBaseI, baseCellI {
 	type: 'common'
-	baseRentCost: number
-	upgradeBaseCost: number
-	multiplierForImprovements: number
-	numberOfImprovements?: number
+	branchCost?: number
+	rents?: number[]
 }
 export interface uncommonCompanyI extends companyBaseI, baseCellI {
 	type: 'uncommon'
-	quantityModifier: number
+	baseRent?: number
+	// multiplier?: number
 }
 
 // other cells

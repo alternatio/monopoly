@@ -6,7 +6,7 @@ import {
 	positionT,
 	taxI,
 } from '@/store/interfaces/cell'
-import { companies } from '@/store/data/companies'
+import { companies, generateFullCompaniesData } from '@/store/data/companies'
 import { chanceImage, taxImage } from '@/lib/importImage'
 
 // common cells
@@ -59,7 +59,7 @@ export const generateCells = (
 	]
 ) => {
 	const cells: cellI[] = []
-	const companiesArray = [...companies]
+	const companiesArray = [...generateFullCompaniesData()]
 	let counter = 0
 
 	const xCellsLength = gridSize[0] - cellWidth * 2
@@ -134,7 +134,7 @@ export const generateCells = (
 			companiesArray.splice(0, 1)
 		}
 
-		const reverseOrder = i === 0 || i === 3; // Проверяем, является ли текущая итерация нулевой или третьей
+		const reverseOrder = i === 0 || i === 3 // Проверяем, является ли текущая итерация нулевой или третьей
 
 		if (reverseOrder) {
 			for (let j = (isX ? xCellsLength : yCellsLength) - 1; j >= 0; j--) {

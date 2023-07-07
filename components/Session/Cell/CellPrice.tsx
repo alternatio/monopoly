@@ -1,7 +1,6 @@
 import { CSSProperties, FC, memo } from 'react'
 import style from './Cell.module.scss'
 import { cellI } from '@/store/interfaces/cell'
-import { getTotalRent } from '@/lib/sessionFunctions'
 
 interface CellPriceI {
 	data: cellI['data']
@@ -25,9 +24,13 @@ const getPosition = (data: CellPriceI['data']): CSSProperties => {
 			top: data.direction === 'bottom' ? 'calc(100% + .2rem)' : undefined,
 
 			width:
-				data.direction === 'top' || data.direction === 'bottom' ? '100%' : '1rem',
+				data.direction === 'top' || data.direction === 'bottom'
+					? '100%'
+					: '1rem',
 			height:
-				data.direction === 'right' || data.direction === 'left' ? '100%' : '1rem',
+				data.direction === 'right' || data.direction === 'left'
+					? '100%'
+					: '1rem',
 		}
 	} else return {}
 }
@@ -43,48 +46,34 @@ const getRotation = (data: CellPriceI['data']): CSSProperties => {
 	} else return {}
 }
 
-const CommonPrice: FC<CellPriceI> = ({ data }) => {
-	if (data.type === 'common') {
-		return (
-			<div
-				style={{
-					...getPosition(data),
-					background: data.group ? data.group?.colorHex : undefined,
-				}}
-				className={style.price}>
-				<div
-					style={getRotation(data)}
-					className={style.priceBody}>
-					{data.owner
-						? (getTotalRent(data) / 1000).toFixed(1)
-						: (data.cost / 1000).toFixed(1)}
-					K¥
-				</div>
+const Price: FC<CellPriceI> = ({ data }) => {
+	if (data.type !== 'common' && data.type !== 'uncommon') return null
+	return (
+		<div
+			style={{
+				...getPosition(data),
+				background: data.group ? data.group?.colorHex : undefined,
+			}}
+			className={style.price}>
+			<div style={getRotation(data)} className={style.priceBody}>
+				{/*{data.owner*/}
+				{/*	? (getTotalRent(data) / 1000).toFixed(1)*/}
+				{/*	: (data.cost / 1000).toFixed(1)}*/}
+				<span>{data.cost}</span>
+				<span>M¥</span>
 			</div>
-		)
-	} else return null
+		</div>
+	)
+}
+
+const CommonPrice: FC<CellPriceI> = ({ data }) => {
+	if (data.type !== 'common') return null
+	return <Price data={data} />
 }
 
 const UncommonPrice: FC<CellPriceI> = ({ data }) => {
-	if (data.type === 'uncommon') {
-		return (
-			<div
-				style={{
-					...getPosition(data),
-					background: data.group ? data.group?.colorHex : undefined,
-				}}
-				className={style.price}>
-				<div
-					style={getRotation(data)}
-					className={style.priceBody}>
-					{data.owner
-						? (getTotalRent(data) / 1000).toFixed(1)
-						: (data.cost / 1000).toFixed(1)}
-					K¥
-				</div>
-			</div>
-		)
-	} else return null
+	if (data.type !== 'uncommon') return null
+	return <Price data={data} />
 }
 
 export default memo(CellPrice)

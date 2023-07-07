@@ -34,7 +34,7 @@ const UserBlock: FC<UserBlockI> = props => {
 		<div
 			className={style.user}
 			style={{
-				background: hisTurn ? `${props.userGameData?.color.hex}22` : '',
+				background: hisTurn ? `${props.userGameData?.color.hex}18` : '',
 			}}>
 			<div className={style.avatarWrapper}>
 				{props.userData?.avatar && props.userGameData && (
@@ -64,7 +64,7 @@ const UserBlock: FC<UserBlockI> = props => {
 				)}
 				{props.userGameData && (
 					<>
-						<span className={style.money}>{props.userGameData.money}¥</span>
+						<span className={style.money}>{props.userGameData.money}M¥</span>
 					</>
 				)}
 			</div>

@@ -1,60 +1,60 @@
-import {companyGroupI, companyT} from '@/store/interfaces/cell'
+import {commonCompanyI, companyGroupI, companyT, uncommonCompanyI} from '@/store/interfaces/cell'
 import { companiesImages } from '@/lib/importImage'
 
 export const companyGroups: companyGroupI[] = [
-  {
+	{
 		id: 0,
-    companyGroupNameEng: 'communication',
-    companyGroupNameRus: 'связь',
-    colorHex: '#FFBB00'
-  },
-  {
+		companyGroupNameEng: 'communication',
+		companyGroupNameRus: 'связь',
+		colorHex: '#FFBB00',
+	},
+	{
 		id: 1,
-    companyGroupNameEng: 'microelectronics',
-    companyGroupNameRus: 'микроэлектроника',
-    colorHex: '#44BB66'
-  },
-  {
+		companyGroupNameEng: 'microelectronics',
+		companyGroupNameRus: 'микроэлектроника',
+		colorHex: '#44BB66',
+	},
+	{
 		id: 2,
-    companyGroupNameEng: 'oil industry',
-    companyGroupNameRus: 'нефтяная промышленность',
-    colorHex: '#F80833'
-  },
-  {
+		companyGroupNameEng: 'oil industry',
+		companyGroupNameRus: 'нефтяная промышленность',
+		colorHex: '#F80833',
+	},
+	{
 		id: 3,
-    companyGroupNameEng: 'electronics',
-    companyGroupNameRus: 'электроника',
-    colorHex: '#08F8F8'
-  },
-  {
+		companyGroupNameEng: 'electronics',
+		companyGroupNameRus: 'электроника',
+		colorHex: '#08F8F8',
+	},
+	{
 		id: 4,
-    companyGroupNameEng: 'financial industry',
-    companyGroupNameRus: 'финансовая индустрия',
-    colorHex: '#8FFF00'
-  },
-  {
+		companyGroupNameEng: 'financial industry',
+		companyGroupNameRus: 'финансовая индустрия',
+		colorHex: '#8FFF00',
+	},
+	{
 		id: 5,
-    companyGroupNameEng: 'pharmaceuticals',
-    companyGroupNameRus: 'фармацевтика',
-    colorHex: '#DB00FF'
-  },
+		companyGroupNameEng: 'pharmaceuticals',
+		companyGroupNameRus: 'фармацевтика',
+		colorHex: '#DB00FF',
+	},
 	{
 		id: 6,
 		companyGroupNameEng: 'pharmaceuticals',
 		companyGroupNameRus: 'фармацевтика',
-		colorHex: '#FFFF00'
+		colorHex: '#FFFF00',
 	},
 	{
 		id: 7,
 		companyGroupNameEng: 'internet resource',
 		companyGroupNameRus: 'интернет ресурс',
-		colorHex: '#5555FF'
+		colorHex: '#5555FF',
 	},
 	{
 		id: 8,
 		companyGroupNameEng: 'special',
 		companyGroupNameRus: 'специальный',
-		colorHex: '#FFFFFF'
+		colorHex: '#FFFFFF',
 	},
 ]
 
@@ -66,26 +66,19 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[0],
-		cost: 3550,
-		baseRentCost: 2800,
-		upgradeBaseCost: 1250,
-		multiplierForImprovements: 2.75,
-		numberOfImprovements: 0,
+		cost: 1700,
 		owner: {
 			uid: '123',
 		},
 	},
 	{
-		name: 'china telekom',
+		name: 'china telecom',
 		image: companiesImages.chinaTelecomImage,
 		description: '',
 		type: 'common',
 
 		group: companyGroups[0],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 1800,
 	},
 	{
 		name: 'netflix',
@@ -94,8 +87,7 @@ export const companies: companyT[] = [
 		type: 'uncommon',
 
 		group: companyGroups[8],
-		cost: 1000,
-		quantityModifier: 1000,
+		cost: 1900,
 	},
 	{
 		name: 'tencent',
@@ -104,10 +96,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[1],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2100,
 	},
 	{
 		name: 'realtek',
@@ -116,10 +105,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[1],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2300,
 	},
 	{
 		name: 'tsmcs',
@@ -128,10 +114,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[1],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2400,
 	},
 	{
 		name: 'wanhua',
@@ -140,10 +123,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[2],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2100,
 	},
 	{
 		name: 'sinopec',
@@ -152,10 +132,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[2],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2200,
 	},
 	{
 		name: 'petro china',
@@ -164,10 +141,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[2],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2100,
 	},
 	{
 		name: 'adobe',
@@ -176,8 +150,7 @@ export const companies: companyT[] = [
 		type: 'uncommon',
 
 		group: companyGroups[8],
-		cost: 1000,
-		quantityModifier: 1000,
+		cost: 1900,
 	},
 	{
 		name: 'lenovo',
@@ -186,10 +159,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[3],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 1800,
 	},
 	{
 		name: 'xiaomi',
@@ -198,10 +168,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[3],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 1900,
 	},
 	{
 		name: 'huawei',
@@ -210,10 +177,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[3],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 1800,
 	},
 	{
 		name: 'icbc',
@@ -222,10 +186,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[4],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2600,
 	},
 	{
 		name: 'bank of china',
@@ -234,10 +195,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[4],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2700,
 	},
 	{
 		name: 'pingan',
@@ -246,10 +204,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[4],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2300,
 	},
 	{
 		name: 'pepsico',
@@ -258,8 +213,7 @@ export const companies: companyT[] = [
 		type: 'uncommon',
 
 		group: companyGroups[8],
-		cost: 1000,
-		quantityModifier: 1000,
+		cost: 1900,
 	},
 	{
 		name: 'tiens',
@@ -268,10 +222,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[5],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2300,
 	},
 	{
 		name: 'sinopharm',
@@ -280,10 +231,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[5],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2300,
 	},
 	{
 		name: 'wiXi appTec',
@@ -292,10 +240,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[5],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2400,
 	},
 	{
 		name: 'whGroup',
@@ -304,10 +249,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[6],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 1900,
 	},
 	{
 		name: 'haitian flavouring and food',
@@ -316,10 +258,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[6],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 1900,
 	},
 	{
 		name: 'wuliangye Yibin',
@@ -328,10 +267,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[6],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2000,
 	},
 	{
 		name: 'coca cola',
@@ -340,8 +276,7 @@ export const companies: companyT[] = [
 		type: 'uncommon',
 
 		group: companyGroups[8],
-		cost: 1000,
-		quantityModifier: 1000,
+		cost: 1900,
 	},
 	{
 		name: 'baidu',
@@ -350,10 +285,7 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[7],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2100,
 	},
 	{
 		name: 'alibaba',
@@ -362,9 +294,35 @@ export const companies: companyT[] = [
 		type: 'common',
 
 		group: companyGroups[7],
-		cost: 1000,
-		baseRentCost: 1000,
-		upgradeBaseCost: 1000,
-		multiplierForImprovements: 1.75,
+		cost: 2200,
 	},
 ]
+
+const createBranchCost = (company: commonCompanyI) => {
+	return Math.ceil(company.cost / 1.8)
+}
+
+const createRentsCost = (company: commonCompanyI) => {
+	const levels: number[] = []
+	for (let i = 1; i <= 5; i++) {
+		const baseRent = company.cost / 100
+		levels.push(Math.ceil(company.cost / 3 + Math.exp(baseRent / 9.75) * i ** 4.25))
+	}
+	return levels
+}
+
+export const generateFullCompaniesData = () => {
+	let tempCompanies = [...companies]
+	tempCompanies = tempCompanies.map(company => {
+		if (company.type === 'common') {
+			company.branchCost = createBranchCost(company)
+			company.rents = createRentsCost(company)
+			return company
+		} else if (company.type === 'uncommon') {
+			company.baseRent = 500
+			return company
+		} else return company
+	})
+	console.log(tempCompanies)
+	return tempCompanies
+}
