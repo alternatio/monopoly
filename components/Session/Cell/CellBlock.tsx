@@ -1,9 +1,6 @@
-'use client'
-
-import { CSSProperties, FC, memo, ReactNode, useRef } from 'react'
+import { CSSProperties, FC, memo, ReactNode } from 'react'
 import style from './Cell.module.scss'
 import { cellI } from '@/store/interfaces/cell'
-import { useOnClickOutside } from '@/lib/hooks/useOnClickOutside'
 
 interface CellBlockI {
 	children?: ReactNode

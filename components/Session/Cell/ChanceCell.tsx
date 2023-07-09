@@ -13,15 +13,17 @@ const ChanceCell: FC<Props> = props => {
 	if (props.data.data?.type === 'chance') {
 		return (
 			<CellBlock cell={props.data}>
-				<Image
-					className={style.cellTaxImage}
-					data-rotated={
-						props.data.data.direction === 'top' ||
-						props.data.data.direction === 'bottom'
-					}
-					src={props.data.data.image}
-					alt={'company'}
-				/>
+				<div className={style.cellImageWrapper}>
+					<Image
+						className={style.cellTaxImage}
+						data-rotated={
+							props.data.data.direction === 'top' ||
+							props.data.data.direction === 'bottom'
+						}
+						src={props.data.data.image}
+						alt={'company'}
+					/>
+				</div>
 				{typeof props.data.index === 'number' ? (
 					<FieldOfChips index={props.data.index} />
 				) : null}

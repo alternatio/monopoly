@@ -40,7 +40,7 @@ const CompanyPopup: FC = () => {
 					ref={ref}
 					{...commonAnimations}
 					variants={sessionPopupV}
-					transition={getEaseTransition()}>
+					transition={getEaseTransition(.75, 'anticipate', .15)}>
 					<div className={style.companyTop}>
 						<Image
 							className={style.companyImage}
@@ -58,14 +58,14 @@ const CompanyPopup: FC = () => {
 						</span>
 					</div>
 					<div className={style.companyInfo}>
+						<CompanyInfoLine value={`${company.cost}¥`}>
+							Стоимость поля
+						</CompanyInfoLine>
 						{company.type === 'common' ? (
 							<CompanyInfoLine value={`${company.branchCost}¥`}>
 								Стоимость филиала
 							</CompanyInfoLine>
 						) : null}
-						<CompanyInfoLine value={`${company.cost}¥`}>
-							Стоимость поля
-						</CompanyInfoLine>
 						{company.type === 'common' && company?.rents?.length
 							? company.rents.map((rent, index) => {
 									if (index) {

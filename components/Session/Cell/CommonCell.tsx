@@ -8,7 +8,7 @@ import CellPrice from '@/components/Session/Cell/CellPrice'
 import { cellI } from '@/store/interfaces/cell'
 import FieldOfChips from '@/components/Session/Chip/FieldOfChips'
 import { setCompanyPopupHelper } from '@/lib/sessionFunctions'
-import {useAppDispatch} from "@/store/index";
+import { useAppDispatch } from '@/store/index'
 
 interface Props {
 	data: cellI
@@ -26,15 +26,17 @@ const CommonCell: FC<Props> = props => {
 					setCompanyPopupHelper(dispatch, props.data.data)
 				}>
 				<CellPrice data={props.data.data} />
-				<Image
-					className={style.cellImage}
-					data-rotated={
-						props.data.data.direction === 'top' ||
-						props.data.data.direction === 'bottom'
-					}
-					src={props.data.data.image}
-					alt={'company'}
-				/>
+				<div className={style.cellImageWrapper}>
+					<Image
+						className={style.cellImage}
+						data-rotated={
+							props.data.data.direction === 'top' ||
+							props.data.data.direction === 'bottom'
+						}
+						src={props.data.data.image}
+						alt={'company'}
+					/>
+				</div>
 				{typeof props.data.index === 'number' ? (
 					<FieldOfChips index={props.data.index} />
 				) : null}
