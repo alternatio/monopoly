@@ -3,13 +3,17 @@ import CellBlock from '@/components/Session/Cell/CellBlock'
 import { cellI } from '@/store/interfaces/cell'
 import FieldOfChips from '@/components/Session/Chip/FieldOfChips'
 
-const CornerCell: FC<cellI> = props => {
-	if (props.data?.type === 'corner') {
+interface Props {
+	data: cellI
+}
+
+const CornerCell: FC<Props> = props => {
+	if (props.data.data?.type === 'corner') {
 		return (
-			<CellBlock cell={props}>
-				{props.data.text}
-				{typeof props.index === 'number' ? (
-					<FieldOfChips index={props.index} />
+			<CellBlock cell={props.data}>
+				{props.data.data.text}
+				{typeof props.data.index === 'number' ? (
+					<FieldOfChips index={props.data.index} />
 				) : null}
 			</CellBlock>
 		)

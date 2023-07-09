@@ -8,15 +8,20 @@ import ChanceCell from '@/components/Session/Cell/ChanceCell'
 import { userGameDataI } from '@/store/interfaces/user'
 import Chat from '@/components/Session/Cell/Chat/Chat'
 
-const Cell: FC<cellI> = props => {
+interface CellProps {
+	data: cellI
+	onClick?: () => void
+}
+
+const Cell: FC<CellProps> = props => {
 	return (
 		<>
-			<CommonCell data={props.data} position={props.position} index={props.index} />
-			<UncommonCell data={props.data} position={props.position} index={props.index} />
-			<CornerCell data={props.data} position={props.position} index={props.index} />
-			<ChanceCell data={props.data} position={props.position} index={props.index} />
-			<TaxCell data={props.data} position={props.position} index={props.index} />
-			<Chat data={props.data} position={props.position} />
+			<CommonCell data={props.data} />
+			<UncommonCell data={props.data} />
+			<CornerCell data={props.data} />
+			<ChanceCell data={props.data} />
+			<TaxCell data={props.data} />
+			<Chat data={props.data} />
 		</>
 	)
 }

@@ -1,0 +1,59 @@
+.popup {
+  z-index: 10;
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem;
+  background: var(--colorBlackB);
+  border: var(--colorStroke) solid 1px;
+  border-radius: .5rem;
+  backdrop-filter: blur(.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  width: 15rem;
+  max-width: 90%;
+}
+
+.companyTop {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: flex-start;
+}
+
+.companyImage {
+  max-height: 4rem;
+  max-width: 7rem;
+  width: 7rem;
+  height: auto;
+}
+
+.companyName {
+  font-size: .9rem;
+  text-transform: uppercase;
+  font-family: var(--molotFont);
+}
+
+.companyGroup {
+  font-family: var(--monoFont);
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.companyInfoLine {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.companyInfoLinePart {
+  font-family: var(--monoFont);
+}

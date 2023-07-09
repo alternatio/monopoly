@@ -1,20 +1,24 @@
-import { CSSProperties, FC, memo, ReactNode } from 'react'
+'use client'
+
+import { CSSProperties, FC, memo, ReactNode, useRef } from 'react'
 import style from './Cell.module.scss'
 import { cellI } from '@/store/interfaces/cell'
-import CellPrice from "@/components/Session/Cell/CellPrice";
+import { useOnClickOutside } from '@/lib/hooks/useOnClickOutside'
 
 interface CellBlockI {
 	children?: ReactNode
 	cell: cellI
 	styles?: CSSProperties
+	onClick?: () => void
 }
 
-const CellBlock: FC<CellBlockI> = ({ children, cell, styles }) => {
+const CellBlock: FC<CellBlockI> = props => {
 	return (
-		<div style={{...getCommonStylesPosition(cell), ...styles}} className={style.cell}>
-			<div className={style.cellData}>
-				{children}
-			</div>
+		<div
+			style={{ ...getCommonStylesPosition(props.cell), ...props.styles }}
+			className={style.cell}
+			onClick={props.onClick}>
+			<div className={style.cellData}>{props.children}</div>
 		</div>
 	)
 }

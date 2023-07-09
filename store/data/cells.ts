@@ -6,7 +6,7 @@ import {
 	positionT,
 	taxI,
 } from '@/store/interfaces/cell'
-import { companies, generateFullCompaniesData } from '@/store/data/companies'
+import { generateFullCompaniesData } from '@/store/data/companies'
 import { chanceImage, taxImage } from '@/lib/importImage'
 
 // common cells

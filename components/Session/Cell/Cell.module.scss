@@ -20,6 +20,15 @@
   text-align: center;
 }
 
+.cellImageWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
 .cellTaxImage,
 .cellImage {
   height: 80%;

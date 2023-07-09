@@ -6,6 +6,7 @@ import Cell from '@/components/Session/Cell/Cell'
 import { generateCells } from '@/store/data/cells'
 import { useAppDispatch, useAppSelector } from '@/store/index'
 import { setCells, setMaxMoves } from '@/store/reducers/session'
+import {companyT} from "@/store/interfaces/cell";
 
 const Field: FC = () => {
 	const gridSize = useAppSelector(state => state.session.gridSize)
@@ -33,9 +34,7 @@ const Field: FC = () => {
 						return (
 							<Cell
 								key={index}
-								index={cellData.index}
-								data={cellData.data}
-								position={cellData.position}
+								data={cellData}
 							/>
 						)
 				  })

@@ -3,14 +3,19 @@ import style from './Chat.module.scss'
 import { cellI } from '@/store/interfaces/cell'
 import CellBlock from '@/components/Session/Cell/CellBlock'
 import ChatInput from '@/components/Session/Cell/Chat/ChatInput'
-import ChatTape from "@/components/Session/Cell/Chat/ChatTape";
-import SessionInfo from "@/components/Session/Cell/Chat/SessionInfo";
+import ChatTape from '@/components/Session/Cell/Chat/ChatTape'
+import SessionInfo from '@/components/Session/Cell/Chat/SessionInfo'
+import CompanyPopup from '@/components/Session/Popups/CompanyPopup'
 
-const Chat: FC<cellI> = props => {
-	if (props.data.type === 'chat') {
+interface Props {
+	data: cellI
+}
+
+const Chat: FC<Props> = props => {
+	if (props.data.data.type === 'chat') {
 		return (
 			<CellBlock
-				cell={props}
+				cell={props.data}
 				// styles={{
 				// 	background: 'var(--colorStroke)',
 				// 	border: 'var(--colorGray) solid 1px',
@@ -20,6 +25,7 @@ const Chat: FC<cellI> = props => {
 					<ChatInput />
 					<ChatTape />
 					<SessionInfo />
+					<CompanyPopup />
 				</div>
 			</CellBlock>
 		)

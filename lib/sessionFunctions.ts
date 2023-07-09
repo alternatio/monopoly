@@ -1,11 +1,7 @@
-import { commonCompanyI, uncommonCompanyI } from '@/store/interfaces/cell'
+import { companyT } from '@/store/interfaces/cell'
+import { setCompanyPopup } from '@/store/reducers/session'
 
-// export const getTotalRent = (cellData: commonCompanyI | uncommonCompanyI) => {
-//
-// }
-//
-// export const
-//
-// export const getTotalUpgradeCost = (cellData: commonCompanyI) => {
-//
-// }
+export const setCompanyPopupHelper = (dispatch: Function, company: companyT | undefined) => {
+  if (!company) return
+	dispatch(setCompanyPopup(company))
+}

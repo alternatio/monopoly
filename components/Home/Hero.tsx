@@ -2,7 +2,7 @@
 
 import { FC, memo, useEffect, useState } from 'react'
 import style from './Hero.module.scss'
-import { useVariableText } from '@/lib/useVariableTitle'
+import { useVariableText } from '@/lib/hooks/useVariableTitle'
 import { random } from '@/lib/commonFunctions'
 import TypingText from '@/ui/TypingText/TypingText'
 import { generateCells } from '@/store/data/cells'

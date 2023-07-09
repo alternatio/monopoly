@@ -41,7 +41,7 @@ export const companyGroups: companyGroupI[] = [
 	{
 		id: 6,
 		companyGroupNameEng: 'pharmaceuticals',
-		companyGroupNameRus: 'фармацевтика',
+		companyGroupNameRus: 'пищевая промышленность',
 		colorHex: '#FFFF00',
 	},
 	{
