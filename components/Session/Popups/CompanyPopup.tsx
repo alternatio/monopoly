@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, memo, ReactNode, useEffect, useRef, useState } from 'react'
+import React, { FC, memo, ReactNode, useEffect, useRef, useState } from 'react'
 import style from './Popups.module.scss'
 import { useAppDispatch, useAppSelector } from '@/store/index'
 import Image from 'next/image'
@@ -12,20 +12,8 @@ import { commonAnimations, getSpringTransition } from '@/lib/animations'
 import { sessionPopupV } from '@/components/Session/Popups/variants'
 import { companyT } from '@/store/interfaces/cell'
 import Loader from '@/ui/Loader/Loader'
+import InfoLine from './InfoLine'
 
-interface CompanyInfoLineProps {
-	children: ReactNode
-	value: string
-}
-
-const CompanyInfoLine: FC<CompanyInfoLineProps> = ({ children, value }) => {
-	return (
-		<div className={style.companyInfoLine}>
-			<div className={style.companyInfoLinePart}>{children}</div>
-			<span className={style.companyInfoLinePart}>{value}</span>
-		</div>
-	)
-}
 
 const CompanyPopup: FC = () => {
 	const [loading, handleLoading] = useState<boolean>(true)
@@ -82,29 +70,29 @@ const CompanyPopupBody: FC<CompanyPopupBodyProps> = ({ company }) => {
 				<span className={style.companyDescription}>{company.description}</span>
 			</div>
 			<div className={style.companyInfo}>
-				<CompanyInfoLine value={`${company.cost}¥`}>
+				<InfoLine value={`${company.cost}¥`}>
 					Стоимость поля
-				</CompanyInfoLine>
+				</InfoLine>
 				{company.type === 'common' ? (
-					<CompanyInfoLine value={`${company.branchCost}¥`}>
+					<InfoLine value={`${company.branchCost}¥`}>
 						Стоимость филиала
-					</CompanyInfoLine>
+					</InfoLine>
 				) : null}
 				{company.type === 'common' && company?.rents?.length
 					? company.rents.map((rent, index) => {
 							if (index) {
 								return (
-									<CompanyInfoLine value={`${rent}¥`}>
+									<InfoLine value={`${rent}¥`}>
 										{Array.from({ length: index }).map(() => {
 											return <Image src={starIcon} alt={'star'} />
 										})}
-									</CompanyInfoLine>
+									</InfoLine>
 								)
 							} else {
 								return (
-									<CompanyInfoLine value={`${rent}¥`}>
+									<InfoLine value={`${rent}¥`}>
 										Базовая аренда
-									</CompanyInfoLine>
+									</InfoLine>
 								)
 							}
 					  })
