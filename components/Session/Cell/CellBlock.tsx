@@ -10,9 +10,11 @@ interface CellBlockI {
 }
 
 const CellBlock: FC<CellBlockI> = props => {
+	const correctCellType = props.cell.data.type === 'common' || props.cell.data.type === 'uncommon'
+
 	return (
 		<div
-			style={{ ...getCommonStylesPosition(props.cell), ...props.styles }}
+			style={{ cursor: correctCellType ? 'pointer' : 'auto', ...getCommonStylesPosition(props.cell), ...props.styles }}
 			className={style.cell}
 			onClick={props.onClick}>
 			<div className={style.cellData}>{props.children}</div>
