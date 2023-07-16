@@ -31,6 +31,11 @@
   text-align: center;
   max-width: 20rem;
   transition: .25s ease-in-out background-color;
+  user-select: none;
+  cursor: pointer;
+  &:hover {
+    background: var(--colorStroke);
+  }
 }
 
 .avatarWrapper {

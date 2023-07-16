@@ -8,6 +8,13 @@
   }
 }
 
+.pointerCell {
+  transition: .25s ease-in-out background-color;
+  &:hover {
+    background: var(--colorStroke);
+  }
+}
+
 .cellData {
   position: absolute;
   top: 0;
