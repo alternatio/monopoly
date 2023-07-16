@@ -7,7 +7,7 @@ export const metadata = {
 
 const SessionPageRoot: FC<{ children: ReactNode }> = ({ children }) => {
 	return (
-		<Wrapper maxWidth={'120rem'} padding={'1rem 0'}>
+		<Wrapper maxWidth={'120rem'} padding={'1rem 0'} wrapperStyle={{overflow: 'hidden'}}>
 			{children}
 		</Wrapper>
 	)

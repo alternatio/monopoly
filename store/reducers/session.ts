@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { cellI, companyT } from '@/store/interfaces/cell'
 import { sessionI } from '@/store/interfaces/session'
 import { messageI } from '@/store/interfaces/message'
+import { userI } from '@/store/interfaces/user'
 
 export interface sessionReducerI {
 	gridSize: [number, number]
@@ -9,6 +10,7 @@ export interface sessionReducerI {
 	maxMoves: number
 	sessionDataStore?: Partial<sessionI>
 	companyPopup: null | companyT
+	userPopup: null | userI
 }
 
 const initialState: sessionReducerI = {
@@ -17,6 +19,7 @@ const initialState: sessionReducerI = {
 	maxMoves: 0,
 	sessionDataStore: undefined,
 	companyPopup: null,
+	userPopup: null,
 }
 
 const sessionSlice = createSlice({
@@ -53,6 +56,12 @@ const sessionSlice = createSlice({
 		) {
 			state.companyPopup = action.payload
 		},
+		setUserPopup(
+			state: sessionReducerI,
+			action: PayloadAction<sessionReducerI['userPopup']>
+		) {
+			state.userPopup = action.payload
+		},
 	},
 })
 
@@ -62,5 +71,6 @@ export const {
 	setSessionDataStore,
 	setMaxMoves,
 	setCompanyPopup,
+	setUserPopup,
 } = sessionSlice.actions
 export default sessionSlice.reducer

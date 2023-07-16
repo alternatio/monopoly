@@ -14,7 +14,8 @@ import MiniPopups from '@/components/Popups/MiniPopups'
 import { AnimatePresence } from 'framer-motion'
 import { pushMiniPopupTexts } from '@/store/reducers/popups'
 import { setSessionDataStore } from '@/store/reducers/session'
-import {setUserGameData} from "@/store/reducers/user";
+import { setUserGameData } from '@/store/reducers/user'
+import Head from 'next/head'
 
 const SessionPage: FC = () => {
 	const miniPopupTexts = useAppSelector(state => state.popups.miniPopupTexts)
@@ -28,7 +29,9 @@ const SessionPage: FC = () => {
 			const data = doc.data() as Partial<sessionI> | undefined
 			if (data) {
 				dispatch(setSessionDataStore(data))
-				const player = data.players?.find(player => player.data.email === userData?.email)
+				const player = data.players?.find(
+					player => player.data.email === userData?.email
+				)
 				console.log(player, userData)
 				if (player?.gameData) {
 					dispatch(setUserGameData(player.gameData))
@@ -53,23 +56,22 @@ const SessionPage: FC = () => {
 	}, [pathName, userData])
 
 	return (
-		<SessionWrapper>
-			{sessionData ? <UsersMenu sessionData={sessionData} /> : null}
-			<Field />
-			<MiniPopups>
-				<AnimatePresence>
-					{miniPopupTexts.map(text => {
-						return (
-							<MiniPopup
-								key={text.id}
-								type={text.type}
-								text={text}
-							/>
-						)
-					})}
-				</AnimatePresence>
-			</MiniPopups>
-		</SessionWrapper>
+		<>
+			<Head>
+				<meta name={'viewport'} content={undefined} />
+			</Head>
+			<SessionWrapper>
+				{sessionData ? <UsersMenu sessionData={sessionData} /> : null}
+				<Field />
+				<MiniPopups>
+					<AnimatePresence>
+						{miniPopupTexts.map(text => {
+							return <MiniPopup key={text.id} type={text.type} text={text} />
+						})}
+					</AnimatePresence>
+				</MiniPopups>
+			</SessionWrapper>
+		</>
 	)
 }
 

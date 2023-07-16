@@ -1,6 +1,6 @@
 'use client'
 
-import React, { FC, memo, ReactNode, useEffect, useRef, useState } from 'react'
+import { FC, memo, useEffect, useRef, useState } from 'react'
 import style from './Popups.module.scss'
 import { useAppDispatch, useAppSelector } from '@/store/index'
 import Image from 'next/image'
@@ -13,7 +13,6 @@ import { sessionPopupV } from '@/components/Session/Popups/variants'
 import { companyT } from '@/store/interfaces/cell'
 import Loader from '@/ui/Loader/Loader'
 import InfoLine from './InfoLine'
-
 
 const CompanyPopup: FC = () => {
 	const [loading, handleLoading] = useState<boolean>(true)
@@ -40,7 +39,7 @@ const CompanyPopup: FC = () => {
 					{...commonAnimations}
 					variants={sessionPopupV}
 					style={{minHeight: '10rem'}}
-					transition={getSpringTransition(40, 300, 0.15, 0, undefined, -1)}>
+					transition={getSpringTransition(40, 300, 0.15)}>
 					{loading ? <Loader /> : <CompanyPopupBody company={company} />}
 				</motion.div>
 			) : null}

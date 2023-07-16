@@ -1,11 +1,9 @@
 'use client'
 
-import { FC, memo, useEffect, useState } from 'react'
+import { FC, memo, useState } from 'react'
 import style from './Hero.module.scss'
 import { useVariableText } from '@/lib/hooks/useVariableTitle'
-import { random } from '@/lib/commonFunctions'
 import TypingText from '@/ui/TypingText/TypingText'
-import { generateCells } from '@/store/data/cells'
 
 const Hero: FC = () => {
 	const arrayOfVariablesTexts = [
@@ -67,7 +65,7 @@ const Hero: FC = () => {
 				</div>
 				<div className={style.texts}>
 					<span className={style.chineseFont}>中华人民共和国</span>
-					<span onClick={() => generateCells()} className={style.text}>Со своими друзьями!</span>
+					<span className={style.text}>Со своими друзьями!</span>
 				</div>
 			</div>
 		</main>
