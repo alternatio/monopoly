@@ -42,7 +42,11 @@ const UserPopupBody: FC<UserPopupProps> = ({ user, currentUser }) => {
 					Количество компаний
 				</InfoLine>
 			</div>
-			<div className={style.buttons}>-buttons-</div>
+			<div className={style.buttons}>
+				{currentUser?.data?.uid === user?.data?.uid ? (
+					'current'
+				) : null}
+			</div>
 		</div>
 	)
 }
