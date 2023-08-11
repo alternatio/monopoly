@@ -1,0 +1,54 @@
+.userBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: .75rem;
+}
+
+.userTop {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.userCommonData {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: .25rem;
+  white-space: pre;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.color {
+  font-weight: 700;
+  color: var(--colorMedium);
+  font-size: 0.9rem;
+}
+
+.email {
+  color: var(--colorMedium);
+  font-size: .6rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.infoParts {
+  gap: 1rem;
+}
+
+.infoPart {
+  font-size: .8rem;
+}
+
+.buttons {
+
+}

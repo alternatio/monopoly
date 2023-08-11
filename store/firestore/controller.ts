@@ -96,7 +96,7 @@ export const addPlayerInSession = async (
 	}
 
 	if (!preparedResponse) return
-	if (preparedResponse.players.find(player => player.data.uid === userData.uid))
+	if (preparedResponse.players.find(player => player.data?.uid === userData.uid))
 		return
 	if (preparedResponse.players.length >= preparedResponse.maxPlayers) return
 	if (preparedResponse.password) {
@@ -132,11 +132,14 @@ export const makeMove = async (
 
 	if (preparedResponse) {
 		const foundPlayerIndex = preparedResponse.players.findIndex(
-			playerInSession => playerInSession.data.email === player.data.email
+			playerInSession => playerInSession.data?.email === player.data?.email
 		)
 		if (foundPlayerIndex < 0) return
-		preparedResponse.players[foundPlayerIndex].gameData.position += length
-		setItemInFirestore('sessions', sessionId, preparedResponse)
+		const playerToUpdate = preparedResponse.players[foundPlayerIndex]?.gameData
+		if (playerToUpdate && playerToUpdate.position) {
+			playerToUpdate.position += length
+			setItemInFirestore('sessions', sessionId, preparedResponse)
+		}
 	}
 }
 

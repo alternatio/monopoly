@@ -1,69 +1,47 @@
-import { FC, memo, useEffect, useState } from 'react'
+'use client'
+
+import { FC, memo, useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store/index'
-import { AnimatePresence } from 'framer-motion'
-import PopupBlock from '@/components/Popups/PopupBlock'
-import style from '@/components/Session/Users/Users.module.scss'
-import Image from 'next/image'
-import { userDataI, userGameDataI } from '@/store/interfaces/user'
+import { AnimatePresence, motion } from 'framer-motion'
+import style from './Popups.module.scss'
+import { commonAnimations, getSpringTransition } from '@/lib/animations'
+import { sessionPopupV } from '@/components/Session/Popups/variants'
+import { useOnClickOutside } from '@/lib/hooks/useOnClickOutside'
+import { setUserPopup } from '@/store/reducers/session'
+import UserPopupBody from "@/components/Session/Popups/UserPopupBody";
+import Loader from "@/ui/Loader/Loader";
 
-interface UserPopupProps {
-	userData: userDataI
-	userGameData: userGameDataI
-}
-
-const UserPopup: FC<UserPopupProps> = props => {
-	const currentPopup = useAppSelector(state => state.popups.currentPopup)
+const UserPopup: FC = () => {
+	const currentUser = useAppSelector(state => state.user)
+	const user = useAppSelector(state => state.session.userPopup)
 	const [loading, handleLoading] = useState<boolean>(false)
 
 	const dispatch = useAppDispatch()
 
+	const ref = useRef<HTMLDivElement | null>(null)
+	useOnClickOutside(ref, () => dispatch(setUserPopup(null)))
+
 	useEffect(() => {
-		handleLoading(false)
-	}, [currentPopup])
+		handleLoading(true)
+		setTimeout(() => {
+			handleLoading(false)
+		}, 100)
+	}, [user])
 
 	return (
-		<AnimatePresence>
-			{currentPopup === 0 && (
-				<PopupBlock style={{ background: 'var(--colorBlackB)' }}>
-					<div className={style.userInfoWrapper}>
-						<div className={style.avatarWrapper}>
-							{props.userData?.avatar && props.userGameData && (
-								<>
-									<Image
-										className={style.avatar}
-										src={props.userData.avatar}
-										alt={'avatar'}
-										width={50}
-										height={50}
-									/>
-									<div
-										className={style.circle}
-										style={{
-											border: `${props.userGameData.color.hex} solid 2px`,
-										}}
-									/>
-								</>
-							)}
-						</div>
-						<div className={style.userCommonInfo}>
-							<div>
-								<p className={style.userName}></p>
-								<p>|</p>
-								<p className={style.userColor}></p>
-							</div>
-							<div>
-								<p className={style.userEmail}></p>
-							</div>
-						</div>
-						<div className={style.userMoneyInfo}></div>
-					</div>
-
-					{/*<Button className={style.button}>*/}
-					{/*	<Image src={githubIcon} alt={'githubIcon'} />*/}
-					{/*	<span>Войти через Github</span>*/}
-					{/*</Button>*/}
-				</PopupBlock>
-			)}
+		<AnimatePresence initial={false}>
+			{user ? (
+				<motion.div
+					className={style.popup}
+					ref={ref}
+					{...commonAnimations}
+					variants={sessionPopupV}
+					// style={{ minHeight: '10rem' }}
+					// style={{ alignItems: 'center' }}
+					transition={getSpringTransition(40, 300, 0.15)}>
+					{loading ? <Loader /> : <UserPopupBody user={user} currentUser={currentUser} />}
+				</motion.div>
+			) : null}
 		</AnimatePresence>
 	)
 }

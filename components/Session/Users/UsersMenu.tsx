@@ -15,7 +15,8 @@ const UsersMenu: FC<UserMenuProps> = props => {
 				? props.sessionData?.players.map((user, index) => {
 						return (
 							<UserBlock
-								key={user.data.uid}
+								key={user.data?.uid}
+								user={user}
 								userData={user.data}
 								userGameData={user.gameData}
 								sessionData={props.sessionData}

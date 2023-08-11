@@ -6,6 +6,7 @@ import ChatInput from '@/components/Session/Cell/Chat/ChatInput'
 import ChatTape from '@/components/Session/Cell/Chat/ChatTape'
 import SessionInfo from '@/components/Session/Cell/Chat/SessionInfo'
 import CompanyPopup from '@/components/Session/Popups/CompanyPopup'
+import UserPopup from "@/components/Session/Popups/UserPopup";
 
 interface Props {
 	data: cellI
@@ -26,6 +27,7 @@ const Chat: FC<Props> = props => {
 					<ChatTape />
 					<SessionInfo />
 					<CompanyPopup />
+					<UserPopup />
 				</div>
 			</CellBlock>
 		)

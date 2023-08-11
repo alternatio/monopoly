@@ -7,7 +7,7 @@
   border: var(--colorStroke) solid 1px;
   border-radius: .75rem;
   backdrop-filter: blur(.25rem);
-  width: 15rem;
+  min-width: 15rem;
   max-width: 90%;
 
   display: flex;

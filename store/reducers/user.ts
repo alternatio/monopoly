@@ -2,16 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
 	userDataI,
 	userGameDataI,
-	userGameLocalDataI,
+	userI,
 } from '@/store/interfaces/user'
 
-interface userI {
-	data?: userDataI
-	gameData?: userGameDataI
-	gameLocalData?: userGameLocalDataI
-}
 
-const initialState: userI = {}
+const initialState: userI = {
+	data: undefined,
+	gameData: undefined,
+}
 
 const userSlice = createSlice({
 	name: 'user',
@@ -24,15 +22,15 @@ const userSlice = createSlice({
 		setUserGameData(state: userI, action: PayloadAction<userGameDataI>) {
 			state.gameData = { ...action.payload }
 		},
-		setUserGameLocalData(
-			state: userI,
-			action: PayloadAction<userGameLocalDataI>
-		) {
-			state.gameLocalData = { ...action.payload }
-		},
+		// setUserGameLocalData(
+		// 	state: userI,
+		// 	action: PayloadAction<userGameLocalDataI>
+		// ) {
+		// 	state.gameLocalData = { ...action.payload }
+		// },
 	},
 })
 
-export const { setUserData, setUserGameData, setUserGameLocalData } =
+export const { setUserData, setUserGameData } =
 	userSlice.actions
 export default userSlice.reducer

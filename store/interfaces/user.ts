@@ -24,8 +24,8 @@ export interface userGameLocalDataI {
 }
 
 export interface userI {
-	data: userDataI
-	gameData: userGameDataI
+	data?: userDataI
+	gameData?: userGameDataI
 }
 
 export const getInitialUserGameData = (user: userDataI, usersLength: number): userGameDataI => {

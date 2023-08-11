@@ -5,7 +5,7 @@ import { useAppSelector } from '@/store/index'
 import style from './Chip.module.scss'
 import Chip from '@/components/Session/Chip/Chip'
 import { makeMove } from '@/store/firestore/controller'
-import {rollDice} from "@/lib/commonFunctions";
+import { rollDice } from '@/lib/commonFunctions'
 
 interface FieldOfChipsProps {
 	index: number
@@ -24,7 +24,10 @@ const FieldOfChips: FC<FieldOfChipsProps> = ({ index }) => {
 				console.log(rollDice())
 			}}>
 			{session.sessionDataStore?.players?.map(player => {
-				if (player.gameData.position % session.maxMoves === index) {
+				if (
+					player.gameData &&
+					player.gameData.position % session.maxMoves === index
+				) {
 					return <Chip user={player} />
 				} else return null
 			})}

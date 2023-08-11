@@ -2,22 +2,28 @@
 
 import { FC, memo, useEffect, useState } from 'react'
 import style from './Users.module.scss'
-import { userDataI, userGameDataI } from '@/store/interfaces/user'
+import {userDataI, userGameDataI, userI} from '@/store/interfaces/user'
 import Image from 'next/image'
 import { sessionI } from '@/store/interfaces/session'
+import {useAppDispatch} from "@/store/index";
+import {setUserPopup} from "@/store/reducers/session";
+import Avatar from "@/components/Session/Users/Avatar";
 
 interface UserBlockI {
 	userData?: userDataI
 	userGameData?: userGameDataI
 	sessionData?: Partial<sessionI>
+	user?: userI
 }
 
 const UserBlock: FC<UserBlockI> = props => {
+	const dispatch = useAppDispatch()
+
 	const [hisTurn, handleHisTurn] = useState<boolean>(false)
 
 	useEffect(() => {
 		const playerIndex = props.sessionData?.players?.findIndex(
-			player => player.data.email === props.userData?.email
+			player => player.data?.email === props.userData?.email
 		)
 		if (
 			playerIndex !== undefined &&
@@ -33,26 +39,14 @@ const UserBlock: FC<UserBlockI> = props => {
 	return (
 		<div
 			className={style.user}
+			onClick={() => {
+				if (!props.user) return
+				dispatch(setUserPopup(props.user))
+			}}
 			style={{
 				background: hisTurn ? `${props.userGameData?.color.hex}18` : '',
 			}}>
-			<div className={style.avatarWrapper}>
-				{props.userData?.avatar && props.userGameData && (
-					<>
-						<Image
-							className={style.avatar}
-							src={props.userData.avatar}
-							alt={'avatar'}
-							width={50}
-							height={50}
-						/>
-						<div
-							className={style.circle}
-							style={{ border: `${props.userGameData.color.hex} solid 2px` }}
-						/>
-					</>
-				)}
-			</div>
+			<Avatar userData={props.userData} userGameData={props.userGameData} />
 			<div className={style.info}>
 				{props.userData?.name && props.userGameData && (
 					<div className={style.nameWithColor}>

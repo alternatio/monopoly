@@ -10,9 +10,9 @@ interface ChipI {
 const Chip: FC<ChipI> = ({ user }) => {
 	return (
 		<motion.div
-			layoutId={user?.data.email ? user.data.email : 'null'}
+			layoutId={user?.data?.email ? user.data.email : 'null'}
 			className={style.chip}
-			style={{ border: `${user.gameData.color.hex} solid .26rem` }}
+			style={{ border: `${user.gameData?.color.hex} solid .26rem` }}
 		/>
 	)
 }
