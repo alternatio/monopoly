@@ -43,8 +43,6 @@ export const createSession = async (
 	const id = createUID()
 	const response = await getDocInFirestore('sessions', id)
 
-	console.log(response)
-
 	if (!response.data()) {
 		const date = new Date()
 		const sessionData: sessionI = {
@@ -63,9 +61,10 @@ export const createSession = async (
 			winner: false,
 			messages: [],
 			playerTurn: 0,
+			totalMoves: 0,
 		}
 
-		setItemInFirestore('sessions', id, sessionData)
+		await setItemInFirestore('sessions', id, sessionData)
 
 		return id
 	} else {
@@ -96,7 +95,9 @@ export const addPlayerInSession = async (
 	}
 
 	if (!preparedResponse) return
-	if (preparedResponse.players.find(player => player.data?.uid === userData.uid))
+	if (
+		preparedResponse.players.find(player => player.data?.uid === userData.uid)
+	)
 		return
 	if (preparedResponse.players.length >= preparedResponse.maxPlayers) return
 	if (preparedResponse.password) {
@@ -118,7 +119,7 @@ export const pushMessage = async (sessionId: string, message: messageI) => {
 	} else {
 		preparedResponse.messages = [message]
 	}
-	setItemInFirestore('sessions', sessionId, preparedResponse)
+	await setItemInFirestore('sessions', sessionId, preparedResponse)
 }
 
 // make a move
@@ -138,7 +139,8 @@ export const makeMove = async (
 		const playerToUpdate = preparedResponse.players[foundPlayerIndex]?.gameData
 		if (playerToUpdate && playerToUpdate.position) {
 			playerToUpdate.position += length
-			setItemInFirestore('sessions', sessionId, preparedResponse)
+			preparedResponse.totalMoves += 1
+			await setItemInFirestore('sessions', sessionId, preparedResponse)
 		}
 	}
 }
@@ -154,7 +156,7 @@ export const changeTurnPlayer = async (sessionId: string) => {
 		} else {
 			preparedResponse.playerTurn = 0
 		}
-		setItemInFirestore('sessions', sessionId, preparedResponse)
+		await setItemInFirestore('sessions', sessionId, preparedResponse)
 	}
 }
 

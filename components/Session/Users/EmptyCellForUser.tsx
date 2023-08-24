@@ -5,8 +5,11 @@ import style from './Users.module.scss'
 import Image from 'next/image'
 import { avatarIcon } from '@/lib/ImportIcons'
 import { useAppDispatch } from '@/store/index'
-import {PayloadMiniPopupTextI, pushMiniPopupTexts} from '@/store/reducers/popups'
-import {sessionI} from "@/store/interfaces/session";
+import {
+	PayloadMiniPopupTextI,
+	pushMiniPopupTexts,
+} from '@/store/reducers/popups'
+import { sessionI } from '@/store/interfaces/session'
 
 interface EmptyCellForUserProps {
 	sessionData: Partial<sessionI>
@@ -20,13 +23,16 @@ const EmptyCellForUser: FC<EmptyCellForUserProps> = props => {
 			onClick={() => {
 				const text: PayloadMiniPopupTextI = {
 					body: 'ID сессии скопирован!',
-					type: 'green'
+					type: 'green',
 				}
 				dispatch(pushMiniPopupTexts(text))
 				try {
-					navigator.clipboard.writeText(`${props.sessionData?.id}`);
+					navigator.clipboard.writeText(`${props.sessionData?.id}`)
 				} catch (error) {
-					console.error('Не удалось скопировать информацию в буфер обмена', error);
+					console.error(
+						'Не удалось скопировать информацию в буфер обмена',
+						error
+					)
 				}
 			}}>
 			<Image

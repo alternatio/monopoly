@@ -12,4 +12,5 @@ export interface sessionI {
 	winner: false | userI
 	messages: messageI[]
 	playerTurn: number
+	totalMoves: number
 }

@@ -30,7 +30,7 @@ const SessionPage: FC = () => {
 			if (data) {
 				dispatch(setSessionDataStore(data))
 				const player = data.players?.find(
-					player => player.data.email === userData?.email
+					player => player.data?.email === userData?.email
 				)
 				console.log(player, userData)
 				if (player?.gameData) {

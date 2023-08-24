@@ -3,6 +3,7 @@ import style from './UserPopup.module.scss'
 import { userI } from '@/store/interfaces/user'
 import Avatar from '@/components/Session/Users/Avatar'
 import InfoLine from '@/components/Session/Popups/InfoLine'
+import {ButtonsForAnother, ButtonsForSelf} from "@/components/Session/Popups/UserPopupButtons";
 
 interface UserPopupProps {
 	user?: userI
@@ -44,7 +45,10 @@ const UserPopupBody: FC<UserPopupProps> = ({ user, currentUser }) => {
 			</div>
 			<div className={style.buttons}>
 				{currentUser?.data?.uid === user?.data?.uid ? (
-					'current'
+					<ButtonsForSelf />
+				) : null}
+				{currentUser?.data?.uid !== user?.data?.uid ? (
+					<ButtonsForAnother />
 				) : null}
 			</div>
 		</div>

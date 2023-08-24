@@ -50,5 +50,29 @@
 }
 
 .buttons {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
 
+.commonButton,
+.redButton {
+  width: 100%;
+  font-size: .8rem;
+  padding: .4rem;
+}
+
+.commonButton {
+
+}
+
+.redButton {
+  background: var(--colorRed);
+  border: var(--colorWhite) solid 1px;
+  color: var(--colorWhite);
+  &:hover {
+    color: var(--colorRed);
+    background: var(--colorWhite);
+    border-color: var(--colorRed);
+  }
 }

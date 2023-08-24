@@ -15,10 +15,10 @@ const UserPopup: FC = () => {
 	const currentUser = useAppSelector(state => state.user)
 	const user = useAppSelector(state => state.session.userPopup)
 	const [loading, handleLoading] = useState<boolean>(false)
+	const ref = useRef<HTMLDivElement | null>(null)
 
 	const dispatch = useAppDispatch()
 
-	const ref = useRef<HTMLDivElement | null>(null)
 	useOnClickOutside(ref, () => dispatch(setUserPopup(null)))
 
 	useEffect(() => {
