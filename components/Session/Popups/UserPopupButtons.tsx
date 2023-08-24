@@ -3,9 +3,7 @@ import Button from '@/ui/Button/Button'
 import style from './UserPopup.module.scss'
 
 // ButtonsForSelf
-interface ButtonsForSelfProps {
-
-}
+interface ButtonsForSelfProps {}
 
 export const ButtonsForSelf: FC = memo(() => {
 	return (
@@ -18,9 +16,7 @@ export const ButtonsForSelf: FC = memo(() => {
 // - - -
 
 // ButtonsForAnother
-interface ButtonsForAnotherProps {
-
-}
+interface ButtonsForAnotherProps {}
 
 export const ButtonsForAnother: FC = memo(() => {
 	return (
@@ -32,9 +28,7 @@ export const ButtonsForAnother: FC = memo(() => {
 // - - -
 
 // ButtonsForAdmin
-interface ButtonsForAdminProps {
-
-}
+interface ButtonsForAdminProps {}
 
 export const ButtonsForAdmin: FC = memo(() => {
 	return (

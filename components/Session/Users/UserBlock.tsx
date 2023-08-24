@@ -2,12 +2,11 @@
 
 import { FC, memo, useEffect, useState } from 'react'
 import style from './Users.module.scss'
-import {userDataI, userGameDataI, userI} from '@/store/interfaces/user'
-import Image from 'next/image'
+import { userDataI, userGameDataI, userI } from '@/store/interfaces/user'
 import { sessionI } from '@/store/interfaces/session'
-import {useAppDispatch} from "@/store/index";
-import {setUserPopup} from "@/store/reducers/session";
-import Avatar from "@/components/Session/Users/Avatar";
+import { useAppDispatch } from '@/store/index'
+import { setUserPopup } from '@/store/reducers/session'
+import Avatar from '@/components/Session/Users/Avatar'
 
 interface UserBlockI {
 	userData?: userDataI

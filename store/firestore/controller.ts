@@ -1,45 +1,27 @@
 import { addDoc, collection, doc, getDoc, setDoc } from '@firebase/firestore'
 import { db, googleAuthProvider } from '@/store/firestore/index'
 import { getAuth, signInWithPopup, signOut } from '@firebase/auth'
-import {
-	getInitialUserGameData,
-	userDataI,
-	userI,
-} from '@/store/interfaces/user'
+import { getInitialUserGameData, userDataI, userI } from '@/store/interfaces/user'
 import { createUID } from '@/lib/commonFunctions'
 import { sessionI } from '@/store/interfaces/session'
 import { messageI } from '@/store/interfaces/message'
 
 // get doc in firestore
-export const getDocInFirestore = async (
-	collectionName: string,
-	docName: string
-) => {
+export const getDocInFirestore = async (collectionName: string, docName: string) => {
 	return await getDoc(doc(db, collectionName, docName))
 }
 
 // add item in firestore
-export const addItemInFirestore = async (
-	collectionName: string,
-	data: object
-) => {
+export const addItemInFirestore = async (collectionName: string, data: object) => {
 	await addDoc(collection(db, collectionName), data)
 }
 
 // set item in firestore
-export const setItemInFirestore = async (
-	collectionName: string,
-	docName: string,
-	data: object
-) => {
+export const setItemInFirestore = async (collectionName: string, docName: string, data: object) => {
 	await setDoc(doc(db, collectionName, docName), data)
 }
 
-export const createSession = async (
-	owner: userDataI,
-	maxPlayers: number,
-	password: string
-) => {
+export const createSession = async (owner: userDataI, maxPlayers: number, password: string) => {
 	const id = createUID()
 	const response = await getDocInFirestore('sessions', id)
 
@@ -85,20 +67,14 @@ export const addPlayerInSession = async (
 		const tempSessionData: sessionI = { ...preparedResponse }
 		tempSessionData.players.push({
 			data: userData,
-			gameData: getInitialUserGameData(
-				userData,
-				preparedResponse.players.length
-			),
+			gameData: getInitialUserGameData(userData, preparedResponse.players.length),
 		})
 		setItemInFirestore('sessions', sessionId, tempSessionData)
 		return true
 	}
 
 	if (!preparedResponse) return
-	if (
-		preparedResponse.players.find(player => player.data?.uid === userData.uid)
-	)
-		return
+	if (preparedResponse.players.find(player => player.data?.uid === userData.uid)) return
 	if (preparedResponse.players.length >= preparedResponse.maxPlayers) return
 	if (preparedResponse.password) {
 		if (preparedResponse.password !== password) return
@@ -123,11 +99,7 @@ export const pushMessage = async (sessionId: string, message: messageI) => {
 }
 
 // make a move
-export const makeMove = async (
-	sessionId: string,
-	player: userI,
-	length: number
-) => {
+export const makeMove = async (sessionId: string, player: userI, length: number) => {
 	const response = await getDocInFirestore('sessions', sessionId)
 	const preparedResponse = response.data() as sessionI | undefined
 

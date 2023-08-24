@@ -26,16 +26,10 @@ const sessionSlice = createSlice({
 	name: 'session',
 	initialState,
 	reducers: {
-		setGridSize(
-			state: sessionReducerI,
-			action: PayloadAction<sessionReducerI['gridSize']>
-		) {
+		setGridSize(state: sessionReducerI, action: PayloadAction<sessionReducerI['gridSize']>) {
 			state.gridSize = action.payload
 		},
-		setCells(
-			state: sessionReducerI,
-			action: PayloadAction<sessionReducerI['cells']>
-		) {
+		setCells(state: sessionReducerI, action: PayloadAction<sessionReducerI['cells']>) {
 			state.cells = action.payload
 		},
 		setSessionDataStore(
@@ -44,10 +38,7 @@ const sessionSlice = createSlice({
 		) {
 			state.sessionDataStore = action.payload
 		},
-		setMaxMoves(
-			state: sessionReducerI,
-			action: PayloadAction<sessionReducerI['maxMoves']>
-		) {
+		setMaxMoves(state: sessionReducerI, action: PayloadAction<sessionReducerI['maxMoves']>) {
 			state.maxMoves = action.payload
 		},
 		setCompanyPopup(
@@ -56,10 +47,7 @@ const sessionSlice = createSlice({
 		) {
 			state.companyPopup = action.payload
 		},
-		setUserPopup(
-			state: sessionReducerI,
-			action: PayloadAction<sessionReducerI['userPopup']>
-		) {
+		setUserPopup(state: sessionReducerI, action: PayloadAction<sessionReducerI['userPopup']>) {
 			state.userPopup = action.payload
 		},
 	},

@@ -8,8 +8,8 @@ import { commonAnimations, getSpringTransition } from '@/lib/animations'
 import { sessionPopupV } from '@/components/Session/Popups/variants'
 import { useOnClickOutside } from '@/lib/hooks/useOnClickOutside'
 import { setUserPopup } from '@/store/reducers/session'
-import UserPopupBody from "@/components/Session/Popups/UserPopupBody";
-import Loader from "@/ui/Loader/Loader";
+import UserPopupBody from '@/components/Session/Popups/UserPopupBody'
+import Loader from '@/ui/Loader/Loader'
 
 const UserPopup: FC = () => {
 	const currentUser = useAppSelector(state => state.user)

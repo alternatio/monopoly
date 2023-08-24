@@ -3,7 +3,7 @@ import style from './UserPopup.module.scss'
 import { userI } from '@/store/interfaces/user'
 import Avatar from '@/components/Session/Users/Avatar'
 import InfoLine from '@/components/Session/Popups/InfoLine'
-import {ButtonsForAnother, ButtonsForSelf} from "@/components/Session/Popups/UserPopupButtons";
+import { ButtonsForAnother, ButtonsForSelf } from '@/components/Session/Popups/UserPopupButtons'
 
 interface UserPopupProps {
 	user?: userI
@@ -30,26 +30,16 @@ const UserPopupBody: FC<UserPopupProps> = ({ user, currentUser }) => {
 					value={`${user?.gameData?.money} ¥`}>
 					Капитал
 				</InfoLine>
-				<InfoLine
-					infoClassname={style.infoParts}
-					partClassname={style.infoPart}
-					value={`25500 ¥`}>
+				<InfoLine infoClassname={style.infoParts} partClassname={style.infoPart} value={`25500 ¥`}>
 					Стоимость активов
 				</InfoLine>
-				<InfoLine
-					infoClassname={style.infoParts}
-					partClassname={style.infoPart}
-					value={`5`}>
+				<InfoLine infoClassname={style.infoParts} partClassname={style.infoPart} value={`5`}>
 					Количество компаний
 				</InfoLine>
 			</div>
 			<div className={style.buttons}>
-				{currentUser?.data?.uid === user?.data?.uid ? (
-					<ButtonsForSelf />
-				) : null}
-				{currentUser?.data?.uid !== user?.data?.uid ? (
-					<ButtonsForAnother />
-				) : null}
+				{currentUser?.data?.uid === user?.data?.uid ? <ButtonsForSelf /> : null}
+				{currentUser?.data?.uid !== user?.data?.uid ? <ButtonsForAnother /> : null}
 			</div>
 		</div>
 	)

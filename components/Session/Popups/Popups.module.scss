@@ -1,63 +1,63 @@
 .popup {
-  z-index: 10;
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  background: var(--colorBlackB);
-  border: var(--colorStroke) solid 1px;
-  border-radius: .75rem;
-  backdrop-filter: blur(.25rem);
-  min-width: 15rem;
-  max-width: 90%;
+	z-index: 10;
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+	background: var(--colorBlackB);
+	border: var(--colorStroke) solid 1px;
+	border-radius: 0.75rem;
+	backdrop-filter: blur(0.25rem);
+	min-width: 15rem;
+	max-width: 90%;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 1.25rem;
-  gap: .75rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 1.25rem;
+	gap: 0.75rem;
 }
 
 .companyTop {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  align-items: flex-start;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	align-items: flex-start;
+	width: 100%;
 }
 
 .companyImage {
-  max-height: 4rem;
-  max-width: 7rem;
-  width: 7rem;
-  height: auto;
+	max-height: 4rem;
+	max-width: 7rem;
+	width: 7rem;
+	height: auto;
 }
 
 .companyName {
-  font-size: .9rem;
-  text-transform: uppercase;
-  font-family: var(--molotFont);
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	font-family: var(--molotFont);
 }
 
 .companyGroup {
-  font-family: var(--monoFont);
-  font-weight: 400;
-  text-transform: capitalize;
+	font-family: var(--monoFont);
+	font-weight: 400;
+	text-transform: capitalize;
 }
 
 .companyInfo {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	width: 100%;
 }
 
 .companyInfoLine {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
 }
 
 .companyInfoLinePart {
-  font-family: var(--monoFont);
+	font-family: var(--monoFont);
 }
