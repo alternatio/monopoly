@@ -88,16 +88,21 @@ export const addPlayerInSession = async (
 
 // - - - session functions - - -
 // push message
-export const pushMessage = async (sessionData: Partial<sessionI>, message: messageI) => {
-	const prepareSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
+export const pushMessage = async (
+	sessionData: Partial<sessionI>,
+	message: messageI,
+	isLocal?: boolean
+) => {
+	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
-	if (!prepareSessionData.id) return
-	if (prepareSessionData.messages?.length) {
-		prepareSessionData.messages.push(message)
+	if (!preparedSessionData.id) return
+	if (preparedSessionData.messages?.length) {
+		preparedSessionData.messages.push(message)
 	} else {
-		prepareSessionData.messages = [message]
+		preparedSessionData.messages = [message]
 	}
-	await setItemInFirestore('sessions', prepareSessionData.id, prepareSessionData)
+	if (!isLocal) await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
+	else return preparedSessionData
 }
 
 // make a move
@@ -126,6 +131,23 @@ export const makeMove = async (
 	}
 }
 
+// make a move and push message
+export const makeMoveAndPushMessage = async (
+	sessionData: Partial<sessionI>,
+	player: userI,
+	length: number
+) => {
+	const preparedSessionData = await makeMove(sessionData, player, length, true)
+	if (!preparedSessionData || !player.gameData?.name) return
+
+	const message: messageI = {
+		author: player.gameData?.name,
+		color: player.gameData.color.hex,
+		body: `Выпало ${length}, это ${preparedSessionData.totalMoves} общий ход`,
+	}
+	await pushMessage(preparedSessionData, message)
+}
+
 // change turn player
 export const changeTurnPlayer = async (sessionData: Partial<sessionI>, isLocal?: boolean) => {
 	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
@@ -150,10 +172,7 @@ export const makeMoveAndChangeTurnPlayer = async (
 ) => {
 	let preparedSessionData = await makeMove(sessionData, player, length, true)
 	if (!preparedSessionData) return
-	preparedSessionData = await changeTurnPlayer(preparedSessionData)
-	if (!preparedSessionData?.id) return
-
-	await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
+	await changeTurnPlayer(preparedSessionData)
 }
 // - - - - - -
 
