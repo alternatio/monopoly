@@ -1,0 +1,13 @@
+.text {
+  font-size: .9rem;
+  line-height: 110%;
+  text-wrap: balance;
+}
+
+.accentText {
+  color: var(--colorYellow);
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-wrap: inherit;
+}

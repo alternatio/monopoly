@@ -1,7 +1,8 @@
 'use client'
 
 import {CSSProperties, FC, memo} from 'react'
-import style from '../Popups.module.scss'
+import popupStyle from '../Popups.module.scss'
+import style from './GameActions.module.scss'
 import {useAppSelector} from "@/store/index";
 
 const movePopupStyles: CSSProperties = {
@@ -10,13 +11,20 @@ const movePopupStyles: CSSProperties = {
 }
 
 const MovePopup: FC = () => {
-  const playerTurnNumber = useAppSelector(state => state.session.sessionDataStore?.playerTurn)
-  const currentPlayerData = useAppSelector(state => state.user.data)
-  const currentPlayer = useAppSelector(state => state.session.sessionDataStore?.players)
+  const sessionData = useAppSelector(state => state.session.sessionDataStore)
+  const currentPlayer = useAppSelector(state => state.user)
+
+  const foundPlayerIndex = sessionData?.players?.findIndex(player => player.data?.uid === currentPlayer.data?.uid)
+  const isCurrentPlayerTurn: boolean = foundPlayerIndex === sessionData?.playerTurn
+  if (!isCurrentPlayerTurn) return null
+
+  // currentPlayer
 
   return (
-    <div className={style.popup} style={movePopupStyles}>
-      123
+    <div className={popupStyle.popup} style={movePopupStyles}>
+      <p className={style.text}>
+        Сейчас ваш ход! Этот ответственный момент, когда вам нужно увидеть ваше будущее, бросив игральные кости
+      </p>
     </div>
   )
 }

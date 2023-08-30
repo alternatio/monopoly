@@ -17,10 +17,7 @@ export interface userGameDataI {
 	color: userGameColorI
 	money: number
 	position: number
-}
-
-export interface userGameLocalDataI {
-	// time: number
+	madeAMove: boolean
 }
 
 export interface userI {
@@ -34,5 +31,6 @@ export const getInitialUserGameData = (user: userDataI, usersLength: number): us
 		color: usersGameColors[usersLength],
 		money: 17500,
 		position: 0,
+		madeAMove: false
 	}
 }
