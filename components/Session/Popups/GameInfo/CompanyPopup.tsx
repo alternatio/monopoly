@@ -1,7 +1,7 @@
 'use client'
 
 import { FC, memo, useEffect, useRef, useState } from 'react'
-import style from './Popups.module.scss'
+import style from '../Popups.module.scss'
 import { useAppDispatch, useAppSelector } from '@/store/index'
 import { useOnClickOutside } from '@/lib/hooks/useOnClickOutside'
 import { setCompanyPopup } from '@/store/reducers/session'

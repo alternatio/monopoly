@@ -6,6 +6,7 @@ import { createUID } from '@/lib/commonFunctions'
 import { sessionI } from '@/store/interfaces/session'
 import { messageI } from '@/store/interfaces/message'
 
+// - - - main or initial functions - - -
 // get doc in firestore
 export const getDocInFirestore = async (collectionName: string, docName: string) => {
 	return await getDoc(doc(db, collectionName, docName))
@@ -83,55 +84,80 @@ export const addPlayerInSession = async (
 		return addPlayer(preparedResponse)
 	}
 }
+// - - - - - -
 
+// - - - session functions - - -
 // push message
-export const pushMessage = async (sessionId: string, message: messageI) => {
-	const response = await getDocInFirestore('sessions', sessionId)
-	const preparedResponse = response.data() as sessionI | undefined
+export const pushMessage = async (sessionData: Partial<sessionI>, message: messageI) => {
+	const prepareSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
-	if (!preparedResponse) return
-	if (preparedResponse?.messages) {
-		preparedResponse.messages.push(message)
+	if (!prepareSessionData.id) return
+	if (prepareSessionData.messages?.length) {
+		prepareSessionData.messages.push(message)
 	} else {
-		preparedResponse.messages = [message]
+		prepareSessionData.messages = [message]
 	}
-	await setItemInFirestore('sessions', sessionId, preparedResponse)
+	await setItemInFirestore('sessions', prepareSessionData.id, prepareSessionData)
 }
 
 // make a move
-export const makeMove = async (sessionId: string, player: userI, length: number) => {
-	const response = await getDocInFirestore('sessions', sessionId)
-	const preparedResponse = response.data() as sessionI | undefined
+export const makeMove = async (
+	sessionData: Partial<sessionI>,
+	player: userI,
+	length: number,
+	isLocal?: boolean
+) => {
+	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
-	if (preparedResponse) {
-		const foundPlayerIndex = preparedResponse.players.findIndex(
-			playerInSession => playerInSession.data?.email === player.data?.email
-		)
-		if (foundPlayerIndex < 0) return
-		const playerToUpdate = preparedResponse.players[foundPlayerIndex]?.gameData
-		if (playerToUpdate && playerToUpdate.position) {
-			playerToUpdate.position += length
-			preparedResponse.totalMoves += 1
-			await setItemInFirestore('sessions', sessionId, preparedResponse)
-		}
+	if (!preparedSessionData.players || !preparedSessionData.totalMoves || !preparedSessionData.id)
+		return
+
+	const foundPlayerIndex = preparedSessionData?.players?.findIndex(
+		playerInSession => playerInSession?.data?.email === player.data?.email
+	)
+	if (foundPlayerIndex === undefined || foundPlayerIndex < 0) return
+
+	const playerToUpdate = preparedSessionData?.players[foundPlayerIndex]?.gameData
+	if (playerToUpdate && playerToUpdate.position) {
+		playerToUpdate.position += length
+		preparedSessionData.totalMoves += 1
+		if (!isLocal) await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
+		else return preparedSessionData
 	}
 }
 
 // change turn player
-export const changeTurnPlayer = async (sessionId: string) => {
-	const response = await getDocInFirestore('sessions', sessionId)
-	const preparedResponse = response.data() as sessionI | undefined
+export const changeTurnPlayer = async (sessionData: Partial<sessionI>, isLocal?: boolean) => {
+	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
-	if (preparedResponse) {
-		if (preparedResponse.playerTurn < preparedResponse.players.length - 1) {
-			preparedResponse.playerTurn += 1
-		} else {
-			preparedResponse.playerTurn = 0
-		}
-		await setItemInFirestore('sessions', sessionId, preparedResponse)
+	if (!preparedSessionData.players || !preparedSessionData.playerTurn || !preparedSessionData.id)
+		return
+
+	if (preparedSessionData.playerTurn < preparedSessionData.players.length - 1) {
+		preparedSessionData.playerTurn += 1
+	} else {
+		preparedSessionData.playerTurn = 0
 	}
+	if (!isLocal) await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
+	else return preparedSessionData
 }
 
+// make a move and change turn player
+export const makeMoveAndChangeTurnPlayer = async (
+	sessionData: Partial<sessionI>,
+	player: userI,
+	length: number
+) => {
+	let preparedSessionData = await makeMove(sessionData, player, length, true)
+	if (!preparedSessionData) return
+	preparedSessionData = await changeTurnPlayer(preparedSessionData)
+	if (!preparedSessionData?.id) return
+
+	await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
+}
+// - - - - - -
+
+// - - - utility functions - - -
 // sign in app with Google
 export const signInWithGooglePopup = async (
 	setUserData: (userData: userDataI | undefined) => void
@@ -170,3 +196,4 @@ export const signOutWithGooglePopup = async (
 		console.log(error)
 	}
 }
+// - - - - - -

@@ -3,7 +3,7 @@ import style from './UserPopup.module.scss'
 import { userI } from '@/store/interfaces/user'
 import Avatar from '@/components/Session/Users/Avatar'
 import InfoLine from '@/components/Session/Popups/InfoLine'
-import { ButtonsForAnother, ButtonsForSelf } from '@/components/Session/Popups/UserPopupButtons'
+import { ButtonsForAnother, ButtonsForSelf } from '@/components/Session/Popups/GameInfo/UserPopupButtons'
 
 interface UserPopupProps {
 	user?: userI

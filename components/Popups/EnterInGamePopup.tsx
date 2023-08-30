@@ -64,11 +64,7 @@ const EnterInGamePopup: FC = () => {
 									handleLoading(false)
 									return
 								}
-								const response = await addPlayerInSession(
-									id,
-									userData,
-									password
-								)
+								const response = await addPlayerInSession(id, userData, password)
 								if (!response) {
 									dispatch(
 										pushMiniPopupTexts({

@@ -1,12 +1,13 @@
 import { FC } from 'react'
 import style from './Chat.module.scss'
 import { cellI } from '@/store/interfaces/cell'
-import CellBlock from '@/components/Session/Cell/CellBlock'
-import ChatInput from '@/components/Session/Cell/Chat/ChatInput'
-import ChatTape from '@/components/Session/Cell/Chat/ChatTape'
-import SessionInfo from '@/components/Session/Cell/Chat/SessionInfo'
-import CompanyPopup from '@/components/Session/Popups/CompanyPopup'
-import UserPopup from "@/components/Session/Popups/UserPopup";
+import CellBlock from '@/components/Session/Cells/CellBlock'
+import ChatInput from '@/components/Session/Cells/GameChat/ChatInput'
+import ChatTape from '@/components/Session/Cells/GameChat/ChatTape'
+import SessionInfo from '@/components/Session/Cells/GameChat/SessionInfo'
+import CompanyPopup from '@/components/Session/Popups/GameInfo/CompanyPopup'
+import UserPopup from "@/components/Session/Popups/GameInfo/UserPopup";
+import MovePopup from "@/components/Session/Popups/GameActions/MovePopup";
 
 interface Props {
 	data: cellI
@@ -28,6 +29,7 @@ const Chat: FC<Props> = props => {
 					<SessionInfo />
 					<CompanyPopup />
 					<UserPopup />
+					<MovePopup />
 				</div>
 			</CellBlock>
 		)

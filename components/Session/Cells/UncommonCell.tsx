@@ -1,10 +1,10 @@
 'use client'
 
 import { FC, memo } from 'react'
-import CellBlock from '@/components/Session/Cell/CellBlock'
+import CellBlock from '@/components/Session/Cells/CellBlock'
 import Image from 'next/image'
-import style from '@/components/Session/Cell/Cell.module.scss'
-import CellPrice from '@/components/Session/Cell/CellPrice'
+import style from '@/components/Session/Cells/Cell.module.scss'
+import CellPrice from '@/components/Session/Cells/CellPrice'
 import { cellI } from '@/store/interfaces/cell'
 import FieldOfChips from '@/components/Session/Chip/FieldOfChips'
 import { useAppDispatch } from '@/store/index'

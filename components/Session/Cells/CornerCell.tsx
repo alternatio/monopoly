@@ -1,5 +1,5 @@
 import { FC, memo } from 'react'
-import CellBlock from '@/components/Session/Cell/CellBlock'
+import CellBlock from '@/components/Session/Cells/CellBlock'
 import { cellI } from '@/store/interfaces/cell'
 import FieldOfChips from '@/components/Session/Chip/FieldOfChips'
 

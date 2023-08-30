@@ -13,15 +13,9 @@ const CompanyPopupBody: FC<CompanyPopupBodyProps> = ({ company }) => {
 	return (
 		<>
 			<div className={style.companyTop}>
-				<Image
-					className={style.companyImage}
-					src={company?.image}
-					alt={'company image'}
-				/>
+				<Image className={style.companyImage} src={company?.image} alt={'company image'} />
 				{/*<span className={style.companyName}>{company.name}</span>*/}
-				<span
-					className={style.companyGroup}
-					style={{ color: company.group?.colorHex }}>
+				<span className={style.companyGroup} style={{ color: company.group?.colorHex }}>
 					{company.group?.companyGroupNameRus}
 				</span>
 				<span className={style.companyDescription}>{company.description}</span>
@@ -29,17 +23,15 @@ const CompanyPopupBody: FC<CompanyPopupBodyProps> = ({ company }) => {
 			<div className={style.companyInfo}>
 				<InfoLine value={`${company.cost}¥`}>Стоимость поля</InfoLine>
 				{company.type === 'common' ? (
-					<InfoLine value={`${company.branchCost}¥`}>
-						Стоимость филиала
-					</InfoLine>
+					<InfoLine value={`${company.branchCost}¥`}>Стоимость филиала</InfoLine>
 				) : null}
 				{company.type === 'common' && company?.rents?.length
 					? company.rents.map((rent, index) => {
 							if (index) {
 								return (
-									<InfoLine value={`${rent}¥`}>
-										{Array.from({ length: index }).map(() => {
-											return <Image src={starIcon} alt={'star'} />
+									<InfoLine key={index} value={`${rent}¥`}>
+										{Array.from({ length: index }).map((_, index) => {
+											return <Image key={index} src={starIcon} alt={'star'} />
 										})}
 									</InfoLine>
 								)

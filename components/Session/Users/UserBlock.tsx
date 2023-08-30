@@ -29,9 +29,7 @@ const UserBlock: FC<UserBlockI> = props => {
 			props.sessionData?.playerTurn !== undefined &&
 			props.sessionData.players?.length !== undefined
 		) {
-			playerIndex === props.sessionData.playerTurn
-				? handleHisTurn(true)
-				: handleHisTurn(false)
+			playerIndex === props.sessionData.playerTurn ? handleHisTurn(true) : handleHisTurn(false)
 		}
 	}, [props])
 
@@ -50,9 +48,7 @@ const UserBlock: FC<UserBlockI> = props => {
 				{props.userData?.name && props.userGameData && (
 					<div className={style.nameWithColor}>
 						<span className={style.name}>{props.userData.name}</span>|
-						<span className={style.color}>
-							{props.userGameData.color.title}
-						</span>
+						<span className={style.color}>{props.userGameData.color.title}</span>
 					</div>
 				)}
 				{props.userGameData && (

@@ -3,12 +3,12 @@
 import { FC, memo, useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store/index'
 import { AnimatePresence, motion } from 'framer-motion'
-import style from './Popups.module.scss'
+import style from '../Popups.module.scss'
 import { commonAnimations, getSpringTransition } from '@/lib/animations'
 import { sessionPopupV } from '@/components/Session/Popups/variants'
 import { useOnClickOutside } from '@/lib/hooks/useOnClickOutside'
 import { setUserPopup } from '@/store/reducers/session'
-import UserPopupBody from '@/components/Session/Popups/UserPopupBody'
+import UserPopupBody from '@/components/Session/Popups/GameInfo/UserPopupBody'
 import Loader from '@/ui/Loader/Loader'
 
 const UserPopup: FC = () => {

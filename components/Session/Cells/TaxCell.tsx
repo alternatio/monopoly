@@ -1,21 +1,21 @@
 import { FC, memo } from 'react'
-import { cellI } from '@/store/interfaces/cell'
-import CellBlock from '@/components/Session/Cell/CellBlock'
-import Image from "next/image";
-import style from "@/components/Session/Cell/Cell.module.scss";
+import CellBlock from '@/components/Session/Cells/CellBlock'
+import Image from 'next/image'
+import style from '@/components/Session/Cells/Cell.module.scss'
+import {cellI} from "@/store/interfaces/cell";
 import FieldOfChips from "@/components/Session/Chip/FieldOfChips";
 
 interface Props {
 	data: cellI
 }
 
-const ChanceCell: FC<Props> = props => {
-	if (props.data.data?.type === 'chance') {
+const TaxCell: FC<Props> = props => {
+	if (props.data.data?.type === 'tax') {
 		return (
 			<CellBlock cell={props.data}>
 				<div className={style.cellImageWrapper}>
 					<Image
-						className={style.cellTaxImage}
+						className={style.cellImage}
 						data-rotated={
 							props.data.data.direction === 'top' ||
 							props.data.data.direction === 'bottom'
@@ -32,4 +32,4 @@ const ChanceCell: FC<Props> = props => {
 	} else return null
 }
 
-export default memo(ChanceCell)
+export default memo(TaxCell)

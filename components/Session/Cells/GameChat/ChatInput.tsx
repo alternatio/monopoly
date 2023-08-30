@@ -40,7 +40,7 @@ const ChatInput: FC = () => {
 			)
 			return
 		}
-		pushMessage(sessionData.id, {
+		pushMessage(sessionData, {
 			author: userData.gameData.name,
 			color: userData.gameData.color.hex,
 			body: textMessage,

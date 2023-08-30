@@ -2,7 +2,7 @@
 
 import { FC, useEffect, useRef } from 'react'
 import style from './Field.module.scss'
-import Cell from '@/components/Session/Cell/Cell'
+import Cell from '@/components/Session/Cells/Cell'
 import { generateCells } from '@/store/data/cells'
 import { useAppDispatch, useAppSelector } from '@/store/index'
 import { setCells, setMaxMoves } from '@/store/reducers/session'
