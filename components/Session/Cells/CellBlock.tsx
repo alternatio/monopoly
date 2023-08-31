@@ -14,7 +14,11 @@ const CellBlock: FC<CellBlockI> = props => {
 
 	return (
 		<div
-			style={{ cursor: correctCellType ? 'pointer' : 'auto', ...getCommonStylesPosition(props.cell), ...props.styles }}
+			style={{
+				cursor: correctCellType ? 'pointer' : 'auto',
+				...getCommonStylesPosition(props.cell),
+				...props.styles,
+			}}
 			className={`${style.cell} ${correctCellType ? style.pointerCell : ''}`}
 			onClick={props.onClick}>
 			<div className={style.cellData}>{props.children}</div>

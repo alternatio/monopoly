@@ -16,6 +16,7 @@ import { pushMiniPopupTexts } from '@/store/reducers/popups'
 import { setSessionDataStore } from '@/store/reducers/session'
 import { setUserGameData } from '@/store/reducers/user'
 import Head from 'next/head'
+import Filter from "./Filter";
 
 const SessionPage: FC = () => {
 	const miniPopupTexts = useAppSelector(state => state.popups.miniPopupTexts)
@@ -29,10 +30,8 @@ const SessionPage: FC = () => {
 			const data = doc.data() as Partial<sessionI> | undefined
 			if (data) {
 				dispatch(setSessionDataStore(data))
-				const player = data.players?.find(
-					player => player.data?.email === userData?.email
-				)
-				console.log(player, userData)
+				const player = data.players?.find(player => player.data?.email === userData?.email)
+				// console.log(player, userData)
 				if (player?.gameData) {
 					dispatch(setUserGameData(player.gameData))
 				}
@@ -71,6 +70,7 @@ const SessionPage: FC = () => {
 					</AnimatePresence>
 				</MiniPopups>
 			</SessionWrapper>
+			<Filter />
 		</>
 	)
 }

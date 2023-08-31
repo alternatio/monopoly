@@ -5,6 +5,7 @@ import { getInitialUserGameData, userDataI, userI } from '@/store/interfaces/use
 import { createUID } from '@/lib/commonFunctions'
 import { sessionI } from '@/store/interfaces/session'
 import { messageI } from '@/store/interfaces/message'
+import { diceResultI } from '@/store/interfaces/dice'
 
 // - - - main or initial functions - - -
 // get doc in firestore
@@ -95,7 +96,10 @@ export const pushMessage = async (
 ) => {
 	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
-	if (!preparedSessionData.id) return
+	if (!preparedSessionData.id) {
+		console.error('pushMessage error')
+		return
+	}
 	if (preparedSessionData.messages?.length) {
 		preparedSessionData.messages.push(message)
 	} else {
@@ -114,13 +118,22 @@ export const makeMove = async (
 ) => {
 	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
-	if (!preparedSessionData.players || !preparedSessionData.totalMoves || !preparedSessionData.id)
+	if (
+		!preparedSessionData.players ||
+		!(preparedSessionData.totalMoves !== undefined && preparedSessionData.totalMoves >= 0) ||
+		!preparedSessionData.id
+	) {
+		console.error('makeMove error')
 		return
+	}
 
 	const foundPlayerIndex = preparedSessionData?.players?.findIndex(
 		playerInSession => playerInSession?.data?.email === player.data?.email
 	)
-	if (foundPlayerIndex === undefined || foundPlayerIndex < 0) return
+	if (foundPlayerIndex === undefined || foundPlayerIndex < 0) {
+		console.error('makeMove error')
+		return
+	}
 
 	const playerToUpdate = preparedSessionData?.players[foundPlayerIndex]?.gameData
 	if (playerToUpdate && playerToUpdate.position) {
@@ -128,32 +141,24 @@ export const makeMove = async (
 		preparedSessionData.totalMoves += 1
 		if (!isLocal) await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
 		else return preparedSessionData
+	} else {
+		console.error('makeMove error')
+		return
 	}
-}
-
-// make a move and push message
-export const makeMoveAndPushMessage = async (
-	sessionData: Partial<sessionI>,
-	player: userI,
-	length: number
-) => {
-	const preparedSessionData = await makeMove(sessionData, player, length, true)
-	if (!preparedSessionData || !player.gameData?.name) return
-
-	const message: messageI = {
-		author: player.gameData?.name,
-		color: player.gameData.color.hex,
-		body: `Выпало ${length}, это ${preparedSessionData.totalMoves} общий ход`,
-	}
-	await pushMessage(preparedSessionData, message)
 }
 
 // change turn player
 export const changeTurnPlayer = async (sessionData: Partial<sessionI>, isLocal?: boolean) => {
 	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
-	if (!preparedSessionData.players || !preparedSessionData.playerTurn || !preparedSessionData.id)
+	if (
+		!preparedSessionData.players ||
+		preparedSessionData.playerTurn === undefined ||
+		!preparedSessionData.id
+	) {
+		console.error('changeTurnPlayer error')
 		return
+	}
 
 	if (preparedSessionData.playerTurn < preparedSessionData.players.length - 1) {
 		preparedSessionData.playerTurn += 1
@@ -164,15 +169,36 @@ export const changeTurnPlayer = async (sessionData: Partial<sessionI>, isLocal?:
 	else return preparedSessionData
 }
 
-// make a move and change turn player
-export const makeMoveAndChangeTurnPlayer = async (
+// make a move and push message and check double
+export const makeMoveAndPushMessageAndCheckDouble = async (
 	sessionData: Partial<sessionI>,
 	player: userI,
-	length: number
+	diceResult: diceResultI
 ) => {
-	let preparedSessionData = await makeMove(sessionData, player, length, true)
-	if (!preparedSessionData) return
-	await changeTurnPlayer(preparedSessionData)
+	let preparedSessionData = await makeMove(sessionData, player, diceResult.totalResultOfDices, true)
+	if (!preparedSessionData || !player.gameData?.name) {
+		console.error('makeMoveAndPushMessage error')
+		return
+	}
+
+	const message: messageI = {
+		author: player.gameData?.name,
+		color: player.gameData.color.hex,
+		body: `Выпало ${length} (${diceResult.dicesResult.join(' — ')}), это ${
+			preparedSessionData.totalMoves
+		} общий ход. ${diceResult.double ? 'Ого, это дубль!' : ''}`,
+	}
+
+	if (!diceResult.double) {
+		preparedSessionData = await pushMessage(preparedSessionData, message, true)
+		if (!preparedSessionData || !player.gameData?.name) {
+			console.error('makeMoveAndPushMessage error')
+			return
+		}
+		await changeTurnPlayer(preparedSessionData)
+	} else {
+		await pushMessage(preparedSessionData, message)
+	}
 }
 // - - - - - -
 

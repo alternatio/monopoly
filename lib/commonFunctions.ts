@@ -2,20 +2,6 @@ export const random = (min: number, max: number) => {
 	return Math.round(Math.random() * (max - min) + min)
 }
 
-export const rollDice = () => {
-	let double = false
-	const diceOne = random(1, 6)
-	const diceTwo = random(1, 6)
-
-	if (diceOne == diceTwo) {
-		double = true
-	}
-
-	const totalMove = diceOne + diceTwo
-
-	return { double, totalMove, diceOne, diceTwo }
-}
-
 export const createUID = (length: number = 16) => {
 	const arrayOfASCII = [
 		[49, 57],

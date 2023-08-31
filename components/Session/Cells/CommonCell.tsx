@@ -22,24 +22,20 @@ const CommonCell: FC<Props> = props => {
 			<CellBlock
 				cell={props.data}
 				onClick={() =>
-					props.data.data.type === 'common' &&
-					setCompanyPopupHelper(dispatch, props.data.data)
+					props.data.data.type === 'common' && setCompanyPopupHelper(dispatch, props.data.data)
 				}>
 				<CellPrice data={props.data.data} />
 				<div className={style.cellImageWrapper}>
 					<Image
 						className={style.cellImage}
 						data-rotated={
-							props.data.data.direction === 'top' ||
-							props.data.data.direction === 'bottom'
+							props.data.data.direction === 'top' || props.data.data.direction === 'bottom'
 						}
 						src={props.data.data.image}
 						alt={'company'}
 					/>
 				</div>
-				{typeof props.data.index === 'number' ? (
-					<FieldOfChips index={props.data.index} />
-				) : null}
+				{typeof props.data.index === 'number' ? <FieldOfChips index={props.data.index} /> : null}
 			</CellBlock>
 		)
 	} else return null

@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { cellI, companyT } from '@/store/interfaces/cell'
 import { sessionI } from '@/store/interfaces/session'
-import { messageI } from '@/store/interfaces/message'
 import { userI } from '@/store/interfaces/user'
 
 export interface sessionReducerI {

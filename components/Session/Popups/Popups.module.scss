@@ -1,14 +1,14 @@
 .popup {
 	z-index: 10;
 	position: absolute;
-	top: 2rem;
+	bottom: 4rem;
 	right: 2rem;
 	background: var(--colorBlackD);
 	border: var(--colorStroke) solid 1px;
 	border-radius: 0.75rem;
 	backdrop-filter: blur(0.25rem);
 	min-width: 15rem;
-	max-width: 90%;
+	max-width: calc(100% - 4rem);
 
 	display: flex;
 	justify-content: center;

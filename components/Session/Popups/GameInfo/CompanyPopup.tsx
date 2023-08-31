@@ -18,13 +18,15 @@ const CompanyPopup: FC = () => {
 	const dispatch = useAppDispatch()
 
 	const ref = useRef<HTMLDivElement | null>(null)
-	useOnClickOutside(ref, () => dispatch(setCompanyPopup(null)))
+	useOnClickOutside(ref, () => {
+		dispatch(setCompanyPopup(null))
+	})
 
 	useEffect(() => {
 		handleLoading(true)
 		setTimeout(() => {
 			handleLoading(false)
-		}, 100)
+		}, 0)
 	}, [company])
 
 	return (

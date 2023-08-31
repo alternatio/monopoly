@@ -3,7 +3,7 @@ import { RefObject, useEffect } from 'react'
 export const useOnClickOutside = (
 	ref: RefObject<HTMLElement | null>,
 	handler: () => void,
-	mouseEvent: 'mousedown' | 'mouseup' = 'mousedown'
+	mouseEvent: 'mousedown' | 'mouseup' = 'mouseup'
 ): void => {
 	useEffect(() => {
 		const handleClickOutside = (event: UIEvent): void => {
@@ -15,7 +15,7 @@ export const useOnClickOutside = (
 
 		document.addEventListener(mouseEvent, handleClickOutside)
 		return () => {
-			document.removeEventListener('mousedown', handleClickOutside)
+			document.removeEventListener('mouseup', handleClickOutside)
 		}
 	}, [ref])
 }
