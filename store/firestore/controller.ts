@@ -195,7 +195,7 @@ export const makeMoveAndPushMessageAndCheckDouble = async (
 			console.error('makeMoveAndPushMessage error')
 			return
 		}
-		// await changeTurnPlayer(preparedSessionData)
+		await changeTurnPlayer(preparedSessionData)
 	} else {
 		await pushMessage(preparedSessionData, message)
 	}
