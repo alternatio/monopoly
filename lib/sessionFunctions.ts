@@ -19,7 +19,7 @@ export const rollDice = (quantityOfDices: number = 2, maxDiceResult: number = 6)
 	})
 	dicesResult.map(value => (totalResultOfDices += value))
 
-	const double = new Set(dicesResult).size === 0
+	const double = new Set(dicesResult).size === 1
 
 	return { totalResultOfDices, double, dicesResult }
 }

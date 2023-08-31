@@ -184,7 +184,7 @@ export const makeMoveAndPushMessageAndCheckDouble = async (
 	const message: messageI = {
 		author: player.gameData?.name,
 		color: player.gameData.color.hex,
-		body: `Выпало ${length} (${diceResult.dicesResult.join(' — ')}), это ${
+		body: `Выпало ${diceResult.totalResultOfDices} (${diceResult.dicesResult.join(' — ')}), это ${
 			preparedSessionData.totalMoves
 		} общий ход. ${diceResult.double ? 'Ого, это дубль!' : ''}`,
 	}
@@ -195,7 +195,7 @@ export const makeMoveAndPushMessageAndCheckDouble = async (
 			console.error('makeMoveAndPushMessage error')
 			return
 		}
-		await changeTurnPlayer(preparedSessionData)
+		// await changeTurnPlayer(preparedSessionData)
 	} else {
 		await pushMessage(preparedSessionData, message)
 	}
