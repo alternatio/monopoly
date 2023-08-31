@@ -1,4 +1,4 @@
-import { FC, memo } from 'react'
+import {CSSProperties, FC, memo} from 'react'
 import style from './Chat.module.scss'
 import { messageI } from '@/store/interfaces/message'
 
@@ -7,9 +7,16 @@ interface MessageProps {
 }
 
 const Message: FC<MessageProps> = ({ message }) => {
+	const systemStyles: CSSProperties = {
+		background: message.color,
+		color: 'var(--colorBlack)',
+		borderRadius: '0.25rem',
+		padding: '.2rem',
+	}
+
 	return (
 		<div className={style.message}>
-			<span className={style.messageAuthor} style={{ color: message.color }}>
+			<span className={style.messageAuthor} style={message.system ? systemStyles :{ color: message.color }}>
 				{message.author}:
 			</span>
 			<span className={style.messageBody}>{message.body}</span>

@@ -187,6 +187,7 @@ export const makeMoveAndPushMessageAndCheckDouble = async (
 		body: `Выпало ${diceResult.totalResultOfDices} (${diceResult.dicesResult.join(' — ')}), это ${
 			preparedSessionData.totalMoves
 		} общий ход. ${diceResult.double ? 'Ого, это дубль!' : ''}`,
+		system: true,
 	}
 
 	if (!diceResult.double) {

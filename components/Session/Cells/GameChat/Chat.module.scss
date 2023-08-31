@@ -95,10 +95,12 @@
   font-weight: 700;
   font-size: 0.8rem;
   line-height: 110%;
+  white-space: nowrap;
 }
 
 .messageBody {
   text-align: justify;
+  text-wrap: balance;
   font-size: 0.8rem;
   line-height: 110%;
   font-weight: 400;
