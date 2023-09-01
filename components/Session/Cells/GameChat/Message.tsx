@@ -10,8 +10,7 @@ const Message: FC<MessageProps> = ({ message }) => {
 	const systemStyles: CSSProperties = {
 		background: message.color,
 		color: 'var(--colorBlack)',
-		borderRadius: '0.25rem',
-		padding: '.2rem',
+		borderRadius: '0.25rem'
 	}
 
 	return (

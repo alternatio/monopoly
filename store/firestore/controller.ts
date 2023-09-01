@@ -46,6 +46,7 @@ export const createSession = async (owner: userDataI, maxPlayers: number, passwo
 			messages: [],
 			playerTurn: 0,
 			totalMoves: 0,
+			playerCanAct: false,
 		}
 
 		await setItemInFirestore('sessions', id, sessionData)
@@ -165,41 +166,53 @@ export const changeTurnPlayer = async (sessionData: Partial<sessionI>, isLocal?:
 	} else {
 		preparedSessionData.playerTurn = 0
 	}
+	preparedSessionData.playerCanAct = false
 	if (!isLocal) await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
 	else return preparedSessionData
 }
 
-// make a move and push message and check double
-export const makeMoveAndPushMessageAndCheckDouble = async (
+// make a move (or / and) push message (or / and) change turn player or other
+interface functionalI {
+	pushMessage?: true
+	changePlayerTurn?: true
+}
+
+export const makeMoveFunctional = async (
 	sessionData: Partial<sessionI>,
 	player: userI,
-	diceResult: diceResultI
+	diceResult: diceResultI,
+	functional: functionalI,
+	onComplete?: () => void
 ) => {
+	const consoleError = () => console.error('makeMoveAndPushMessage error')
 	let preparedSessionData = await makeMove(sessionData, player, diceResult.totalResultOfDices, true)
-	if (!preparedSessionData || !player.gameData?.name) {
-		console.error('makeMoveAndPushMessage error')
-		return
-	}
 
-	const message: messageI = {
-		author: player.gameData?.name,
-		color: player.gameData.color.hex,
-		body: `Выпало ${diceResult.totalResultOfDices} (${diceResult.dicesResult.join(' — ')}), это ${
-			preparedSessionData.totalMoves
-		} общий ход. ${diceResult.double ? 'Ого, это дубль!' : ''}`,
-		system: true,
-	}
-
-	if (!diceResult.double) {
-		preparedSessionData = await pushMessage(preparedSessionData, message, true)
-		if (!preparedSessionData || !player.gameData?.name) {
-			console.error('makeMoveAndPushMessage error')
-			return
+	// push system message
+	if (functional.pushMessage) {
+		if (!preparedSessionData || !player.gameData?.name) return consoleError()
+		const message: messageI = {
+			author: player.gameData?.name,
+			color: player.gameData.color.hex,
+			body: `Выпало ${diceResult.totalResultOfDices} (${diceResult.dicesResult.join(' — ')}), это ${
+				preparedSessionData.totalMoves
+			} общий ход. ${diceResult.double ? 'Ого, это дубль!' : ''}`,
+			system: true,
 		}
-		await changeTurnPlayer(preparedSessionData)
-	} else {
-		await pushMessage(preparedSessionData, message)
+		preparedSessionData = await pushMessage(preparedSessionData, message, true)
 	}
+
+	// change player turn
+	if (functional.changePlayerTurn) {
+		if (!preparedSessionData) return consoleError()
+		preparedSessionData = await changeTurnPlayer(preparedSessionData, true)
+	}
+
+	// output
+	if (!preparedSessionData?.id) return consoleError()
+	if (!functional.changePlayerTurn) preparedSessionData.playerCanAct = true
+	await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
+	onComplete && onComplete()
+	return true
 }
 // - - - - - -
 

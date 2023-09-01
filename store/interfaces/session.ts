@@ -13,4 +13,5 @@ export interface sessionI {
 	messages: messageI[]
 	playerTurn: number
 	totalMoves: number
+	playerCanAct: boolean
 }

@@ -3,10 +3,10 @@
 	position: absolute;
 	bottom: 4rem;
 	right: 2rem;
-	background: var(--colorBlackD);
+	background: var(--colorBlack8);
 	border: var(--colorStroke) solid 1px;
 	border-radius: 0.75rem;
-	backdrop-filter: blur(0.25rem);
+	backdrop-filter: blur(0.5rem);
 	min-width: 15rem;
 	max-width: calc(100% - 4rem);
 
