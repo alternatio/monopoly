@@ -1,16 +1,18 @@
+'use client'
+
 import { FC, memo } from 'react'
 import popupStyle from '../Popups.module.scss'
 import style from './GameActions.module.scss'
 import Button from '@/ui/Button/Button'
 import { checkCurrentPlayer } from '@/lib/sessionFunctions'
-import {useAppDispatch, useAppSelector} from '@/store/index'
+import { useAppSelector } from '@/store/index'
 import { changeTurnPlayer } from '@/store/firestore/controller'
 
 const ActionPopup: FC = () => {
 	const sessionData = useAppSelector(state => state.session.sessionDataStore)
 	const currentPlayer = useAppSelector(state => state.user)
-	const dispatch = useAppDispatch()
 
+	if (sessionData?.players?.length !== sessionData?.maxPlayers) return null
 	if (!sessionData || !checkCurrentPlayer(sessionData, currentPlayer)) return null
 	if (!sessionData?.playerCanAct) return null
 

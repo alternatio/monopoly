@@ -14,6 +14,7 @@ import Loader from '@/ui/Loader/Loader'
 const UserPopup: FC = () => {
 	const currentUser = useAppSelector(state => state.user)
 	const user = useAppSelector(state => state.session.userPopup)
+	const sessionData = useAppSelector(state => state.session.sessionDataStore)
 	const [loading, handleLoading] = useState<boolean>(false)
 	const ref = useRef<HTMLDivElement | null>(null)
 
@@ -25,7 +26,7 @@ const UserPopup: FC = () => {
 		handleLoading(true)
 		setTimeout(() => {
 			handleLoading(false)
-		}, 100)
+		}, 0)
 	}, [user])
 
 	return (
@@ -39,7 +40,11 @@ const UserPopup: FC = () => {
 					// style={{ minHeight: '10rem' }}
 					// style={{ alignItems: 'center' }}
 					transition={getSpringTransition(40, 300, 0.15)}>
-					{loading ? <Loader /> : <UserPopupBody user={user} currentUser={currentUser} />}
+					{loading ? (
+						<Loader />
+					) : (
+						<UserPopupBody user={user} currentUser={currentUser} sessionData={sessionData} />
+					)}
 				</motion.div>
 			) : null}
 		</AnimatePresence>

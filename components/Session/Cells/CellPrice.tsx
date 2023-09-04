@@ -23,14 +23,8 @@ const getPosition = (data: CellPriceI['data']): CSSProperties => {
 			left: data.direction === 'right' ? 'calc(100% + .2rem)' : undefined,
 			top: data.direction === 'bottom' ? 'calc(100% + .2rem)' : undefined,
 
-			width:
-				data.direction === 'top' || data.direction === 'bottom'
-					? '100%'
-					: '1rem',
-			height:
-				data.direction === 'right' || data.direction === 'left'
-					? '100%'
-					: '1rem',
+			width: data.direction === 'top' || data.direction === 'bottom' ? '100%' : '1rem',
+			height: data.direction === 'right' || data.direction === 'left' ? '100%' : '1rem',
 		}
 	} else return {}
 }
@@ -39,9 +33,7 @@ const getRotation = (data: CellPriceI['data']): CSSProperties => {
 	if (data.type !== 'chat') {
 		return {
 			transform:
-				data.direction === 'right' || data.direction === 'left'
-					? 'rotate(90deg)'
-					: undefined,
+				data.direction === 'right' || data.direction === 'left' ? 'rotate(90deg)' : undefined,
 		}
 	} else return {}
 }

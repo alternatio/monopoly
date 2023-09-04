@@ -3,14 +3,21 @@ import style from './UserPopup.module.scss'
 import { userI } from '@/store/interfaces/user'
 import Avatar from '@/components/Session/Users/Avatar'
 import InfoLine from '@/components/Session/Popups/InfoLine'
-import { ButtonsForAnother, ButtonsForSelf } from '@/components/Session/Popups/GameInfo/UserPopupButtons'
+import {
+	ButtonsForAdmin,
+	ButtonsForAnother,
+	ButtonsForSelf,
+} from '@/components/Session/Popups/GameInfo/UserPopupButtons'
+import { sessionI } from '@/store/interfaces/session'
 
 interface UserPopupProps {
 	user?: userI
 	currentUser?: userI
+	sessionData?: Partial<sessionI>
 }
 
-const UserPopupBody: FC<UserPopupProps> = ({ user, currentUser }) => {
+const UserPopupBody: FC<UserPopupProps> = ({ user, currentUser, sessionData }) => {
+	console.log(sessionData?.owner?.uid, user?.data?.uid)
 	return (
 		<div className={style.userBody}>
 			<div className={style.userTop}>
@@ -39,7 +46,14 @@ const UserPopupBody: FC<UserPopupProps> = ({ user, currentUser }) => {
 			</div>
 			<div className={style.buttons}>
 				{currentUser?.data?.uid === user?.data?.uid ? <ButtonsForSelf /> : null}
-				{currentUser?.data?.uid !== user?.data?.uid ? <ButtonsForAnother /> : null}
+				{sessionData?.owner?.uid !== currentUser?.data?.uid &&
+				currentUser?.data?.uid !== user?.data?.uid ? (
+					<ButtonsForAnother />
+				) : null}
+				{sessionData?.owner?.uid === currentUser?.data?.uid &&
+				currentUser?.data?.uid !== user?.data?.uid ? (
+					<ButtonsForAdmin />
+				) : null}
 			</div>
 		</div>
 	)

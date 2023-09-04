@@ -14,4 +14,5 @@ export interface sessionI {
 	playerTurn: number
 	totalMoves: number
 	playerCanAct: boolean
+	isDouble: boolean
 }

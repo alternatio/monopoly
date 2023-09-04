@@ -1,64 +1,65 @@
-import {commonCompanyI, companyGroupI, companyT, uncommonCompanyI} from '@/store/interfaces/cell'
+import { commonCompanyI, companyGroupI, companyT, uncommonCompanyI } from '@/store/interfaces/cell'
 import { companiesImages } from '@/lib/importImage'
 
-export const companyGroups: companyGroupI[] = [
+type withoutIdCompanyGroupI = Omit<companyGroupI, 'id'>
+
+export const companyGroupsWithoutId: withoutIdCompanyGroupI[] = [
 	{
-		id: 0,
 		companyGroupNameEng: 'communication',
 		companyGroupNameRus: 'связь',
 		colorHex: '#FFBB00',
 	},
 	{
-		id: 1,
 		companyGroupNameEng: 'microelectronics',
 		companyGroupNameRus: 'микроэлектроника',
 		colorHex: '#44BB66',
 	},
 	{
-		id: 2,
 		companyGroupNameEng: 'oil industry',
 		companyGroupNameRus: 'нефтяная промышленность',
 		colorHex: '#F80833',
 	},
 	{
-		id: 3,
 		companyGroupNameEng: 'electronics',
 		companyGroupNameRus: 'электроника',
 		colorHex: '#08F8F8',
 	},
 	{
-		id: 4,
 		companyGroupNameEng: 'financial industry',
 		companyGroupNameRus: 'финансовая индустрия',
 		colorHex: '#8FFF00',
 	},
 	{
-		id: 5,
 		companyGroupNameEng: 'pharmaceuticals',
 		companyGroupNameRus: 'фармацевтика',
 		colorHex: '#DB00FF',
 	},
 	{
-		id: 6,
 		companyGroupNameEng: 'pharmaceuticals',
 		companyGroupNameRus: 'пищевая промышленность',
 		colorHex: '#FFFF00',
 	},
 	{
-		id: 7,
 		companyGroupNameEng: 'internet resource',
 		companyGroupNameRus: 'интернет ресурс',
 		colorHex: '#5555FF',
 	},
 	{
-		id: 8,
 		companyGroupNameEng: 'special',
 		companyGroupNameRus: 'специальный',
 		colorHex: '#FFFFFF',
 	},
 ]
+export const companyGroups: companyGroupI[] = companyGroupsWithoutId.map((companyGroup, index) => {
+	return {
+		id: index,
+		...companyGroup,
+	}
+})
 
-export const companies: companyT[] = [
+type withoutIdCompanyT = Omit<companyT, 'id'>
+
+const companiesWithoutId: withoutIdCompanyT[] = [
 	{
 		name: 'china mobile',
 		image: companiesImages.chinaMobileImage,
@@ -297,6 +298,13 @@ export const companies: companyT[] = [
 		cost: 2200,
 	},
 ]
+
+export const companies: companyT[] = companiesWithoutId.map((company, index) => {
+	return {
+		id: index,
+		...company,
+	}
+})
 
 const createBranchCost = (company: commonCompanyI) => {
 	return Math.ceil(company.cost / 1.8)

@@ -20,6 +20,7 @@ export interface companyGroupI {
 
 // company cells
 export interface companyBaseI extends baseCellI {
+  id: number
 	name: string
 	image: string
 	description: string
@@ -63,6 +64,6 @@ export type positionT = [number, number, number, number]
 export interface cellI {
 	data: companyT | innerCellsT | cornerI | chatI
 	position: positionT
-	// with possible moves
+	// ? with possible moves ?
 	index?: number
 }

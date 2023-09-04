@@ -7,7 +7,7 @@ import { sessionI } from '@/store/interfaces/session'
 import { messageI } from '@/store/interfaces/message'
 import { diceResultI } from '@/store/interfaces/dice'
 
-// - - - main or initial functions - - -
+// - - - MAIN OR INITIAL FUNCTIONS - - -
 // get doc in firestore
 export const getDocInFirestore = async (collectionName: string, docName: string) => {
 	return await getDoc(doc(db, collectionName, docName))
@@ -47,6 +47,7 @@ export const createSession = async (owner: userDataI, maxPlayers: number, passwo
 			playerTurn: 0,
 			totalMoves: 0,
 			playerCanAct: false,
+			isDouble: false,
 		}
 
 		await setItemInFirestore('sessions', id, sessionData)
@@ -88,7 +89,7 @@ export const addPlayerInSession = async (
 }
 // - - - - - -
 
-// - - - session functions - - -
+// - - - SESSION FUNCTIONS - - -
 // push message
 export const pushMessage = async (
 	sessionData: Partial<sessionI>,
@@ -129,7 +130,7 @@ export const makeMove = async (
 	}
 
 	const foundPlayerIndex = preparedSessionData?.players?.findIndex(
-		playerInSession => playerInSession?.data?.email === player.data?.email
+		playerInSession => playerInSession?.data?.uid === player.data?.uid
 	)
 	if (foundPlayerIndex === undefined || foundPlayerIndex < 0) {
 		console.error('makeMove error')
@@ -137,7 +138,7 @@ export const makeMove = async (
 	}
 
 	const playerToUpdate = preparedSessionData?.players[foundPlayerIndex]?.gameData
-	if (playerToUpdate && playerToUpdate.position) {
+	if (playerToUpdate && playerToUpdate.position !== undefined) {
 		playerToUpdate.position += length
 		preparedSessionData.totalMoves += 1
 		if (!isLocal) await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
@@ -209,14 +210,17 @@ export const makeMoveFunctional = async (
 
 	// output
 	if (!preparedSessionData?.id) return consoleError()
-	if (!functional.changePlayerTurn) preparedSessionData.playerCanAct = true
+	if (!functional.changePlayerTurn) {
+		preparedSessionData.playerCanAct = true
+		diceResult.double && (preparedSessionData.isDouble = true)
+	}
 	await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
 	onComplete && onComplete()
 	return true
 }
 // - - - - - -
 
-// - - - utility functions - - -
+// - - - UTILITY FUNCTIONS - - -
 // sign in app with Google
 export const signInWithGooglePopup = async (
 	setUserData: (userData: userDataI | undefined) => void

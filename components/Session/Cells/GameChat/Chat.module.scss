@@ -60,7 +60,7 @@
   height: 100%;
   width: calc(100% - 3rem);
   margin: 0 1.5rem 0;
-  padding-top: 4rem;
+  padding-top: 40%;
   padding-bottom: 4rem;
   //background: var(--colorMedium);
   overflow-x: hidden;
@@ -110,7 +110,8 @@
 }
 
 .messageBody {
-  text-align: justify;
+  //text-align: justify;
+  text-align: left;
   text-wrap: balance;
   font-size: 0.8rem;
   line-height: 110%;

@@ -22,6 +22,7 @@ const ChanceCell: FC<Props> = props => {
 						}
 						src={props.data.data.image}
 						alt={'company'}
+						loading={'eager'}
 					/>
 				</div>
 				{typeof props.data.index === 'number' ? (

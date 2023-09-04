@@ -17,6 +17,8 @@ export interface userGameDataI {
 	color: userGameColorI
 	money: number
 	position: number
+	// TODO: доделать этот кал, чтобы работал!
+	companies: number[][]
 }
 
 export interface userI {
@@ -30,6 +32,7 @@ export const getInitialUserGameData = (user: userDataI, usersLength: number): us
 		color: usersGameColors[usersLength],
 		money: 17500,
 		position: 0,
+		companies: [],
 		// canAct: false
 	}
 }
