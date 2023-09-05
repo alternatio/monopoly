@@ -40,7 +40,7 @@ const UserPopupBody: FC<UserPopupProps> = ({ user, currentUser, sessionData }) =
 				<InfoLine infoClassname={style.infoParts} partClassname={style.infoPart} value={`25500 ¥`}>
 					Стоимость активов
 				</InfoLine>
-				<InfoLine infoClassname={style.infoParts} partClassname={style.infoPart} value={`5`}>
+				<InfoLine infoClassname={style.infoParts} partClassname={style.infoPart} value={`${user?.gameData?.companies.length}`}>
 					Количество компаний
 				</InfoLine>
 			</div>

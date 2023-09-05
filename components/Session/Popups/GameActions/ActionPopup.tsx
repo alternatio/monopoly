@@ -6,7 +6,7 @@ import style from './GameActions.module.scss'
 import Button from '@/ui/Button/Button'
 import { checkCurrentPlayer } from '@/lib/sessionFunctions'
 import { useAppSelector } from '@/store/index'
-import { changeTurnPlayer } from '@/store/firestore/controller'
+import {changeTurnPlayer} from '@/store/firestore/controller'
 
 const ActionPopup: FC = () => {
 	const sessionData = useAppSelector(state => state.session.sessionDataStore)
@@ -23,7 +23,7 @@ const ActionPopup: FC = () => {
 				onClick={async () => {
 					if (!sessionData) return
 					console.log('что-то делается')
-					await changeTurnPlayer(sessionData)
+					await changeTurnPlayer(sessionData, false, sessionData.isDouble)
 				}}
 				className={style.button}>
 				делать что-то

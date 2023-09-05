@@ -150,7 +150,11 @@ export const makeMove = async (
 }
 
 // change turn player
-export const changeTurnPlayer = async (sessionData: Partial<sessionI>, isLocal?: boolean) => {
+export const changeTurnPlayer = async (
+	sessionData: Partial<sessionI>,
+	isLocal?: boolean,
+	isDouble?: boolean
+) => {
 	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
 	if (
@@ -162,10 +166,12 @@ export const changeTurnPlayer = async (sessionData: Partial<sessionI>, isLocal?:
 		return
 	}
 
-	if (preparedSessionData.playerTurn < preparedSessionData.players.length - 1) {
-		preparedSessionData.playerTurn += 1
-	} else {
-		preparedSessionData.playerTurn = 0
+	if (!isDouble) {
+		if (preparedSessionData.playerTurn < preparedSessionData.players.length - 1) {
+			preparedSessionData.playerTurn += 1
+		} else {
+			preparedSessionData.playerTurn = 0
+		}
 	}
 	preparedSessionData.playerCanAct = false
 	if (!isLocal) await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
@@ -212,7 +218,9 @@ export const makeMoveFunctional = async (
 	if (!preparedSessionData?.id) return consoleError()
 	if (!functional.changePlayerTurn) {
 		preparedSessionData.playerCanAct = true
-		diceResult.double && (preparedSessionData.isDouble = true)
+		diceResult.double
+			? (preparedSessionData.isDouble = true)
+			: (preparedSessionData.isDouble = false)
 	}
 	await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
 	onComplete && onComplete()
