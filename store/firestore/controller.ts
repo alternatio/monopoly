@@ -226,6 +226,23 @@ export const makeMoveFunctional = async (
 	onComplete && onComplete()
 	return true
 }
+
+// kick player
+export const kickPlayer = async (sessionData: Partial<sessionI>, currentPlayer: userI) => {
+	const consoleError = () => console.error('kickPlayer error')
+	let preparedSessionData: Partial<sessionI> | undefined = JSON.parse(JSON.stringify(sessionData))
+
+	const playerIndex = preparedSessionData?.players?.findIndex(player => player.data?.uid === currentPlayer.data?.uid)
+	console.log(playerIndex, preparedSessionData?.players?.length)
+	if (playerIndex === undefined || playerIndex < 0 || !preparedSessionData?.players?.length) return consoleError()
+	if (preparedSessionData?.playerTurn === playerIndex) {
+		preparedSessionData = await changeTurnPlayer(preparedSessionData, true)
+	}
+	preparedSessionData?.players?.splice(playerIndex, 1)
+	if (!preparedSessionData?.id) return consoleError()
+	await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
+}
+
 // - - - - - -
 
 // - - - UTILITY FUNCTIONS - - -

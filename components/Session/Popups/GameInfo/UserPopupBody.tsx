@@ -10,7 +10,7 @@ import {
 } from '@/components/Session/Popups/GameInfo/UserPopupButtons'
 import { sessionI } from '@/store/interfaces/session'
 
-interface UserPopupProps {
+export interface UserPopupProps {
 	user?: userI
 	currentUser?: userI
 	sessionData?: Partial<sessionI>
@@ -40,7 +40,10 @@ const UserPopupBody: FC<UserPopupProps> = ({ user, currentUser, sessionData }) =
 				<InfoLine infoClassname={style.infoParts} partClassname={style.infoPart} value={`25500 ¥`}>
 					Стоимость активов
 				</InfoLine>
-				<InfoLine infoClassname={style.infoParts} partClassname={style.infoPart} value={`${user?.gameData?.companies.length}`}>
+				<InfoLine
+					infoClassname={style.infoParts}
+					partClassname={style.infoPart}
+					value={`${user?.gameData?.companies.length}`}>
 					Количество компаний
 				</InfoLine>
 			</div>
@@ -52,7 +55,7 @@ const UserPopupBody: FC<UserPopupProps> = ({ user, currentUser, sessionData }) =
 				) : null}
 				{sessionData?.owner?.uid === currentUser?.data?.uid &&
 				currentUser?.data?.uid !== user?.data?.uid ? (
-					<ButtonsForAdmin />
+					<ButtonsForAdmin sessionData={sessionData} currentUser={currentUser} user={user} />
 				) : null}
 			</div>
 		</div>
