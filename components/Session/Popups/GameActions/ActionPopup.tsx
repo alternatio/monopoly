@@ -7,14 +7,13 @@ import Button from '@/ui/Button/Button'
 import { checkCurrentPlayer } from '@/lib/sessionFunctions'
 import { useAppSelector } from '@/store/index'
 import {changeTurnPlayer} from '@/store/firestore/controller'
+import {actionPopupChecker} from "@/components/Session/Popups/GameActions/popupChecker";
 
 const ActionPopup: FC = () => {
 	const sessionData = useAppSelector(state => state.session.sessionDataStore)
 	const currentPlayer = useAppSelector(state => state.user)
 
-	if (sessionData?.players?.length !== sessionData?.maxPlayers) return null
-	if (!sessionData || !checkCurrentPlayer(sessionData, currentPlayer)) return null
-	if (!sessionData?.playerCanAct) return null
+	if (!actionPopupChecker(sessionData, currentPlayer)) return null
 
 	return (
 		<div className={`${popupStyle.popup} ${style.popup}`}>

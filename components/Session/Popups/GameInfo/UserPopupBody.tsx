@@ -17,7 +17,6 @@ export interface UserPopupProps {
 }
 
 const UserPopupBody: FC<UserPopupProps> = ({ user, currentUser, sessionData }) => {
-	console.log(sessionData?.owner?.uid, user?.data?.uid)
 	return (
 		<div className={style.userBody}>
 			<div className={style.userTop}>

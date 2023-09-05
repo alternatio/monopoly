@@ -7,16 +7,13 @@ import { useAppSelector } from '@/store/index'
 import Button from '@/ui/Button/Button'
 import { makeMoveFunctional } from '@/store/firestore/controller'
 import {checkCurrentPlayer, rollDice} from '@/lib/sessionFunctions'
+import {movePopupChecker} from "@/components/Session/Popups/GameActions/popupChecker";
 
 const MovePopup: FC = () => {
 	const sessionData = useAppSelector(state => state.session.sessionDataStore)
 	const currentPlayer = useAppSelector(state => state.user)
 
-	if (sessionData?.players?.length !== sessionData?.maxPlayers) return null
-	if (!sessionData || !checkCurrentPlayer(sessionData, currentPlayer)) return null
-	if (sessionData?.playerCanAct) return null
-
-	// currentPlayer
+	if (!movePopupChecker(sessionData, currentPlayer)) return null
 
 	return (
 		<div className={`${popupStyle.popup} ${style.popup}`}>
