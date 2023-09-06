@@ -10,10 +10,10 @@ import {checkCurrentPlayer, rollDice} from '@/lib/sessionFunctions'
 import {movePopupChecker} from "@/components/Session/Popups/GameActions/popupChecker";
 
 const MovePopup: FC = () => {
-	const sessionData = useAppSelector(state => state.session.sessionDataStore)
+	const sessionData = useAppSelector(state => state.session)
 	const currentPlayer = useAppSelector(state => state.user)
 
-	if (!movePopupChecker(sessionData, currentPlayer)) return null
+	if (!movePopupChecker(sessionData.sessionDataStore, currentPlayer)) return null
 
 	return (
 		<div className={`${popupStyle.popup} ${style.popup}`}>

@@ -37,6 +37,8 @@ export const actionPopupChecker = (
 export const awaitPopupChecker = (sessionData: Partial<sessionI> | undefined) => {
 	// check started session
 	if (sessionData?.totalMoves !== undefined && sessionData.totalMoves !== 0) return false
+	// check players
+	if (sessionData?.players?.length === sessionData?.maxPlayers) return false
 	// output
 	return true
 }

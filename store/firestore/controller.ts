@@ -6,6 +6,7 @@ import { createUID } from '@/lib/commonFunctions'
 import { sessionI } from '@/store/interfaces/session'
 import { messageI } from '@/store/interfaces/message'
 import { diceResultI } from '@/store/interfaces/dice'
+import {sessionReducerI} from "@/store/reducers/session";
 
 // - - - MAIN OR INITIAL FUNCTIONS - - -
 // get doc in firestore
@@ -185,24 +186,32 @@ interface functionalI {
 }
 
 export const makeMoveFunctional = async (
-	sessionData: Partial<sessionI>,
+	sessionData: Partial<sessionReducerI>,
 	player: userI,
 	diceResult: diceResultI,
 	functional: functionalI,
 	onComplete?: () => void
 ) => {
 	const consoleError = () => console.error('makeMoveAndPushMessage error')
-	let preparedSessionData = await makeMove(sessionData, player, diceResult.totalResultOfDices, true)
+	if (!sessionData.sessionDataStore) return consoleError()
+	let preparedSessionData = await makeMove(sessionData.sessionDataStore, player, diceResult.totalResultOfDices, true)
 
 	// push system message
 	if (functional.pushMessage) {
-		if (!preparedSessionData || !player.gameData?.name) return consoleError()
+		// TODO: доделать этот кал, чтобы нормально было, сообщения чтобы читались людьми
+		if (!preparedSessionData || !player.gameData?.name || !sessionData.cells) return consoleError()
+		const body = `
+			Выпало ${diceResult.totalResultOfDices} (${diceResult.dicesResult.join(' + ')}), это ${
+			preparedSessionData.totalMoves
+		} общий ход. ${diceResult.double ? 'Ого, это дубль!' : ''} В итоге ${
+			player.data?.name
+		} попадает на поле ${sessionData.cells[player.gameData.position + diceResult.totalResultOfDices].data.type}
+		`
+
 		const message: messageI = {
 			author: player.gameData?.name,
 			color: player.gameData.color.hex,
-			body: `Выпало ${diceResult.totalResultOfDices} (${diceResult.dicesResult.join(' — ')}), это ${
-				preparedSessionData.totalMoves
-			} общий ход. ${diceResult.double ? 'Ого, это дубль!' : ''}`,
+			body,
 			system: true,
 		}
 		preparedSessionData = await pushMessage(preparedSessionData, message, true)
@@ -232,9 +241,12 @@ export const kickPlayer = async (sessionData: Partial<sessionI>, currentPlayer: 
 	const consoleError = () => console.error('kickPlayer error')
 	let preparedSessionData: Partial<sessionI> | undefined = JSON.parse(JSON.stringify(sessionData))
 
-	const playerIndex = preparedSessionData?.players?.findIndex(player => player.data?.uid === currentPlayer.data?.uid)
+	const playerIndex = preparedSessionData?.players?.findIndex(
+		player => player.data?.uid === currentPlayer.data?.uid
+	)
 	console.log(playerIndex, preparedSessionData?.players?.length)
-	if (playerIndex === undefined || playerIndex < 0 || !preparedSessionData?.players?.length) return consoleError()
+	if (playerIndex === undefined || playerIndex < 0 || !preparedSessionData?.players?.length)
+		return consoleError()
 	if (preparedSessionData?.playerTurn === playerIndex) {
 		preparedSessionData = await changeTurnPlayer(preparedSessionData, true)
 	}
