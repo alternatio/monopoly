@@ -50,7 +50,7 @@ export interface taxI extends baseCellI {
 }
 export interface cornerI extends baseCellI {
 	type: 'corner'
-	text: string
+	extendType: 'prison' | 'policeman' | 'start' | 'dices'
 	image: string
 }
 export interface chatI extends cellWithOnlyType {

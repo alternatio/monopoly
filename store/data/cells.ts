@@ -1,34 +1,34 @@
-import {
-	baseCellI,
-	cellI,
-	chanceI,
-	cornerI,
-	positionT,
-	taxI,
-} from '@/store/interfaces/cell'
+import { baseCellI, cellI, chanceI, cornerI, positionT, taxI } from '@/store/interfaces/cell'
 import { generateFullCompaniesData } from '@/store/data/companies'
-import { chanceImage, taxImage } from '@/lib/importImage'
+import {
+	chanceImage,
+	dicesImage,
+	policemanImage,
+	prisonImage,
+	rocketImage,
+	taxImage,
+} from '@/lib/importImage'
 
 // common cells
 const startCell: cornerI = {
 	type: 'corner',
-	text: 'Старт',
-	image: '',
+	extendType: 'start',
+	image: rocketImage,
 }
 const prisonCell: cornerI = {
 	type: 'corner',
-	text: 'Тюрьма',
-	image: '',
+	extendType: 'prison',
+	image: prisonImage,
 }
 const diceCell: cornerI = {
 	type: 'corner',
-	text: 'Казино',
-	image: '',
+	extendType: 'dices',
+	image: dicesImage,
 }
 const policemanCell: cornerI = {
 	type: 'corner',
-	text: 'Милиция',
-	image: '',
+	extendType: 'policeman',
+	image: policemanImage,
 }
 const taxCell: taxI = {
 	type: 'tax',
@@ -45,18 +45,8 @@ export const generateCells = (
 	gridSize: [number, number] = [13, 13],
 	setMaxMoves?: (maxMoves: number) => void,
 	cellWidth: number = 2,
-	taxesPositions: [number[], number[], number[], number[]] = [
-		[5],
-		[1],
-		[7],
-		[1],
-	],
-	chancePositions: [number[], number[], number[], number[]] = [
-		[2, 7],
-		[6],
-		[1],
-		[3, 6],
-	]
+	taxesPositions: [number[], number[], number[], number[]] = [[5], [1], [7], [1]],
+	chancePositions: [number[], number[], number[], number[]] = [[2, 7], [6], [1], [3, 6]]
 ) => {
 	const cells: cellI[] = []
 	const companiesArray = [...generateFullCompaniesData()]

@@ -1,4 +1,4 @@
-import { commonCompanyI, companyGroupI, companyT, uncommonCompanyI } from '@/store/interfaces/cell'
+import { commonCompanyI, companyGroupI, companyT } from '@/store/interfaces/cell'
 import { companiesImages } from '@/lib/importImage'
 
 type withoutIdCompanyGroupI = Omit<companyGroupI, 'id'>

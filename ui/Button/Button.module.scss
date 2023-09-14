@@ -1,8 +1,6 @@
 .button {
 	padding: 0.3rem 0.75rem;
 	background: var(--colorWhite);
-	//background: var(--colorBlack8);
-	//color: var(--colorWhite);
 
 	display: flex;
 	align-items: center;
@@ -27,10 +25,9 @@
 		font-size: inherit;
 	}
 	&:hover {
-		background: var(--colorBlack8);
+		background: var(--colorBlack);
 		color: var(--colorWhite);
 		border: var(--colorWhite) solid 1px;
-
 		& * {
 			color: var(--colorWhite);
 		}
@@ -38,5 +35,50 @@
 	&:active {
 		transition: var(--transition) .1s;
 		transform: translateY(.2rem);
+	}
+}
+
+.button[data-buttonType='red'] {
+	background: var(--colorRed);
+	border: var(--colorWhite) solid 1px;
+	color: var(--colorWhite);
+
+	&:hover {
+		background: var(--colorWhite);
+		color: var(--colorRed);
+		border: var(--colorRed) solid 1px;
+		& * {
+			color: var(--colorRed);
+		}
+	}
+}
+
+.button[data-buttonType='green'] {
+	background: var(--colorGreen);
+	border: var(--colorWhite) solid 1px;
+	color: var(--colorWhite);
+
+	&:hover {
+		background: var(--colorWhite);
+		color: var(--colorGreen);
+		border: var(--colorGreen) solid 1px;
+		& * {
+			color: var(--colorGreen);
+		}
+	}
+}
+
+.button[data-buttonType='black'] {
+	background: var(--colorBlack);
+	border: var(--colorWhite) solid 1px;
+	color: var(--colorWhite);
+
+	&:hover {
+		background: var(--colorWhite);
+		color: var(--colorBlack);
+		border: var(--colorBlack) solid 1px;
+		& * {
+			color: var(--colorBlack);
+		}
 	}
 }

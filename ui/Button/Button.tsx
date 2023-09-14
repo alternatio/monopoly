@@ -1,19 +1,23 @@
-import { FC, memo, ReactNode } from 'react'
+import {CSSProperties, FC, memo, ReactNode} from 'react'
 import style from './Button.module.scss'
 import Loader from "@/ui/Loader/Loader";
 
-interface ButtonProps {
+export interface ButtonProps {
 	children?: ReactNode
 	className?: string
-	onClick?: CallableFunction
+	onClick?: () => void
 	isLoading?: boolean
+	style?: CSSProperties
+	type?: 'black' | 'red' | 'green'
 }
 
 const Button: FC<ButtonProps> = props => {
 	return (
 		<button
 			type={'button'}
-			onClick={() => props.onClick && props.onClick()}
+			onClick={props.onClick}
+			style={props.style}
+			data-buttonType={props.type}
 			className={`${style.button} ${props.className}`}>
 			{props.isLoading ? <Loader /> : props.children}
 		</button>
