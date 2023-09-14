@@ -61,7 +61,7 @@ type withoutIdCompanyT = Omit<companyT, 'id'>
 
 const companiesWithoutId: withoutIdCompanyT[] = [
 	{
-		name: 'china mobile',
+		name: 'China mobile',
 		image: companiesImages.chinaMobileImage,
 		description: '',
 		type: 'common',
@@ -73,7 +73,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		},
 	},
 	{
-		name: 'china telecom',
+		name: 'China telecom',
 		image: companiesImages.chinaTelecomImage,
 		description: '',
 		type: 'common',
@@ -82,7 +82,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 1800,
 	},
 	{
-		name: 'netflix',
+		name: 'Netflix',
 		image: companiesImages.netflixImage,
 		description: '',
 		type: 'uncommon',
@@ -91,7 +91,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 1900,
 	},
 	{
-		name: 'tencent',
+		name: 'Tencent',
 		image: companiesImages.tencentImage,
 		description: '',
 		type: 'common',
@@ -100,7 +100,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2100,
 	},
 	{
-		name: 'realtek',
+		name: 'Realtek',
 		image: companiesImages.realtekImage,
 		description: '',
 		type: 'common',
@@ -109,7 +109,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2300,
 	},
 	{
-		name: 'tsmcs',
+		name: 'TSMC',
 		image: companiesImages.tsmcsImage,
 		description: '',
 		type: 'common',
@@ -118,7 +118,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2400,
 	},
 	{
-		name: 'wanhua',
+		name: 'Wanhua',
 		image: companiesImages.wanhuaImage,
 		description: '',
 		type: 'common',
@@ -127,7 +127,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2100,
 	},
 	{
-		name: 'sinopec',
+		name: 'Sinopec',
 		image: companiesImages.sinopecImage,
 		description: '',
 		type: 'common',
@@ -136,7 +136,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2200,
 	},
 	{
-		name: 'petro china',
+		name: 'Petro China',
 		image: companiesImages.petroChinaImage,
 		description: '',
 		type: 'common',
@@ -145,7 +145,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2100,
 	},
 	{
-		name: 'adobe',
+		name: 'Adobe',
 		image: companiesImages.adobeImage,
 		description: '',
 		type: 'uncommon',
@@ -154,7 +154,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 1900,
 	},
 	{
-		name: 'lenovo',
+		name: 'Lenovo',
 		image: companiesImages.lenovoImage,
 		description: '',
 		type: 'common',
@@ -163,7 +163,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 1800,
 	},
 	{
-		name: 'xiaomi',
+		name: 'Xiaomi',
 		image: companiesImages.xiaomiImage,
 		description: '',
 		type: 'common',
@@ -172,7 +172,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 1900,
 	},
 	{
-		name: 'huawei',
+		name: 'Huawei',
 		image: companiesImages.huaweiImage,
 		description: '',
 		type: 'common',
@@ -181,7 +181,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 1800,
 	},
 	{
-		name: 'icbc',
+		name: 'ICBC',
 		image: companiesImages.icbcImage,
 		description: '',
 		type: 'common',
@@ -190,7 +190,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2600,
 	},
 	{
-		name: 'bank of china',
+		name: 'Bank of China',
 		image: companiesImages.bankOfChinaImage,
 		description: '',
 		type: 'common',
@@ -199,7 +199,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2700,
 	},
 	{
-		name: 'pingan',
+		name: 'Pingan',
 		image: companiesImages.pinganImage,
 		description: '',
 		type: 'common',
@@ -208,7 +208,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2300,
 	},
 	{
-		name: 'pepsico',
+		name: 'Pepsico',
 		image: companiesImages.pepsicoImage,
 		description: '',
 		type: 'uncommon',
@@ -217,7 +217,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 1900,
 	},
 	{
-		name: 'tiens',
+		name: 'Tiens',
 		image: companiesImages.tiensImage,
 		description: '',
 		type: 'common',
@@ -226,7 +226,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2300,
 	},
 	{
-		name: 'sinopharm',
+		name: 'Sinopharm',
 		image: companiesImages.sinopharmImage,
 		description: '',
 		type: 'common',
@@ -235,7 +235,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2300,
 	},
 	{
-		name: 'wiXi appTec',
+		name: 'WiXi AppTec',
 		image: companiesImages.wuXiAppTecImage,
 		description: '',
 		type: 'common',
@@ -244,7 +244,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2400,
 	},
 	{
-		name: 'whGroup',
+		name: 'WhGroup',
 		image: companiesImages.whGroupImage,
 		description: '',
 		type: 'common',
@@ -253,7 +253,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 1900,
 	},
 	{
-		name: 'haitian flavouring and food',
+		name: 'Haitian Flavouring and Food',
 		image: companiesImages.haitianFlavouringAndFoodImage,
 		description: '',
 		type: 'common',
@@ -262,7 +262,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 1900,
 	},
 	{
-		name: 'wuliangye Yibin',
+		name: 'Wuliangye Yibin',
 		image: companiesImages.wuliangyeYibinImage,
 		description: '',
 		type: 'common',
@@ -271,7 +271,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2000,
 	},
 	{
-		name: 'coca cola',
+		name: 'CocaCola',
 		image: companiesImages.cocaColaImage,
 		description: '',
 		type: 'uncommon',
@@ -280,7 +280,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 1900,
 	},
 	{
-		name: 'baidu',
+		name: 'Baidu',
 		image: companiesImages.baiduImage,
 		description: '',
 		type: 'common',
@@ -289,7 +289,7 @@ const companiesWithoutId: withoutIdCompanyT[] = [
 		cost: 2100,
 	},
 	{
-		name: 'alibaba',
+		name: 'Alibaba',
 		image: companiesImages.alibabaImage,
 		description: '',
 		type: 'common',

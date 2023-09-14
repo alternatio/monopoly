@@ -1,5 +1,5 @@
 import { companyT } from '@/store/interfaces/cell'
-import { setCompanyPopup } from '@/store/reducers/session'
+import { sessionReducerI, setCompanyPopup } from '@/store/reducers/session'
 import { random } from '@/lib/commonFunctions'
 import { diceResultI } from '@/store/interfaces/dice'
 import { sessionI } from '@/store/interfaces/session'
@@ -30,4 +30,16 @@ export const checkCurrentPlayer = (sessionData: Partial<sessionI>, currentPlayer
 		player => player.data?.uid === currentPlayer.data?.uid
 	)
 	return foundPlayerIndex === sessionData?.playerTurn
+}
+
+export const getCellName = (sessionData: Partial<sessionReducerI>, position: number) => {
+	if (sessionData.maxMoves === undefined || !sessionData.cells?.length) return
+	const indexOfCell = position % sessionData.maxMoves
+	const cell = sessionData.cells[indexOfCell]
+
+	if (cell.data.type === 'common' || cell.data.type === 'uncommon') return cell.data.name
+	else if (cell.data.type === 'tax') return 'Налог'
+	else if (cell.data.type === 'chance') return 'Шанс'
+	else if (cell.data.type === 'corner') return cell.data.text
+	else return '"Неизвестное_название_клетки"'
 }

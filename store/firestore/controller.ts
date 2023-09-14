@@ -6,7 +6,8 @@ import { createUID } from '@/lib/commonFunctions'
 import { sessionI } from '@/store/interfaces/session'
 import { messageI } from '@/store/interfaces/message'
 import { diceResultI } from '@/store/interfaces/dice'
-import {sessionReducerI} from "@/store/reducers/session";
+import { sessionReducerI } from '@/store/reducers/session'
+import { getCellName } from '@/lib/sessionFunctions'
 
 // - - - MAIN OR INITIAL FUNCTIONS - - -
 // get doc in firestore
@@ -194,19 +195,29 @@ export const makeMoveFunctional = async (
 ) => {
 	const consoleError = () => console.error('makeMoveAndPushMessage error')
 	if (!sessionData.sessionDataStore) return consoleError()
-	let preparedSessionData = await makeMove(sessionData.sessionDataStore, player, diceResult.totalResultOfDices, true)
+	let preparedSessionData = await makeMove(
+		sessionData.sessionDataStore,
+		player,
+		diceResult.totalResultOfDices,
+		true
+	)
 
 	// push system message
 	if (functional.pushMessage) {
 		// TODO: доделать этот кал, чтобы нормально было, сообщения чтобы читались людьми
 		if (!preparedSessionData || !player.gameData?.name || !sessionData.cells) return consoleError()
-		const body = `
-			Выпало ${diceResult.totalResultOfDices} (${diceResult.dicesResult.join(' + ')}), это ${
-			preparedSessionData.totalMoves
-		} общий ход. ${diceResult.double ? 'Ого, это дубль!' : ''} В итоге ${
-			player.data?.name
-		} попадает на поле ${sessionData.cells[player.gameData.position + diceResult.totalResultOfDices].data.type}
-		`
+
+		const texts = {
+			moves: `Выпало ${diceResult.totalResultOfDices} (${diceResult.dicesResult.join(' + ')})`,
+			totalMoves: `${preparedSessionData.totalMoves} общих ходов.`,
+			isDouble: `${diceResult.double ? 'Ого, это дубль!' : ''}`,
+			position: `В итоге ${player.data?.name} попадает на поле "${getCellName(
+				sessionData,
+				player.gameData.position + diceResult.totalResultOfDices
+			)}"`,
+		}
+
+		const body = `${texts.moves} ${texts.totalMoves} ${texts.isDouble} ${texts.position}`
 
 		const message: messageI = {
 			author: player.gameData?.name,

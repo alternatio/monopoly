@@ -12,22 +12,22 @@ import { chanceImage, taxImage } from '@/lib/importImage'
 // common cells
 const startCell: cornerI = {
 	type: 'corner',
-	text: 'startCell',
+	text: 'Старт',
 	image: '',
 }
 const prisonCell: cornerI = {
 	type: 'corner',
-	text: 'prisonCell',
+	text: 'Тюрьма',
 	image: '',
 }
 const diceCell: cornerI = {
 	type: 'corner',
-	text: 'diceCell',
+	text: 'Казино',
 	image: '',
 }
 const policemanCell: cornerI = {
 	type: 'corner',
-	text: 'policemanCell',
+	text: 'Милиция',
 	image: '',
 }
 const taxCell: taxI = {
