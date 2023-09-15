@@ -1,25 +1,29 @@
 import style from '../GameActions.module.scss'
 import Button, { ButtonProps } from '@/ui/Button/Button'
 import { FC, ReactNode } from 'react'
+import popupStyle from '../../Popups.module.scss'
 
 interface ActionChanceProps {
-	buttonText?: string
+	buttonsText?: string[]
 	children?: ReactNode
+	onClicks?: (() => void)[]
+	types?: ButtonProps['type'][]
 }
 
-const ActionChance: FC<ActionChanceProps & Pick<ButtonProps, 'type' | 'onClick'>> = ({
-	buttonText,
-	onClick,
-	children,
-	type,
-}) => {
+const ActionChance: FC<ActionChanceProps> = ({ buttonsText, onClicks, children, types }) => {
+	if (!onClicks?.length || !types?.length) return null
+
 	return (
-		<>
+		<div className={`${popupStyle.popup} ${style.popup}`}>
 			<p className={style.text}>{children}</p>
-			<Button onClick={onClick} className={style.button} type={type}>
-				{buttonText}
-			</Button>
-		</>
+			{buttonsText?.map((text, index) => {
+				return (
+					<Button onClick={onClicks[index]} className={style.button} type={types[index]}>
+						{text}
+					</Button>
+				)
+			})}
+		</div>
 	)
 }
 
