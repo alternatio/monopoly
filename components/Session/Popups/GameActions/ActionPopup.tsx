@@ -9,6 +9,7 @@ import ActionCell from '@/components/Session/Popups/GameActions/CellsActions/Act
 import Button from '@/ui/Button/Button'
 import { changeTurnPlayer } from '@/store/firestore/controller'
 import {getActionChance} from "@/components/Session/Popups/GameActions/CellsActions/actionFunctions";
+import {getPossibleMoneyText} from "@/components/Session/Popups/GameActions/CellsActions/chanceData";
 
 const ActionPopup: FC = () => {
 	const sessionData = useAppSelector(state => state.session)
@@ -43,7 +44,7 @@ const ActionPopup: FC = () => {
 	} else if (currentCell.data.type === 'chance') {
 		return (
 			<ActionCell onClicks={[() => getActionChance()]} buttonsText={['Ладно']} types={[undefined]}>
-				ого это шанс
+				{/*{getPossibleMoneyText()}*/}
 			</ActionCell>
 		)
 	}
