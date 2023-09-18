@@ -40,6 +40,6 @@ export const getCellName = (sessionData: Partial<sessionReducerI>, position: num
 	if (cell.data.type === 'common' || cell.data.type === 'uncommon') return cell.data.name
 	else if (cell.data.type === 'tax') return 'Налог'
 	else if (cell.data.type === 'chance') return 'Шанс'
-	else if (cell.data.type === 'corner') return cell.data.text
+	else if (cell.data.type === 'corner') return cell.data.extendType
 	else return '"Неизвестное_название_клетки"'
 }
