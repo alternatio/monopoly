@@ -7,6 +7,6 @@
 	"bracketSpacing": true,
 	"bracketSameLine": true,
 	"arrowParens": "avoid",
-	"printWidth": 100,
+	"printWidth": 130,
 	"useTabs": true
 }

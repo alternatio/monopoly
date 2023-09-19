@@ -8,17 +8,17 @@ import { actionPopupChecker } from '@/components/Session/Popups/GameActions/popu
 import ActionCell from '@/components/Session/Popups/GameActions/CellsActions/ActionCell'
 import Button from '@/ui/Button/Button'
 import { changeTurnPlayer } from '@/store/firestore/controller'
-import {getActionChance} from "@/components/Session/Popups/GameActions/CellsActions/actionFunctions";
-import {getPossibleMoneyText} from "@/components/Session/Popups/GameActions/CellsActions/chanceData";
+import { getActionChance } from '@/store/firestore/actionFunctions'
+import { getCurrentPlayerCell } from '@/lib/sessionFunctions'
 
 const ActionPopup: FC = () => {
 	const sessionData = useAppSelector(state => state.session)
 	const currentPlayer = useAppSelector(state => state.user)
 
 	if (!actionPopupChecker(sessionData.sessionDataStore, currentPlayer)) return null
-	if (!currentPlayer.gameData?.position) return null
-	const playerPosition = currentPlayer.gameData.position % sessionData.maxMoves
-	const currentCell = sessionData.cells[playerPosition]
+
+	const currentCell = getCurrentPlayerCell(sessionData, currentPlayer)?.currentCell
+	if (!currentCell) return null
 
 	// common companies or uncommon companies
 	if (currentCell.data.type === 'common') {
@@ -43,7 +43,14 @@ const ActionPopup: FC = () => {
 		)
 	} else if (currentCell.data.type === 'chance') {
 		return (
-			<ActionCell onClicks={[() => getActionChance()]} buttonsText={['Ладно']} types={[undefined]}>
+			<ActionCell
+				onClicks={[
+					() => {
+						// getActionChance()
+					},
+				]}
+				buttonsText={['Ладно']}
+				types={[undefined]}>
 				{/*{getPossibleMoneyText()}*/}
 			</ActionCell>
 		)

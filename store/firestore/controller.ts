@@ -204,7 +204,6 @@ export const makeMoveFunctional = async (
 
 	// push system message
 	if (functional.pushMessage) {
-		// TODO: доделать этот кал, чтобы нормально было, сообщения чтобы читались людьми
 		if (!preparedSessionData || !player.gameData?.name || !sessionData.cells) return consoleError()
 
 		const texts = {
@@ -227,6 +226,8 @@ export const makeMoveFunctional = async (
 		}
 		preparedSessionData = await pushMessage(preparedSessionData, message, true)
 	}
+
+	//
 
 	// change player turn
 	if (functional.changePlayerTurn) {

@@ -15,4 +15,5 @@ export interface sessionI {
 	totalMoves: number
 	playerCanAct: boolean
 	isDouble: boolean
+	// latestAction: chanceMo
 }
