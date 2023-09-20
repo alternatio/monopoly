@@ -4,7 +4,7 @@ import { random } from '@/lib/commonFunctions'
 import { diceResultI } from '@/store/interfaces/dice'
 import { sessionI } from '@/store/interfaces/session'
 import { userI } from '@/store/interfaces/user'
-import { dataOfFunctionI } from '@/store/firestore/actionFunctions'
+import { dataOfFunctionI, getActionChance } from '@/store/firestore/actionFunctions'
 
 export const setCompanyPopupHelper = (
 	dispatch: Function,
@@ -20,7 +20,7 @@ export const rollDice = (quantityOfDices: number = 2, maxDiceResult: number = 6)
 	const dicesResult = Array.from({ length: quantityOfDices }).map(() => {
 		return random(1, maxDiceResult)
 	})
-	dicesResult.map(value => (totalResultOfDices += value))
+	dicesResult.forEach(value => (totalResultOfDices += value))
 
 	const double = new Set(dicesResult).size === 1
 	return { totalResultOfDices, double, dicesResult }
@@ -53,6 +53,8 @@ export const getCurrentPlayerCell = (sessionData: sessionReducerI, currentPlayer
 	const playerPosition = currentPlayer.gameData.position % sessionData.maxMoves
 	const currentCell = sessionData.cells[playerPosition]
 
+	console.log('getCurrentPlayerCell', currentCell.data.type)
+
 	return {
 		playerPosition,
 		currentCell,
@@ -60,41 +62,62 @@ export const getCurrentPlayerCell = (sessionData: sessionReducerI, currentPlayer
 }
 
 // action helper
-interface getTypeActionObjectOfFunctionsI {
-	onCommon?: (data: dataOfFunctionI) => sessionReducerI | null
-	onUncommon?: (data: dataOfFunctionI) => sessionReducerI | null
-	onTax?: (data: dataOfFunctionI) => sessionReducerI | null
-	onChance?: (data: dataOfFunctionI) => sessionReducerI | null
+export interface actionObjectOfFunctionReturnObjectI {
+	sessionData: sessionReducerI
+	changedTurnPlayer: boolean
+}
+export type actionObjectOfFunctionReturnI = Promise<actionObjectOfFunctionReturnObjectI | void>
+
+interface actionObjectOfFunctionsI {
+	onCommon?: (data: dataOfFunctionI) => actionObjectOfFunctionReturnI
+	onUncommon?: (data: dataOfFunctionI) => actionObjectOfFunctionReturnI
+	onTax?: (data: dataOfFunctionI) => actionObjectOfFunctionReturnI
+	onChance?: (data: dataOfFunctionI) => actionObjectOfFunctionReturnI
 	// corners
-	onPrison?: (data: dataOfFunctionI) => sessionReducerI | null
-	onPoliceman?: (data: dataOfFunctionI) => sessionReducerI | null
-	onStart?: (data: dataOfFunctionI) => sessionReducerI | null
-	onDices?: (data: dataOfFunctionI) => sessionReducerI | null
+	onPrison?: (data: dataOfFunctionI) => actionObjectOfFunctionReturnI
+	onPoliceman?: (data: dataOfFunctionI) => actionObjectOfFunctionReturnI
+	onStart?: (data: dataOfFunctionI) => actionObjectOfFunctionReturnI
+	onDices?: (data: dataOfFunctionI) => actionObjectOfFunctionReturnI
 }
 
 export const actionHelper = (
 	sessionData: sessionReducerI,
 	currentPlayer: userI,
-	objectOfFunctions: getTypeActionObjectOfFunctionsI
+	objectOfFunctions: actionObjectOfFunctionsI
 ) => {
 	const currentPlayerCell = getCurrentPlayerCell(sessionData, currentPlayer)
-	if (!currentPlayerCell) return false
-	const data = currentPlayerCell.currentCell.data
+	if (!currentPlayerCell) return console.error('actionHelper error')
+	const cell = currentPlayerCell.currentCell.data
 
 	const functionData: dataOfFunctionI = {
 		sessionData,
 		currentPlayer,
 		currentPlayerCell,
+		isLocal: true,
 	}
 
-	if (data.type === 'common' && objectOfFunctions.onCommon) objectOfFunctions.onCommon(functionData)
-	if (data.type === 'uncommon' && objectOfFunctions.onUncommon) objectOfFunctions.onUncommon(functionData)
-	if (data.type === 'tax' && objectOfFunctions.onTax) objectOfFunctions.onTax(functionData)
-	if (data.type === 'chance' && objectOfFunctions.onChance) objectOfFunctions.onChance(functionData)
-	if (data.type === 'corner') {
-		if (data.extendType === 'prison' && objectOfFunctions.onPrison) objectOfFunctions.onPrison(functionData)
-		if (data.extendType === 'policeman' && objectOfFunctions.onPoliceman) objectOfFunctions.onPoliceman(functionData)
-		if (data.extendType === 'start' && objectOfFunctions.onStart) objectOfFunctions.onStart(functionData)
-		if (data.extendType === 'dices' && objectOfFunctions.onDices) objectOfFunctions.onDices(functionData)
+	console.log(cell.type)
+
+	if (cell.type === 'common' && objectOfFunctions.onCommon) return objectOfFunctions.onCommon(functionData)
+	else if (cell.type === 'uncommon' && objectOfFunctions.onUncommon) return objectOfFunctions.onUncommon(functionData)
+	else if (cell.type === 'tax' && objectOfFunctions.onTax) return objectOfFunctions.onTax(functionData)
+	else if (cell.type === 'chance' && objectOfFunctions.onChance) return objectOfFunctions.onChance(functionData)
+	else if (cell.type === 'corner') {
+		if (cell.extendType === 'prison' && objectOfFunctions.onPrison) return objectOfFunctions.onPrison(functionData)
+		else if (cell.extendType === 'policeman' && objectOfFunctions.onPoliceman) return objectOfFunctions.onPoliceman(functionData)
+		else if (cell.extendType === 'start' && objectOfFunctions.onStart) return objectOfFunctions.onStart(functionData)
+		else if (cell.extendType === 'dices' && objectOfFunctions.onDices) return objectOfFunctions.onDices(functionData)
 	}
+}
+
+// use actionHelper
+export const actionObserver = (sessionData: sessionReducerI, currentPlayer: userI) => {
+	const localSessionData = JSON.parse(JSON.stringify(sessionData))
+	const objectOfFunctions: actionObjectOfFunctionsI = {
+		onChance: data => getActionChance(data),
+	}
+
+	console.log('actionObserver')
+
+	return actionHelper(localSessionData, currentPlayer, objectOfFunctions)
 }

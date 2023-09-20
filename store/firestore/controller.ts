@@ -7,7 +7,7 @@ import { sessionI } from '@/store/interfaces/session'
 import { messageI } from '@/store/interfaces/message'
 import { diceResultI } from '@/store/interfaces/dice'
 import { sessionReducerI } from '@/store/reducers/session'
-import { getCellName } from '@/lib/sessionFunctions'
+import { actionObserver, getCellName } from '@/lib/sessionFunctions'
 
 // - - - MAIN OR INITIAL FUNCTIONS - - -
 // get doc in firestore
@@ -61,11 +61,7 @@ export const createSession = async (owner: userDataI, maxPlayers: number, passwo
 }
 
 // add new player
-export const addPlayerInSession = async (
-	sessionId: string,
-	userData: userDataI,
-	password?: string
-) => {
+export const addPlayerInSession = async (sessionId: string, userData: userDataI, password?: string) => {
 	const response = await getDocInFirestore('sessions', sessionId)
 	const preparedResponse = response.data() as sessionI | undefined
 
@@ -93,11 +89,7 @@ export const addPlayerInSession = async (
 
 // - - - SESSION FUNCTIONS - - -
 // push message
-export const pushMessage = async (
-	sessionData: Partial<sessionI>,
-	message: messageI,
-	isLocal?: boolean
-) => {
+export const pushMessage = async (sessionData: Partial<sessionI>, message: messageI, isLocal?: boolean) => {
 	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
 	if (!preparedSessionData.id) {
@@ -114,12 +106,7 @@ export const pushMessage = async (
 }
 
 // make a move
-export const makeMove = async (
-	sessionData: Partial<sessionI>,
-	player: userI,
-	length: number,
-	isLocal?: boolean
-) => {
+export const makeMove = async (sessionData: Partial<sessionI>, player: userI, length: number, isLocal?: boolean) => {
 	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
 	if (
@@ -152,18 +139,10 @@ export const makeMove = async (
 }
 
 // change turn player
-export const changeTurnPlayer = async (
-	sessionData: Partial<sessionI>,
-	isLocal?: boolean,
-	isDouble?: boolean
-) => {
+export const changeTurnPlayer = async (sessionData: Partial<sessionI>, isLocal?: boolean, isDouble?: boolean) => {
 	const preparedSessionData: Partial<sessionI> = JSON.parse(JSON.stringify(sessionData))
 
-	if (
-		!preparedSessionData.players ||
-		preparedSessionData.playerTurn === undefined ||
-		!preparedSessionData.id
-	) {
+	if (!preparedSessionData.players || preparedSessionData.playerTurn === undefined || !preparedSessionData.id) {
 		console.error('changeTurnPlayer error')
 		return
 	}
@@ -194,9 +173,10 @@ export const makeMoveFunctional = async (
 	onComplete?: () => void
 ) => {
 	const consoleError = () => console.error('makeMoveAndPushMessage error')
-	if (!sessionData.sessionDataStore) return consoleError()
-	let preparedSessionData = await makeMove(
-		sessionData.sessionDataStore,
+	let localSessionData: sessionReducerI | undefined = JSON.parse(JSON.stringify(sessionData))
+	if (!localSessionData?.sessionDataStore) return consoleError()
+	localSessionData.sessionDataStore = await makeMove(
+		localSessionData.sessionDataStore,
 		player,
 		diceResult.totalResultOfDices,
 		true
@@ -204,11 +184,11 @@ export const makeMoveFunctional = async (
 
 	// push system message
 	if (functional.pushMessage) {
-		if (!preparedSessionData || !player.gameData?.name || !sessionData.cells) return consoleError()
+		if (!localSessionData.sessionDataStore || !player.gameData?.name || !sessionData.cells) return consoleError()
 
 		const texts = {
 			moves: `Выпало ${diceResult.totalResultOfDices} (${diceResult.dicesResult.join(' + ')})`,
-			totalMoves: `${preparedSessionData.totalMoves} общих ходов.`,
+			totalMoves: `${localSessionData.sessionDataStore.totalMoves} общих ходов.`,
 			isDouble: `${diceResult.double ? 'Ого, это дубль!' : ''}`,
 			position: `В итоге ${player.data?.name} попадает на поле "${getCellName(
 				sessionData,
@@ -224,26 +204,32 @@ export const makeMoveFunctional = async (
 			body,
 			system: true,
 		}
-		preparedSessionData = await pushMessage(preparedSessionData, message, true)
+		localSessionData.sessionDataStore = await pushMessage(localSessionData.sessionDataStore, message, true)
 	}
 
-	//
+	// actionObserver
+	const currentPlayer = localSessionData.sessionDataStore?.players?.find(
+		currentPlayer => currentPlayer.data?.uid === player.data?.uid
+	)
+	if (!localSessionData.sessionDataStore || !currentPlayer) return consoleError()
+	const actionObserverResult = await actionObserver(localSessionData, currentPlayer)
+	if (!actionObserverResult) return consoleError()
+	localSessionData = actionObserverResult.sessionData
 
 	// change player turn
 	if (functional.changePlayerTurn) {
-		if (!preparedSessionData) return consoleError()
-		preparedSessionData = await changeTurnPlayer(preparedSessionData, true)
+		if (!localSessionData.sessionDataStore) return consoleError()
+		localSessionData.sessionDataStore = await changeTurnPlayer(localSessionData.sessionDataStore, true)
 	}
 
 	// output
-	if (!preparedSessionData?.id) return consoleError()
-	if (!functional.changePlayerTurn) {
-		preparedSessionData.playerCanAct = true
-		diceResult.double
-			? (preparedSessionData.isDouble = true)
-			: (preparedSessionData.isDouble = false)
+	if (!localSessionData.sessionDataStore?.id) return consoleError()
+	if (!functional.changePlayerTurn && !actionObserverResult.changedTurnPlayer) {
+		console.log('wow')
+		localSessionData.sessionDataStore.playerCanAct = true
+		diceResult.double ? (localSessionData.sessionDataStore.isDouble = true) : (localSessionData.sessionDataStore.isDouble = false)
 	}
-	await setItemInFirestore('sessions', preparedSessionData.id, preparedSessionData)
+	await setItemInFirestore('sessions', localSessionData.sessionDataStore.id, localSessionData.sessionDataStore)
 	onComplete && onComplete()
 	return true
 }
@@ -253,12 +239,9 @@ export const kickPlayer = async (sessionData: Partial<sessionI>, currentPlayer: 
 	const consoleError = () => console.error('kickPlayer error')
 	let preparedSessionData: Partial<sessionI> | undefined = JSON.parse(JSON.stringify(sessionData))
 
-	const playerIndex = preparedSessionData?.players?.findIndex(
-		player => player.data?.uid === currentPlayer.data?.uid
-	)
+	const playerIndex = preparedSessionData?.players?.findIndex(player => player.data?.uid === currentPlayer.data?.uid)
 	console.log(playerIndex, preparedSessionData?.players?.length)
-	if (playerIndex === undefined || playerIndex < 0 || !preparedSessionData?.players?.length)
-		return consoleError()
+	if (playerIndex === undefined || playerIndex < 0 || !preparedSessionData?.players?.length) return consoleError()
 	if (preparedSessionData?.playerTurn === playerIndex) {
 		preparedSessionData = await changeTurnPlayer(preparedSessionData, true)
 	}
@@ -271,9 +254,7 @@ export const kickPlayer = async (sessionData: Partial<sessionI>, currentPlayer: 
 
 // - - - UTILITY FUNCTIONS - - -
 // sign in app with Google
-export const signInWithGooglePopup = async (
-	setUserData: (userData: userDataI | undefined) => void
-) => {
+export const signInWithGooglePopup = async (setUserData: (userData: userDataI | undefined) => void) => {
 	const auth = getAuth()
 
 	try {
@@ -295,9 +276,7 @@ export const signInWithGooglePopup = async (
 }
 
 // sign out in app with Google
-export const signOutWithGooglePopup = async (
-	setUserData: (userData: userDataI | undefined) => void
-) => {
+export const signOutWithGooglePopup = async (setUserData: (userData: userDataI | undefined) => void) => {
 	const auth = getAuth()
 
 	try {

@@ -8,7 +8,6 @@ import { actionPopupChecker } from '@/components/Session/Popups/GameActions/popu
 import ActionCell from '@/components/Session/Popups/GameActions/CellsActions/ActionCell'
 import Button from '@/ui/Button/Button'
 import { changeTurnPlayer } from '@/store/firestore/controller'
-import { getActionChance } from '@/store/firestore/actionFunctions'
 import { getCurrentPlayerCell } from '@/lib/sessionFunctions'
 
 const ActionPopup: FC = () => {
@@ -23,13 +22,29 @@ const ActionPopup: FC = () => {
 	// common companies or uncommon companies
 	if (currentCell.data.type === 'common') {
 		return (
-			<ActionCell onClicks={[() => {}]} buttonsText={['Ладно']} types={[undefined]}>
+			<ActionCell
+				onClicks={[
+					() => {
+						if (!sessionData.sessionDataStore) return
+						changeTurnPlayer(sessionData.sessionDataStore)
+					},
+				]}
+				buttonsText={['Ладно']}
+				types={[undefined]}>
 				ого это {currentCell.data.name}
 			</ActionCell>
 		)
 	} else if (currentCell.data.type === 'uncommon') {
 		return (
-			<ActionCell onClicks={[() => {}]} buttonsText={['Ладно']} types={[undefined]}>
+			<ActionCell
+				onClicks={[
+					() => {
+						if (!sessionData.sessionDataStore) return
+						changeTurnPlayer(sessionData.sessionDataStore)
+					},
+				]}
+				buttonsText={['Ладно']}
+				types={[undefined]}>
 				ого это {currentCell.data.name}
 			</ActionCell>
 		)
@@ -37,7 +52,15 @@ const ActionPopup: FC = () => {
 	// tax or chance
 	else if (currentCell.data.type === 'tax') {
 		return (
-			<ActionCell onClicks={[() => {}]} buttonsText={['Ладно']} types={[undefined]}>
+			<ActionCell
+				onClicks={[
+					() => {
+						if (!sessionData.sessionDataStore) return
+						changeTurnPlayer(sessionData.sessionDataStore)
+					},
+				]}
+				buttonsText={['Ладно']}
+				types={[undefined]}>
 				ого это налоги
 			</ActionCell>
 		)
@@ -47,6 +70,8 @@ const ActionPopup: FC = () => {
 				onClicks={[
 					() => {
 						// getActionChance()
+						if (!sessionData.sessionDataStore) return
+						changeTurnPlayer(sessionData.sessionDataStore)
 					},
 				]}
 				buttonsText={['Ладно']}
